@@ -15,15 +15,70 @@
  */
 package algorithmi;
 
+import static spark.Spark.delete;
 import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.put;
+import static spark.Spark.staticFileLocation;
 
 /**
  *
  * @author Pedro Dias
  */
 public class Main {
+
+  public static void main(String[] args) {
+    staticFileLocation("/public");
+
+    get("/quiz/:id", (request, response) -> {
+      return "Hello World";
+    });
+
+    post("/quiz", (request, response) -> {
+      return "Hello World";
+    });
+
+    put("/quiz/:id", (request, response) -> {
+      return "Hello World";
+    });
+
+    delete("/quiz/:id", (request, response) -> {
+      return "Hello World";
+    });
     
-    public static void main(String[] args) {
-        get("/hello", (req, res) -> "Hello World");
-    }
+    
+    get("/question/:id", (request, response) -> {
+      return "Hello World";
+    });
+
+    post("/question", (request, response) -> {
+      return "Hello World";
+    });
+
+    put("/question/:id", (request, response) -> {
+      return "Hello World";
+    });
+
+    delete("/question/:id", (request, response) -> {
+      return "Hello World";
+    });
+
+    
+    get("/user/:id", (request, response) -> {
+      return "Hello World";
+    });
+    
+    post("/user", (request, response) -> {
+      return "Hello World";
+    });
+
+    put("/user/:id", (request, response) -> {
+      return "Hello World";
+    });
+
+    delete("/user/:id", (request, response) -> {
+      return "Hello World";
+    });
+
+  }
 }

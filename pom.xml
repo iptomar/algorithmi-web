@@ -10,8 +10,8 @@
     <artifactId>spark-core</artifactId>
     <packaging>bundle</packaging>
     <version>2.3</version>
-    <name>Spark</name>
-    <description>A Sinatra inspired java web framework</description>
+    <name>Algorithmi</name>
+    <description>Algorithmi</description>
     <url>http://www.sparkjava.com</url>
     <licenses>
         <license>
