@@ -15,6 +15,8 @@
  */
 package algorithmi;
 
+import jdk.nashorn.internal.ir.debug.JSONWriter;
+import jdk.nashorn.internal.parser.JSONParser;
 import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -65,7 +67,7 @@ public class Main {
 
     
     get("/user/:id", (request, response) -> {
-      return "Hello World";
+      return "{\"username\": \"johndoe\", \"escola\":\"xpto\"}";
     });
     
     post("/user", (request, response) -> {
