@@ -1,3 +1,33 @@
-<div>
-  login
+<div id="loginDiv">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#Login" aria-controls="Login" role="tab" data-toggle="tab" aria-expanded="true">Login</a></li>
+        <li role="presentation" class=""><a href="#SignUp" aria-controls="SignUp" role="tab" data-toggle="tab" aria-expanded="false">Sign Up</a></li>
+        <li role="presentation"><a href="#Help" aria-controls="Help" role="tab" data-toggle="tab">Help</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- LOGIN -->
+        <div role="tabpanel" class="tab-pane active" id="Login">
+            <br>
+            <div class="input-group m-bot15">
+                <span class="input-group-addon btn-white"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="ola al">
+            </div>
+            <br>
+            <div class="input-group m-bot15">
+                <span class="input-group-addon btn-white"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Password">
+            </div>
+        </div>
+        <!-- SIGN UP -->
+        <div role="tabpanel" class="tab-pane" id="SignUp">
+            <input type="password" class="form-control" placeholder="Password">
+        </div>
+        <!-- HELP -->
+        <div role="tabpanel" class="tab-pane" id="Help">Help</div>
+    </div>
+
 </div>
