@@ -1,10 +1,10 @@
-window.TeachersInfoView = Backbone.View.extend({
+window.QuestionsView = Backbone.View.extend({
     events: {},
     initialize: function () {
     },
 
     render: function () {
-        $(this.el).html(this.template(this.model.toJSON()));
+        $(this.el).html(this.template());
         return this;
     }
 });
