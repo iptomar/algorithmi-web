@@ -2,109 +2,124 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Letrinhas2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <title>Letrinhas2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <link href="assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-   <link href="assets/css/algorithmi.css" rel="stylesheet" />
-  <link href="assets/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="assets/libs/google-code-prettify/prettify.css" rel="stylesheet" />
-  <link href="assets/css/algorithmi.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="assets/libs/google-code-prettify/prettify.css" rel="stylesheet"/>
 
-  <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"
+          rel="stylesheet">
+
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link href="assets/css/algorithmi.css" rel="stylesheet"/>
 </head>
 
 <body class="bg_noise" data-spy="scroll" data-target=".subnav" data-offset="50">
 
-    <div id="header">
-        <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Algorithmi</a>
-    </div>
+<div id="header">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#home">Algorithmi</a>
+            </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-    </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#questions"><i class="fa fa-question"></i>Perguntas
+                        <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li><a href="#tests"><i class="fa fa-list-alt"></i>Testes</a></li>
+                    <li><a href="#students"><i class="fa fa-graduation-cap"></i>Alunos</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-black-tie"></i>Administração <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-building"></i>Instituições</a></li>
+                            <li><a href="#schools"><i class="fa fa-building-o "></i>Escolas</a></li>
+                            <li><a href="#"><i class="fa  fa-book"></i>Cursos</a></li>
+                            <li><a href="#Teachers"><i class="fa fa-group"></i>Professores</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fa fa-university fa-pie-chart"></i>Estatísticas</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fa fa-wrench"></i>Ferramentas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Ajuda</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
 
-  <div id="page">
+<div id="page">
     <div class="container">
-      <div id="content"></div>
+        <div id="content"></div>
     </div>
-  </div>
+</div>
 
-  <div id="loadingbar" style="position: fixed; bottom:-21px;width:100%;display:none">
+<div id="loadingbar" style="position: fixed; bottom:-21px;width:100%;display:none">
     <div class="progress progress-striped active">
-      <div class="bar" style="width: 100%;">Loading...</div>
+        <div class="bar" style="width: 100%;">Loading...</div>
     </div>
-  </div>
+</div>
 
-  <div id="footer"></div>
+<div id="footer"></div>
 
-  <script src="assets/libs/async.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-  <script src="assets/libs/jquery.cookie.js"></script>
-  <script src="assets/libs/bootstrap.js"></script>
-  <script src="assets/libs/utils.js"></script>
-  <script src="assets/libs/google-code-prettify/prettify.js"></script>
-  <script src="assets/libs/underscore.js"></script>
-  <script src="assets/libs/backbone.js"></script>
+<script src="assets/libs/async.js"></script>
+<script src="assets/libs/jquery.min.js"></script>
+<script src="assets/libs/jquery.cookie.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/responses.js"></script>
+<script src="assets/libs/google-code-prettify/prettify.js"></script>
+<script src="assets/libs/underscore.js"></script>
+<script src="assets/libs/backbone.js"></script>
 
-  <script src="assets/js/models/Teacher.js"></script>
-  <script src="assets/js/models/Student.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
 
-  <script src="assets/js/engine.js"></script>
-  <script src="assets/js/main.js"></script>
+<script src="assets/js/models/Teacher.js"></script>
+<script src="assets/js/models/Question.js"></script>
+<script src="assets/js/models/Student.js"></script>
 
-  <div id="main_content"></div>
+<script src="assets/js/engine.js"></script>
+<script src="assets/js/main.js"></script>
+
+<div id="main_content"></div>
 
 </body>
 

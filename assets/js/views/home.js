@@ -1,10 +1,10 @@
-window.SchoolsInfoView = Backbone.View.extend({
+window.HomeView = Backbone.View.extend({
     events: {},
     initialize: function () {
     },
-
     render: function () {
         $(this.el).html(this.template());
         return this;
     }
+
 });

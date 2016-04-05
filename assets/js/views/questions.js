@@ -1,4 +1,4 @@
-window.SchoolsInfoView = Backbone.View.extend({
+window.QuestionsView = Backbone.View.extend({
     events: {},
     initialize: function () {
     },

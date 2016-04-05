@@ -1,16 +1,16 @@
-var Teacher = Backbone.Model.extend({
+var Question = Backbone.Model.extend({
     initialize: function (options) {
         this.id = options.id;
     },
     fetch: function (after_fetch) {
         var self = this;
 
-        modem('GET', 'user/' + this.id,
+        modem('GET', 'question/' + this.id,
             function (json) {
-
-                self.set("username", json.username);
-                self.set("escola", json.escola);
-
+                console.log(json);
+                self.set("titulo", json.titulo);
+                self.set("descricao", json.descricao);
+                self.set("categoria", json.categoria);
                 after_fetch();
             },
             function (xhr, ajaxOptions, thrownError) {
