@@ -128,8 +128,15 @@ var Router = Backbone.Router.extend({
 
         templateLoader.load(["StudentsInfoView"],
             function () {
+
                 var v = new StudentsInfoView({});
                 self.showView(v, $('#content'));
+
+
+                var v = new StudentsInfoView({});
+                self.showView(v, $('#content'));
+
+
             }
         );
     },
