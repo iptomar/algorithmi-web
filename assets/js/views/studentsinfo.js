@@ -13,8 +13,7 @@ window.StudentsInfoView = Backbone.View.extend({
             //Error Handling
             function (xhr, ajaxOptions, thrownError) {
                 console.log("ups");
-            },
-            $("#frmEditDetails").serialize() + "&email=" + encodeURIComponent($("#inputEmail").val())
+            }
         );
         return this;
     }
