@@ -85,6 +85,7 @@ $(".nav a").on("click", function () {
     if (!$(this).parent().hasClass("dropdown")) {
         $(this).parent().addClass("active");
     }
+
 });
 
 

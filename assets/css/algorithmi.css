@@ -16,6 +16,21 @@ body {
     background: linear-gradient(204deg, rgba(188, 193, 186, 1) 0%, rgba(253, 228, 172, 1) 48%, rgba(255, 246, 184, 1) 69%, rgba(252, 171, 134, 1) 100%); /* w3c */
 }
 
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
+
 .navbar-nav i {
     margin-right: 5px;
 }
@@ -39,7 +54,6 @@ body {
 #loginDiv {
     background-color: #fff;
     width: 300px;
-    height: 300px;
     margin: auto;
     top: 50px;
     position: relative;
@@ -63,6 +77,17 @@ body {
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
+}
+
+.divWidget {
+    background: #f1f2f7;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: left;
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.275);
 }
 
 .row > div {
@@ -189,5 +214,30 @@ body {
     height: 100%;
     width: inherit;
     margin-left: 50%;
+}
+
+/* USER STYLE*/
+.userPreview {
+    height: 70px;
+}
+
+.userPreview > .col-md-3 {
+    overflow: hidden;
+    height: 50px;
+    padding-left: 0px;
+}
+
+.userPreview > .col-md-3 > img {
+    width: 100%;
+}
+
+.userPreview:hover {
+    transform: scale(1.5);
+    position: relative;
+}
+
+.userPreview > .lblName {
+    font-size: 18px;
+    color: #1e347b;
 }
 
