@@ -1,7 +1,10 @@
 /**
  * Created by Fábio Cruz on 10/04/2016.
  */
-window.TeachersInfoView = Backbone.View.extend({
+/**
+ * Created by Fábio Cruz on 10/04/2016.
+ */
+window.InstitutionsEditView = Backbone.View.extend({
     events: {},
     initialize: function () {
     },

@@ -1,6 +1,7 @@
 window.SchoolsView = Backbone.View.extend({
   events: {},
-  initialize: function() {},
+  initialize: function() {
+  },
 
   render: function() {
     $(this.el).html(this.template());

@@ -36,12 +36,21 @@ var Router = Backbone.Router.extend({
         "questions/new": "questionsNew",
         "questions/:id/edit": "questionsEdit",
 
+        "courses": "courses",
+        "courses/new": "coursesNew",
+        "courses/:id/edit": "coursesEdit",
+
         "tests": "tests",
         "tests/new": "testsNew",
         "tests/:id": "testsInfo",
 
         "submissions": "submissions",
         "submissions/:id": "submissionsInfo",
+
+        "institutions": "institutions",
+        "institutions/new": "institutionsNew",
+        "institutions/:id/edit": "institutionsEdit",
+
 
         "login": "login",
         "": "index"
@@ -65,43 +74,9 @@ var Router = Backbone.Router.extend({
         $('#content').html(login.render().el);
     },
 
-    teachers: function () {
-        var self = this;
 
-        templateLoader.load(["TeachersView"],
-            function () {
-                var v = new TeachersView({});
-                self.showView(v, $('#content'));
-            }
-        );
-    },
-    teachersNew: function () {
-        var self = this;
 
-        templateLoader.load(["TeachersNewView"],
-            function () {
-                var v = new TeachersNewView({});
-                self.showView(v, $('#content'));
-            }
-        );
-    },
-    teachersInfo: function (id) {
-        var self = this;
 
-        templateLoader.load(["TeachersInfoView"],
-            function () {
-                var ss = new Teacher({
-                    id: id
-                });
-                ss.fetch(function () {
-                    var v = new TeachersInfoView({
-                        model: ss
-                    });
-                    self.showView(v, $('#content'));
-                });
-            }
-        );
-    },
 
     students: function () {
         var self = this;
@@ -172,6 +147,40 @@ var Router = Backbone.Router.extend({
         );
     },
 
+
+
+    teachers: function () {
+        var self = this;
+
+        templateLoader.load(["TeachersView"],
+            function () {
+                var v = new TeachersView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+    teachersNew: function () {
+        var self = this;
+
+        templateLoader.load(["TeachersNewView"],
+            function () {
+                var v = new TeachersNewView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+    teachersInfo: function (id) {
+        var self = this;
+
+        templateLoader.load(["TeachersInfoView"],
+            function () {
+                var v = new TeachersInfoView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+
+
     questions: function (id) {
         var self = this;
         templateLoader.load(["QuestionsView"],
@@ -205,6 +214,81 @@ var Router = Backbone.Router.extend({
             }
         );
     },
+
+
+
+    courses: function (id) {
+        var self = this;
+        templateLoader.load(["CoursesView"],
+            function () {
+                var v = new CoursesView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+    coursesNew: function () {
+        var self = this;
+
+        templateLoader.load(["CoursesNewView"],
+            function () {
+                var v = new CoursesNewView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+
+    coursesEdit: function (id) {
+        var self = this;
+        templateLoader.load(["CoursesEditView"],
+            function () {
+
+                var v = new CoursesEditView({
+                    id: id
+                });
+                self.showView(v, $('#content'));
+
+            }
+        );
+    },
+
+
+
+
+    institutions: function (id) {
+        var self = this;
+        templateLoader.load(["InstitutionsView"],
+            function () {
+                var v = new InstitutionsView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+    institutionsNew: function () {
+        var self = this;
+
+        templateLoader.load(["InstitutionsNewView"],
+            function () {
+                var v = new InstitutionsNewView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+
+    institutionsEdit: function (id) {
+        var self = this;
+        templateLoader.load(["InstitutionsEditView"],
+            function () {
+
+                var v = new InstitutionsEditView({
+                    id: id
+                });
+                self.showView(v, $('#content'));
+
+            }
+        );
+    },
+
+
 
     tests: function () {
         var self = this;
