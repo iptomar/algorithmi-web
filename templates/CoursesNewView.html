@@ -6,7 +6,7 @@
                 obrigatório</label>
         </div>
     </div>
-    <h3 align="center">Inserir nova Escola
+    <h3 align="center">Inserir novo Curso
         <hr>
     </h3>
     <hr>
@@ -21,29 +21,29 @@
         </div>
         <div class=" col-md-6">
             <div class="input-group">
-                <span class="input-group-addon btn-white"><i class=" fa-tag"></i></span>
-                <input id="txtNome" name="nameSchool" type="text" class="form-control mandatory"
+                <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
+                <input id="txtNome" name="nameCourse" type="text" class="form-control mandatory"
                        placeholder="Nome">
             </div>
         </div>
 
-            <div class=" col-md-3">
-                <div class="input-group">
-                    <span class="input-group-addon btn-white"><i class="fa fa-building"></i></span>
-                    <select id="ddInst" name="sigla" class="form-control mandatory">
-                        <option disabled selected>Instituição</option>
-                        <option value="1">IPT</option>
-                        <option value="2">IPL</option>
-                        <option value="3">ISCTE</option>
-                        <option value="4">...</option>
-                    </select>
-                </div>
+        <div class=" col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon btn-white"><i class="fa fa-building-o"></i></span>
+                <select id="ddInst" name="sigla" class="form-control mandatory">
+                    <option disabled selected>Escola</option>
+                    <option value="1">ESTA</option>
+                    <option value="2">ESGT</option>
+                    <option value="3">ESTT</option>
+                    <option value="4">...</option>
+                </select>
             </div>
+        </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-md-12 btn-group">
-            <button type="button" class="btn btn-default" aria-label="Left Align"><a href="#institutions"</a>
+            <button type="button" class="btn btn-default" aria-label="Left Align"><a href="#courses"</a>
                 <span class=" glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             </button>
             <button id="btnCriarInst" type="submit" class="btn btn-success btn_created">Criar</button>

@@ -1,19 +1,53 @@
-<div>
-    <form role="form" method="POST" action="/teachers" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="txtNome">Nome</label>
-            <input type="text" class="form-control" id="txtNome" placeholder="Nome" name="nome">
-            <label for="exampleInputTelefone">Telefone</label>
-            <input type="text" class="form-control" id="exampleInputTelefone" placeholder="Telefone" name="telefone">
-            <label for="exampleInputEmail">Email</label>
-            <input type="text" class="form-control" id="exampleInputEmail" placeholder="Email" name="email">
+<form role="form" class="mainDiv" method="POST" action="/question" enctype="multipart/form-data">
+    <div class="infoDiv">
+        <div class="infoDivContent ">
+            <i class="fa fa-info-circle fa-2x "></i></br></br>
+            <label class=""><i class="fa fa-square-o"></i> Campos de preenchimento
+                obrigatório</label>
+        </div>
+    </div>
+    <h3 align="center">Inserir novo Professor
+        <hr>
+    </h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="fileUploader">
+                <span>Escolher imagem</span>
+                <input type="file" class="form-control mandatory" id="filePickerImg" name="file">
+                <input type="hidden" name="imagem" class="form-control" id="base64textarea">
+                <img id="imagePrev">
+            </div>
+        </div>
+        <div class=" col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
+                <input id="txtNome" name="nameTeacher" type="text" class="form-control mandatory"
+                       placeholder="Nome">
+            </div>
         </div>
 
-        <div class="form-group">
-            <input type="file" id="exampleInputFile" name="file">
+        <div class=" col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon btn-white"><i class="fa fa-book"></i></span>
+                <select id="ddTeachers" name="nomeCurso" class="form-control mandatory">
+                    <option disabled selected>Curso</option>
+                    <option value="1">Eng. Informática</option>
+                    <option value="2">Eng. Electrótécnica</option>
+                    <option value="3">C.E.T. - T.P.S.I,</option>
+                    <option value="4">...</option>
+                </select>
+            </div>
         </div>
-
-        <button type="submit" class="btn btn-success btn_created">Create</button>
-        <button class="btn btn-warning btn_cancel">Cancel</button>
-    </form>
-</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 btn-group">
+            <button type="button" class="btn btn-default" aria-label="Left Align"><a href="#teachers"</a>
+                <span class=" glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </button>
+            <button id="btnCriarInst" type="submit" class="btn btn-success btn_created">Criar</button>
+            <button class="btn btn-default">Cancel</button>
+        </div>
+    </div>
+</form>
