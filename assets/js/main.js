@@ -51,6 +51,7 @@ var Router = Backbone.Router.extend({
         "institutions/new": "institutionsNew",
         "institutions/:id/edit": "institutionsEdit",
 
+        "statistics": "statistics",
 
         "login": "login",
         "": "index"
@@ -76,7 +77,16 @@ var Router = Backbone.Router.extend({
 
 
 
+    statistics: function () {
+        var self = this;
 
+        templateLoader.load(["StatisticsView"],
+            function () {
+                var v = new StatisticsView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
 
     students: function () {
         var self = this;
@@ -293,9 +303,9 @@ var Router = Backbone.Router.extend({
     tests: function () {
         var self = this;
 
-        templateLoader.load(["TestsInfoView"],
+        templateLoader.load(["TestsView"],
             function () {
-                var v = new TestsInfoView({});
+                var v = new TestsView({});
                 self.showView(v, $('#content'));
             }
         );
