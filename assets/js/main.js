@@ -33,7 +33,7 @@ var Router = Backbone.Router.extend({
         "courses": "courses",
 
         "tests": "tests",
-
+        "home": "home",
         "submissions": "submissions",
         "submissions/:id": "submissionsInfo",
 
@@ -56,6 +56,21 @@ var Router = Backbone.Router.extend({
             }
         );
     },
+
+
+    home: function () {
+
+        var self = this;
+
+        templateLoader.load(["HomeView"],
+            function () {
+                var v = new HomeView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
+
+
     login: function () {
         var login = new LoginView();
         $('#header').html("");
