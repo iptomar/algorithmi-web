@@ -231,14 +231,14 @@
                     <div class="col-md-7">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
-                            <input id="txtTitulo" name="titulo" autofocus type="text" class="form-control mandatory"
+                            <input id="txtTitulo" name="title" autofocus type="text" class="form-control mandatory"
                                    placeholder="Título">
                         </div>
                     </div>
                     <div class=" col-md-5">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-flag"></i></span>
-                            <select id="ddCategoria" name="dificuldade" class="form-control mandatory">
+                            <select id="ddCategoria" name="category" class="form-control mandatory">
                                 <option disabled selected>Categoria</option>
                                 <option value="1">Dados</option>
                                 <option value="2">Decisão</option>
@@ -253,14 +253,14 @@
                     <div class=" col-md-7">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-bookmark"></i></span>
-                            <input id="txtDescricao" name="descricao" type="text" class="form-control mandatory"
+                            <input id="txtDescricao" name="description" type="text" class="form-control mandatory"
                                    placeholder="Descrição">
                         </div>
                     </div>
                     <div class=" col-md-5">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-bar-chart"></i></span>
-                            <select id="ddDificuldade" name="dificuldade" class="form-control mandatory">
+                            <select id="ddDificuldade" name="difficulty" class="form-control mandatory">
                                 <option disabled selected>Dificuldade</option>
                                 <option value="1">Fácil</option>
                                 <option value="2">Médio</option>
@@ -275,7 +275,7 @@
                         <div class="fileUploader">
                             <span>Escolher imagem</span>
                             <input type="file" class="form-control mandatory" id="filePickerImg" name="file">
-                            <input type="hidden" name="imagem" class="form-control" id="base64textarea">
+                            <input type="hidden" name="image" class="form-control" id="base64textarea">
                             <img id="imagePrev">
                         </div>
                     </div>
@@ -285,14 +285,14 @@
                                 <div class="input-group">
                                         <span class="input-group-addon btn-white"><i
                                                 class="glyphicon glyphicon-save"></i></span>
-                                    <input id="txtEntrada" type="text" class="form-control" placeholder="Entrada">
+                                    <input id="txtEntrada" name="in" type="text" class="form-control" placeholder="Entrada">
                                 </div>
                             </div>
                             <div class=" col-md-6">
                                 <div class="input-group">
                                         <span class="input-group-addon btn-white"><i
                                                 class="glyphicon glyphicon-open"></i></span>
-                                    <input id="txtSaida" type="text" class="form-control" placeholder="Saída">
+                                    <input id="txtSaida" name="out" type="text" class="form-control" placeholder="Saída">
                                 </div>
                             </div>
                             <div id="divIOList" class=" col-md-12">
