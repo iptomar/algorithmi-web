@@ -3,7 +3,8 @@
  */
 window.InstitutionsView = Backbone.View.extend({
     events: {
-        "submit": "beforeSend"
+        "submit": "beforeSend",
+        
     },
 
     beforeSend: function (e) {
@@ -14,7 +15,7 @@ window.InstitutionsView = Backbone.View.extend({
             },
             function (xhr, ajaxOptions, thrownError) {
             },
-            $("#newInstituicao").serializeArray()
+            encodeURI(JSON.stringify($("#newInstituicao").serializeObject()))
         );
 
     },
