@@ -1,6 +1,3 @@
-/**
- * Created by Fábio Cruz on 10/04/2016.
- */
 window.QuestionsView = Backbone.View.extend({
 
     events: {
