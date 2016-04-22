@@ -1,9 +1,18 @@
 window.TestsView = Backbone.View.extend({
-  events: {},
-  initialize: function() {},
+    events: {
+        "click #btnCriarInst": "adicionarPergunta"
+    },
 
-  render: function() {
-    $(this.el).html(this.template());
-    return this;
-  }
+    // adicionarPergunta: function () {
+    //     .append()
+
+
+
+    initialize: function () {
+    },
+
+    render: function () {
+        $(this.el).html(this.template());
+        return this;
+    }
 });
