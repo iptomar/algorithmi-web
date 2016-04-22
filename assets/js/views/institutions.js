@@ -15,7 +15,7 @@ window.InstitutionsView = Backbone.View.extend({
             },
             function (xhr, ajaxOptions, thrownError) {
             },
-            encodeURI(JSON.stringify($("#newInstituicao").serializeObject()))
+            encodeURI(JSON.stringify($("#newInstitution").serializeObject()))
         );
 
     },
