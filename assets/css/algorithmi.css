@@ -16,6 +16,30 @@ body {
     background: linear-gradient(204deg, rgba(188, 193, 186, 1) 0%, rgba(253, 228, 172, 1) 48%, rgba(255, 246, 184, 1) 69%, rgba(252, 171, 134, 1) 100%); /* w3c */
 }
 
+#page{
+    margin-top: 50px;
+}
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #E9AC3B;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+
 /* Large desktop */
 @media (min-width: 1200px) {
 
@@ -60,6 +84,15 @@ body {
     border-radius: 5px;
 }
 
+
+#popUpDiv {
+    background-color: #fff;
+    width: 600px;
+    margin: auto;
+    top: 50px;
+    position: relative;
+    border-radius: 5px;
+}
 .tab-pane {
     padding: 20px;
 }
