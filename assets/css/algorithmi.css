@@ -123,6 +123,17 @@ body {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.275);
 }
 
+.divWidget1 {
+    background: transparent;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: left;
+    border-color: transparent;
+
+}
+
 .row > div {
     padding-bottom: 20px;
 }
