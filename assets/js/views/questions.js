@@ -3,7 +3,7 @@ window.QuestionsView = Backbone.View.extend({
     events: {
 
         "submit": "beforeSend",
-
+       
     },
 
     beforeSend: function (e) {
@@ -18,6 +18,20 @@ window.QuestionsView = Backbone.View.extend({
         );
 
     },
+
+
+
+    adicionarLinguagem: function (){
+        var $html = $('<p>ola</p>');
+        var str = $html.prop('outerHTML');
+        console.log(str);
+        $("#language").append($html);
+
+    },
+
+
+
+
 
     initialize: function () {
     },
