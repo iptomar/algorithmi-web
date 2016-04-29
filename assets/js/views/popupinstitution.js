@@ -1,37 +1,25 @@
-window.QuestionsView = Backbone.View.extend({
+/**
+ * Created by Fábio Cruz on 23/04/2016.
+ */
 
+window.PopUpInstitutionView = Backbone.View.extend({
     events: {
-
         "submit": "beforeSend",
-       
+
     },
 
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', 'question/new',
+        modem('POST', 'popupinstitution',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {
             },
-            encodeURI(JSON.stringify($("#newQuestion").serializeObject()))
+            encodeURI(JSON.stringify($("#newPopUpInstitution").serializeObject()))
         );
 
     },
-
-
-
-    adicionarLinguagem: function (){
-        var $html = $('<p>ola</p>');
-        var str = $html.prop('outerHTML');
-        console.log(str);
-        $("#language").append($html);
-
-    },
-
-
-
-
 
     initialize: function () {
     },
