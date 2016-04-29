@@ -11,7 +11,7 @@ window.PopUpInstitutionView = Backbone.View.extend({
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', 'popupinstitution',
+        modem('POST', '/api/popupinstitution',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {

@@ -9,7 +9,7 @@ window.PopUpQuestionView = Backbone.View.extend({
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', 'popupquestion',
+        modem('POST', '/api/popupquestion',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {

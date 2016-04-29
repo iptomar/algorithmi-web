@@ -14,7 +14,7 @@ window.TestsView = Backbone.View.extend({
     // beforeSend: function (e) {
     //     e.preventDefault();
     //
-    //     modem('POST', 'test/new',
+    //     modem('POST', '/api/test/new',
     //         function (json) {
     //         },
     //         function (xhr, ajaxOptions, thrownError) {
@@ -26,7 +26,7 @@ window.TestsView = Backbone.View.extend({
 
     newTest: function(){
 
-        modem('POST', 'popuptest',
+        modem('POST', '/api/popuptest',
             function (json) {
                 $("#newTestModal").modal('hide');
             },

@@ -10,7 +10,7 @@ window.PopUpSchoolView = Backbone.View.extend({
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', 'popupschool',
+        modem('POST', '/api/popupschool',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {

@@ -13,7 +13,7 @@ window.CoursesView = Backbone.View.extend({
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', 'course/new',
+        modem('POST', '/api/course/new',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {
@@ -26,7 +26,7 @@ window.CoursesView = Backbone.View.extend({
 
     newCourse: function(){
 
-        modem('POST', 'popupcourse',
+        modem('POST', '/api/popupcourse',
             function (json) {
                 $("#newCourseModal").modal('hide');
             },

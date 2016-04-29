@@ -9,7 +9,7 @@ window.PopUpTestView = Backbone.View.extend({
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', 'popuptest',
+        modem('POST', '/api/popuptest',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {

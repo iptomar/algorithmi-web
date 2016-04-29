@@ -8,7 +8,7 @@ window.QuestionsEditView = Backbone.View.extend({
     render: function () {
         var self = this;
         $(this.el).html(this.template());
-        modem('GET', 'question/' + this.id,
+        modem('GET', '/api/question/' + this.id,
             function (questionData) {
                 console.log(questionData);
                 $("#txtTitulo").val(questionData.titulo);
