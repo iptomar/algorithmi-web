@@ -21,33 +21,16 @@ var Router = Backbone.Router.extend({
     },
     routes: {
         "teachers": "teachers",
-
         "students": "students",
         "students/new": "studentsNew",
-
         "students/:id": "studentsInfo",
-
         "schools": "schools",
-
-        "popupquestion": "popupquestion",
-
-        "popuptest": "popuptest",
-
-        "popupinstitution": "popupinstitution",
-
-        "popupschool": "popupschool",
-
-        "popupcourse": "popupcourse",
-
         "questions": "questions",
-
         "courses": "courses",
-
         "tests": "tests",
         "home": "home",
         "submissions": "submissions",
         "submissions/:id": "submissionsInfo",
-
         "institutions": "institutions",
 
         "statistics": "statistics",
@@ -90,7 +73,6 @@ var Router = Backbone.Router.extend({
     },
 
 
-
     statistics: function () {
         var self = this;
 
@@ -102,64 +84,6 @@ var Router = Backbone.Router.extend({
         );
     },
 
-    popupquestion: function () {
-        var self = this;
-
-        templateLoader.load(["PopUpQuestionView"],
-            function () {
-                var v = new PopUpQuestionView({});
-                self.showView(v, $('#content'));
-            }
-        );
-    },
-
-
-    popupinstitution: function () {
-        var self = this;
-
-        templateLoader.load(["PopUpInstitutionView"],
-            function () {
-                var v = new PopUpInstitutionView({});
-                self.showView(v, $('#content'));
-            }
-        );
-    },
-
-
-    popupschool: function () {
-        var self = this;
-
-        templateLoader.load(["PopUpSchoolView"],
-            function () {
-                var v = new PopUpSchoolView({});
-                self.showView(v, $('#content'));
-            }
-        );
-    },
-
-
-    popupcourse: function () {
-        var self = this;
-
-        templateLoader.load(["PopUpCourseView"],
-            function () {
-                var v = new PopUpCourseView({});
-                self.showView(v, $('#content'));
-            }
-        );
-    },
-
-
-    popuptest: function () {
-        var self = this;
-
-        templateLoader.load(["PopUpTestView"],
-            function () {
-                var v = new PopUpTestView({});
-                self.showView(v, $('#content'));
-            }
-        );
-    },
 
     students: function () {
         var self = this;

@@ -104,3 +104,81 @@ $.fn.serializeObject = function () {
     });
     return o;
 };
+
+
+//Mostra o formulário de login no form indicado
+window.showLoginModal = function (form) {
+
+    var $loginModal = $("<div>", {
+            class: "modal fade",
+            tabindex: "-1",
+            id: "mLogin",
+            role: "dialog",
+            "aria-labelledby": "myModalLabel",
+            "aria-hidden": "true"
+        }).append(
+        $("<div>", {class: "modal-dialog"}).append(
+            $("<div>", {class: "modal-content"}
+                // MODAl HEATHER
+            ).append(
+                $("<div>", {class: "modal-header"}).append(
+                    $("<button>", {
+                        type: "button", class: "close", "data-dismiss": "modal", "aria-label": "Close"
+                    }),
+                    $("<h3>", {
+                        class: "modal-title", text: "Controlo de acesso"
+                    })
+                )
+                // MODAl HEATHER
+            ).append(
+                $("<div>", {
+                    class: "modal-body",
+                }).append(
+                    $("<div>", {
+                        class: "row form-group",
+                    }).append(
+                        $("<div>", {
+                            class: "col-sm-12",
+                        }).append(
+                            $("<input>", {
+                                id: "userEmail", class: "form-control", placeholder: "E-mail", name: "email",
+                                type: "email", autofocus: "autofocus", autocomplete: "on"
+                            })
+                        ).append($("<span>", {
+                            id: "imgMail", class: "glyphicon glyphicon-envelope"
+                        }))
+                    )
+                    )
+                    .append(
+                        $("<div>", {
+                            class: "row form-group",
+                        }).append(
+                            $("<div>", {
+                                class: " col-sm-12",
+                            }).append(
+                                $("<input>", {
+                                    id: "psswrd", class: "form-control", placeholder: "Palavra-passe", name: "password",
+                                    type: "password"
+                                })
+                            ).append($("<span>", {
+                                id: "pwdIcon", class: "glyphicon glyphicon-lock"
+                            }))
+                        )
+                    )
+            ).append(
+                $("<div>", {
+                    class: "modal-footer",
+                }).append(
+                    $("<button>", {
+                        type: "submit", id: "loginbtn", class: "btn btn-lg btn-login btn-block",
+                        text: "Entrar",
+                        onClick: "attemptLogin()"
+                    })
+                )
+            )
+        ))
+        ;
+    $(form).append($loginModal);
+
+    $("#mLogin").modal("show");
+};
