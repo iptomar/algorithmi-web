@@ -14,7 +14,7 @@ window.QuestionsView = Backbone.View.extend({
 
         //this.checkAuth();
 
-        modem('POST', 'question/new',
+        modem('POST', '/api/question/new',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {
@@ -26,7 +26,7 @@ window.QuestionsView = Backbone.View.extend({
 
     newQuestion: function(){
 
-        modem('POST', 'popupquestion',
+        modem('POST', '/api/popupquestion',
             function (json) {
                 $("#newQuestionModal").modal('hide');
             },

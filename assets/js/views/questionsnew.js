@@ -31,7 +31,7 @@ window.QuestionsNewView = Backbone.View.extend({
     },
     send: function (e) {
         //prepara-se par enviar os dados para a API
-        modem('POST', 'question',
+        modem('POST', '/api/question',
             //Se correr tudo bem
             function (json) {
                 //Mostra uma mensagem de sucesso com a string que vem da API

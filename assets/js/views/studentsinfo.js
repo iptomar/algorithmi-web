@@ -5,7 +5,7 @@ window.StudentsInfoView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template());
-        modem('GET', 'user/' + "32",
+        modem('GET', '/api/user/' + "32",
             //Response Handler
             function (json) {
                 console.log(json);

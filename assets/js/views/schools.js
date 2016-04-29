@@ -2,7 +2,7 @@
  * Created by Fábio Cruz on 10/04/2016.
  */
 window.SchoolsView = Backbone.View.extend({
-  
+
   events: {
 
     "submit": "beforeSend",
@@ -13,7 +13,7 @@ window.SchoolsView = Backbone.View.extend({
   beforeSend: function (e) {
     e.preventDefault();
 
-    modem('POST', 'school/new',
+    modem('POST', '/api/school/new',
         function (json) {
         },
         function (xhr, ajaxOptions, thrownError) {
@@ -27,7 +27,7 @@ window.SchoolsView = Backbone.View.extend({
 
   newSchool: function(){
 
-    modem('POST', 'popupschool',
+    modem('POST', '/api/popupschool',
         function (json) {
           $("#newSchoolModal").modal('hide');
         },

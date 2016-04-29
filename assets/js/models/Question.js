@@ -5,7 +5,7 @@ var Question = Backbone.Model.extend({
     fetch: function (after_fetch) {
         var self = this;
 
-        modem('GET', 'question/' + this.id,
+        modem('GET', '/api/question/' + this.id,
             function (json) {
                 console.log(json);
                 self.set("titulo", json.titulo);

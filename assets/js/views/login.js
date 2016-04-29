@@ -4,8 +4,9 @@ window.LoginView = Backbone.View.extend({
     },
     regist: function (e) {
         e.preventDefault();
+        console.log(encodeURI(JSON.stringify($("#formRegist").serializeObject())));
         //prepara-se par enviar os dados para a API
-        modem('POST', 'user',
+        modem('POST', '/api/user',
             //Se correr tudo bem
             function (json) {
                 //Mostra uma mensagem de sucesso com a string que vem da API

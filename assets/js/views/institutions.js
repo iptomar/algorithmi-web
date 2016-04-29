@@ -11,7 +11,7 @@ window.InstitutionsView = Backbone.View.extend({
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', 'institution/new',
+        modem('POST', '/api/institution/new',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {
@@ -24,7 +24,7 @@ window.InstitutionsView = Backbone.View.extend({
 
     newInstitution: function(){
 
-        modem('POST', 'popupinstitution',
+        modem('POST', '/api/popupinstitution',
             function (json) {
                 $("#newInstitutionModal").modal('hide');
             },

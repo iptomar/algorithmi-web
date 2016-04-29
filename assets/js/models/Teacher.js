@@ -5,7 +5,7 @@ var Teacher = Backbone.Model.extend({
     fetch: function (after_fetch) {
         var self = this;
 
-        modem('GET', 'user/' + this.id,
+        modem('GET', '/api/user/' + this.id,
             function (json) {
 
                 self.set("username", json.username);

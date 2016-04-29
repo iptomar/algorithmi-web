@@ -13,7 +13,7 @@ window.StudentsView = Backbone.View.extend({
     },
     render: function () {
         $(this.el).html(this.template());
-        modem('GET', 'students',
+        modem('GET', '/api/students',
             function (studentsData) {
 
                 $.each(studentsData, function (i, student) {
