@@ -6,6 +6,7 @@ window.QuestionsView = Backbone.View.extend({
         "submit #newPopUpQuestion": "newQuestion",
         "click #addLanguage": "adicionarLinguagem",
         "click #removeLanguage":"removerLinguagem",
+        "click #addIo":"addIo",
 
     },
 
@@ -63,6 +64,32 @@ window.QuestionsView = Backbone.View.extend({
 
         return this;
     },
+
+
+
+
+
+    addIo: function (){
+
+                $("#files")
+                    .append($("<div>", {class: "col-md-2"})
+                        .append($("<button>", {
+                          img  : "assets/ico/input.png",
+                            width: "30",
+                            height: "30"
+                        }))
+                    );
+
+
+    },
+
+
+
+
+
+
+
+
 
 
     adicionarLinguagem: function (){
