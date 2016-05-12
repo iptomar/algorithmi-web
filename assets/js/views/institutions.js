@@ -16,37 +16,20 @@ window.InstitutionsView = Backbone.View.extend({
             },
             function (xhr, ajaxOptions, thrownError) {
             },
-            encodeURI(JSON.stringify($("#newInstitution").serializeObject()))
-        );
-
-    },
-
-
-    newInstitution: function(){
-
-        modem('POST', '/api/popupinstitution',
-            function (json) {
-                $("#newInstitutionModal").modal('hide');
-            },
-            function (xhr, ajaxOptions, thrownError) {
-                //Mandar Uma Mensgame Qualquer
-            },
             encodeURI(JSON.stringify($("#newPopUpInstitution").serializeObject()))
         );
 
     },
-
-    newInstitutionPopup: function(e){
+    
+    newInstitutionPopup: function (e) {
         e.preventDefault();
 
         $("#newInstitutionModal").modal('show');
 
     },
-
-
-
-    checkAuth: function(){
-        if(!sessionStorage.getItem('keyo')){
+    
+    checkAuth: function () {
+        if (!sessionStorage.getItem('keyo')) {
             showLoginModal($("#someParent"));
         }
     },
@@ -61,10 +44,6 @@ window.InstitutionsView = Backbone.View.extend({
 
         return this;
     },
-
-
-
-
 
 
     initialize: function () {

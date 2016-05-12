@@ -4,7 +4,6 @@
 window.CoursesView = Backbone.View.extend({
 
     events: {
-
         "submit": "beforeSend",
         "click #newCourse": "newCoursePopup",
         "submit #newPopUpCourse": "newCourse",
@@ -18,35 +17,18 @@ window.CoursesView = Backbone.View.extend({
             },
             function (xhr, ajaxOptions, thrownError) {
             },
-            encodeURI(JSON.stringify($("#newCourse").serializeObject()))
-        );
-
-    },
-
-
-    newCourse: function(){
-
-        modem('POST', '/api/popupcourse',
-            function (json) {
-                $("#newCourseModal").modal('hide');
-            },
-            function (xhr, ajaxOptions, thrownError) {
-                //Mandar Uma Mensgame Qualquer
-            },
             encodeURI(JSON.stringify($("#newPopUpCourse").serializeObject()))
         );
 
     },
-
-    newCoursePopup: function(e){
+    
+    newCoursePopup: function (e) {
         e.preventDefault();
 
         $("#newCourseModal").modal('show');
 
     },
-
-
-
+    
     initialize: function () {
     },
 

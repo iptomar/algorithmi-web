@@ -2,6 +2,7 @@ window.LoginView = Backbone.View.extend({
     events: {
         "click #btnRegist": "regist"
     },
+    
     regist: function (e) {
         e.preventDefault();
         console.log(encodeURI(JSON.stringify($("#formRegist").serializeObject())));
@@ -23,12 +24,13 @@ window.LoginView = Backbone.View.extend({
         )
 
     },
+    
     initialize: function () {
     },
+    
     render: function () {
         $(this.el).html(this.template());
 
         return this;
     }
-
 });
