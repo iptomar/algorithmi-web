@@ -174,7 +174,7 @@ body {
     width: 30px;
     border: solid 1px #ccc;
     border-radius: 5px;
-    float: right;
+    float: left;
     height: 30px;
     margin-left: 5px;
     z-index: 0;
@@ -203,7 +203,7 @@ body {
 }
 
 .subDivIO {
-    width: 100px;
+    width: 120px;
     position: absolute;
     background: white;
     border-radius: 5px;
@@ -288,5 +288,10 @@ body {
 .btn_questions {
     height: 30px;
     width: 30px;
+}
+
+.btn_questions_io {
+    height: 20px;
+    width: 20px;
 }
 

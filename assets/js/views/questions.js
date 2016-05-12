@@ -5,51 +5,37 @@ window.QuestionsView = Backbone.View.extend({
         "click #newQuestion": "newQuestionPopup",
         "submit #newPopUpQuestion": "newQuestion",
         "click #addLanguage": "adicionarLinguagem",
-        "click #removeLanguage":"removerLinguagem",
-        "click #addIo":"addIo",
+        "click #removeLanguage": "removerLinguagem",
+        "click #addIo": "addIo",
+        "click #btn_questions_delete_io": "removeIo",
+        "click #btn_questions_delete_All_io": "removeAllIo",
+
 
     },
 
     beforeSend: function (e) {
         e.preventDefault();
 
-        //this.checkAuth();
 
         modem('POST', '/api/question/new',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {
             },
-            encodeURI(JSON.stringify($("#newQuestion").serializeObject()))
-        );
-
-    },
-
-    newQuestion: function(){
-
-        modem('POST', '/api/popupquestion',
-            function (json) {
-                $("#newQuestionModal").modal('hide');
-            },
-            function (xhr, ajaxOptions, thrownError) {
-                //Mandar Uma Mensgame Qualquer
-            },
             encodeURI(JSON.stringify($("#newPopUpQuestion").serializeObject()))
         );
 
     },
 
-    newQuestionPopup: function(e){
+    newQuestionPopup: function (e) {
         e.preventDefault();
 
         $("#newQuestionModal").modal('show');
 
     },
 
-
-
-    checkAuth: function(){
-        if(!sessionStorage.getItem('keyo')){
+    checkAuth: function () {
+        if (!sessionStorage.getItem('keyo')) {
             showLoginModal($("#someParent"));
         }
     },
@@ -60,44 +46,45 @@ window.QuestionsView = Backbone.View.extend({
     render: function () {
         $(this.el).html(this.template());
 
-        showLoginModal($("#someParent"));
+        // this.checkAuth();
 
         return this;
     },
 
+    addIo: function (e) {
+        e.preventDefault();
 
-
-
-
-    addIo: function (){
-
-                $("#files")
-                    .append($("<div>", {class: "col-md-2"})
-                        .append($("<button>", {
-                          img  : "assets/ico/input.png",
-                            width: "30",
-                            height: "30"
-                        }))
-                    );
-
-
+        $("#files").append($("<div>", {
+                class: "divIO",
+            }).append($("<div>", {
+                class: "subDivIO",
+            }).append('<label id="lblIO">I/O</label></br>'
+                + '<b class="col-md-12">Input: </b></br>' + $("#txtEntrada").val() + '</br>'
+                + '<b class="col-md-12">Outup: </b></br>' + $("#txtSaida").val() + '</br>'
+                + '<b class="col-md-5"><button id="btn_questions_edit_io" href=""><img src="assets/ico/edit.png" class="btn_questions_io"></button></b>'
+                + '<b class="col-md-5"><button id="btn_questions_delete_io" href=""><img src="assets/ico/delete.png" class="btn_questions_io"></button></b></br>'
+            ))
+        );
     },
 
+    //Apagar todas os I/O
+    removeAllIo: function () {
+        $(".divIO").remove();
+    },
 
+    removeIo: function (e) {
+        e.preventDefault();
 
-
-
-
-
-
-
-
-    adicionarLinguagem: function (){
+        var $removableIO = $(e.target).parent().parent().parent().parent();
+        $removableIO.remove();
+    },
+    
+    adicionarLinguagem: function () {
 
         var $language = $('#linguagens').find(":selected").text();
         console.log($language);
 
-        switch($language){
+        switch ($language) {
             case "JAVA":
                 $("#language")
                     .append($("<div>", {class: "col-md-2"})
@@ -145,11 +132,6 @@ window.QuestionsView = Backbone.View.extend({
             default:
                 break;
         }
-
-
-
-
-
 
 
     },

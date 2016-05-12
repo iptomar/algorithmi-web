@@ -3,66 +3,44 @@
  */
 window.SchoolsView = Backbone.View.extend({
 
-  events: {
+    events: {
 
-    "submit": "beforeSend",
-    "click #newSchool": "newSchoolPopup",
-    "submit #newPopUpSchool": "newSchool",
-  },
+        "submit": "beforeSend",
+        "click #newSchool": "newSchoolPopup",
+        "submit #newPopUpSchool": "newSchool",
+    },
 
-  beforeSend: function (e) {
-    e.preventDefault();
+    beforeSend: function (e) {
+        e.preventDefault();
 
-    modem('POST', '/api/school/new',
-        function (json) {
-        },
-        function (xhr, ajaxOptions, thrownError) {
-        },
-        encodeURI(JSON.stringify($("#newSchool").serializeObject()))
-    );
+        modem('POST', '/api/school/new',
+            function (json) {
+            },
+            function (xhr, ajaxOptions, thrownError) {
+            },
+            encodeURI(JSON.stringify($("#newPopUpSchool").serializeObject()))
+        );
 
-  },
+    },
+    
+    newSchoolPopup: function (e) {
+        e.preventDefault();
 
+        $("#newSchoolModal").modal('show');
 
+    },
+    
+    checkAuth: function () {
+        if (!sessionStorage.getItem('keyo')) {
+            showLoginModal($("#someParent"));
+        }
+    },
+    
+    initialize: function () {
+    },
 
-  newSchool: function(){
-
-    modem('POST', '/api/popupschool',
-        function (json) {
-          $("#newSchoolModal").modal('hide');
-        },
-        function (xhr, ajaxOptions, thrownError) {
-          //Mandar Uma Mensgame Qualquer
-        },
-        encodeURI(JSON.stringify($("#newPopUpSchool").serializeObject()))
-    );
-
-  },
-
-  newSchoolPopup: function(e){
-    e.preventDefault();
-
-    $("#newSchoolModal").modal('show');
-
-  },
-
-
-
-  checkAuth: function(){
-    if(!sessionStorage.getItem('keyo')){
-      showLoginModal($("#someParent"));
+    render: function () {
+        $(this.el).html(this.template());
+        return this;
     }
-  },
-
-
-
-
-
-  initialize: function () {
-  },
-
-  render: function () {
-    $(this.el).html(this.template());
-    return this;
-  }
 });

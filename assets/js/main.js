@@ -147,7 +147,7 @@ var Router = Backbone.Router.extend({
     },
 
 
-    questions: function (id) {
+    questions: function () {
         var self = this;
         templateLoader.load(["QuestionsView"],
             function () {
