@@ -134,7 +134,6 @@ window.QuestionsView = Backbone.View.extend({
         }
 
 
-    },
-});
+    }});
 
 
