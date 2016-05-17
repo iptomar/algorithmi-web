@@ -170,12 +170,14 @@ body {
     float: right;
 }
 
+
+
 .divIO {
-    width: 30px;
-    border: solid 1px #ccc;
+    width: 65px;
+    border: solid 0px #ccc;
     border-radius: 5px;
     float: left;
-    height: 30px;
+    height: 50px;
     margin-left: 5px;
     z-index: 0;
     overflow: hidden;
@@ -203,11 +205,66 @@ body {
 }
 
 .subDivIO {
-    width: 120px;
+    width: 130px;
     position: absolute;
     background: white;
     border-radius: 5px;
 }
+
+
+
+
+
+.divInfo {
+    width: 27px;
+    border: solid 0px #ccc;
+    border-radius: 5px;
+    float: left;
+    height: 27px;
+    margin-left: 5px;
+    z-index: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.divInfo:hover {
+    overflow: visible;
+    z-index: 100;
+    border: none;
+    padding: 0px;
+}
+
+.divInfo .subDivIO {
+    padding: 5px;
+
+}
+
+.divInfo:hover .subDivInfo label {
+
+    color: #2e6da4;
+}
+
+.divInfo:hover .subDivIO {
+    border: 1px solid #89bdd3;
+}
+
+.subDivInfo {
+    border: 1px solid black;
+    width: 130px;
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
 
 .emptyField {
     border-color: #c9302c;

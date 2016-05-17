@@ -7,6 +7,8 @@ window.SchoolsView = Backbone.View.extend({
 
         "submit": "beforeSend",
         "click #newSchool": "newSchoolPopup",
+        "click #editSchool": "editSchoolPopup",
+        "click #deleteSchool": "deleteSchoolPopup",
         "submit #newPopUpSchool": "newSchool",
     },
 
@@ -27,6 +29,20 @@ window.SchoolsView = Backbone.View.extend({
         e.preventDefault();
 
         $("#newSchoolModal").modal('show');
+
+    },
+
+    editSchoolPopup: function (e) {
+        e.preventDefault();
+
+        $("#editSchoolModal").modal('show');
+
+    },
+
+    deleteSchoolPopup: function (e) {
+        e.preventDefault();
+
+        $("#deleteSchoolModal").modal('show');
 
     },
     
