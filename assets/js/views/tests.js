@@ -2,10 +2,13 @@ window.TestsView = Backbone.View.extend({
 
 
     events: {
+        "submit": "beforeSend",
         "click #addLine": "adicionarPergunta", ////O Trigger é o Botão novo
         "click #Criar": "beforeSend",
         "click #removeLine": "removerPergunta",
         "click #newTest": "newTestPopup",
+        "click #editTest": "editTestPopup",
+        "click #deleteTest": "deleteTestPopup",
         "submit #newPopUpTest": "newTest",
 
 
@@ -14,7 +17,8 @@ window.TestsView = Backbone.View.extend({
     beforeSend: function (e) {
         e.preventDefault();
 
-        modem('POST', '/api/test/new',
+
+        modem('POST', '/api/question/new',
             function (json) {
             },
             function (xhr, ajaxOptions, thrownError) {
@@ -24,25 +28,27 @@ window.TestsView = Backbone.View.extend({
 
     },
 
-    newTest: function () {
-
-        modem('POST', '/api/popuptest',
-            function (json) {
-                $("#newTestModal").modal('hide');
-            },
-            function (xhr, ajaxOptions, thrownError) {
-                //Mandar Uma Mensgame QUalquer
-            },
-            encodeURI(JSON.stringify($("#newPopUpTest").serializeObject()))
-        );
-
-    },
 
 //Vai abrir Popup para criar novo teste
     newTestPopup: function (e) {
         e.preventDefault();
 
         $("#newTestModal").modal('show');
+
+    },
+
+
+    editTestPopup: function (e) {
+        e.preventDefault();
+
+        $("#editTestModal").modal('show');
+
+    },
+
+    deleteTestPopup: function (e) {
+        e.preventDefault();
+
+        $("#deleteTestModal").modal('show');
 
     },
 

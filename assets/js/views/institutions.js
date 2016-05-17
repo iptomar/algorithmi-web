@@ -5,6 +5,8 @@ window.InstitutionsView = Backbone.View.extend({
     events: {
         "submit": "beforeSend",
         "click #newInstitution": "newInstitutionPopup",
+        "click #editInstitution": "editInstitutionPopup",
+        "click #deleteInstitution": "deleteInstitutionPopup",
         "submit #newPopUpInstitution": "newInstitution",
     },
 
@@ -25,6 +27,20 @@ window.InstitutionsView = Backbone.View.extend({
         e.preventDefault();
 
         $("#newInstitutionModal").modal('show');
+
+    },
+
+    editInstitutionPopup: function (e) {
+        e.preventDefault();
+
+        $("#editInstitutionModal").modal('show');
+
+    },
+
+    deleteInstitutionPopup: function (e) {
+        e.preventDefault();
+
+        $("#deleteInstitutionModal").modal('show');
 
     },
     

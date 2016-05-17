@@ -6,6 +6,8 @@ window.CoursesView = Backbone.View.extend({
     events: {
         "submit": "beforeSend",
         "click #newCourse": "newCoursePopup",
+        "click #editCourse": "editCoursePopup",
+        "click #deleteCourse": "deleteCoursePopup",
         "submit #newPopUpCourse": "newCourse",
     },
 
@@ -26,6 +28,20 @@ window.CoursesView = Backbone.View.extend({
         e.preventDefault();
 
         $("#newCourseModal").modal('show');
+
+    },
+
+    editCoursePopup: function (e) {
+        e.preventDefault();
+
+        $("#editCourseModal").modal('show');
+
+    },
+
+    deleteCoursePopup: function (e) {
+        e.preventDefault();
+
+        $("#deleteCourseModal").modal('show');
 
     },
     
