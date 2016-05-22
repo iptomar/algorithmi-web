@@ -3,7 +3,7 @@
  */
 window.HomeView = Backbone.View.extend({
     events: {},
-    
+
     initialize: function () {
     },
 
