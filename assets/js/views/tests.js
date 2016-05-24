@@ -76,6 +76,15 @@ window.TestsView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template());
+        modem('GET', '/api/courses',
+            function (json) {
+                console.log(json)
+            },
+            function (xhr, ajaxOptions, thrownError) {
+            },
+            encodeURI(JSON.stringify($("#newPopUpTest").serializeObject()))
+        );
+
         return this;
     }
 });

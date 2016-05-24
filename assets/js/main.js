@@ -4,6 +4,17 @@ Backbone.View.prototype.close = function () {
     this.undelegateEvents();
 };
 
+Backbone.ajax = function () {
+    var args = Array.prototype.slice.call(arguments, 0);
+
+    args[0].beforeSend = function (xhr) {
+        xhr.setRequestHeader('Authorization', 'Basic ' + btoa("teste:teste12345"));
+    };
+
+    return Backbone.$.ajax.apply(Backbone.$, args);
+};
+
+
 var Router = Backbone.Router.extend({
     currentView: undefined,
     showView: function (view, elem, sub) {
@@ -31,7 +42,11 @@ var Router = Backbone.Router.extend({
         "home": "home",
         "submissions": "submissions",
         "submissions/:id": "submissionsInfo",
+
+
         "institutions": "institutions",
+
+        "institutions/:id/edit": "institutionsEdit",
 
         "statistics": "statistics",
 
@@ -128,8 +143,14 @@ var Router = Backbone.Router.extend({
 
         templateLoader.load(["SchoolsView"],
             function () {
-                var v = new SchoolsView({});
-                self.showView(v, $('#content'));
+                var schools = new Schools();
+
+                schools.fetch(function () {
+                    var v = new SchoolsView({
+                        collection: schools
+                    });
+                    self.showView(v, $('#content'));
+                })
             }
         );
     },
@@ -169,12 +190,33 @@ var Router = Backbone.Router.extend({
     },
 
 
-    institutions: function (id) {
+    institutions: function () {
         var self = this;
         templateLoader.load(["InstitutionsView"],
             function () {
-                var v = new InstitutionsView({});
-                self.showView(v, $('#content'));
+                var ss = new Institutions();
+                ss.fetch(function () {
+                    var v = new InstitutionsView({
+                        collection: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
+
+            }
+        );
+    },
+    institutionsEdit: function (id) {
+        var self = this;
+        templateLoader.load(["InstitutionsEditView"],
+            function () {
+                var ss = new Institution({id: id});
+                ss.fetch(function () {
+                    var v = new InstitutionsEditView({
+                        model: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
+
             }
         );
     },

@@ -20,7 +20,7 @@ window.sucssesMsg = function (form, txt) {
     $('#infoModal').modal("show");
     setTimeout(function () {
         $('#infoModal').modal("hide");
-    }, 2000);
+    }, txt.length * 40);
 
 };
 
@@ -42,7 +42,7 @@ window.failMsg = function (form, txt) {
     $('#infoModal').modal("show");
     setTimeout(function () {
         $('#infoModal').modal("hide").delay(2000);
-    }, 2000);
+    }, txt.length * 40);
 };
 /**
  *

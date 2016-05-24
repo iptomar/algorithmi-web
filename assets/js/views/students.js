@@ -20,11 +20,11 @@ window.StudentsView = Backbone.View.extend({
 
                     var $userDiv = $("<div>", {
                         class: " col-md-4",
-                        id: student._id,
+                        id: student.id,
 
                     }).append($("<div>", {
                             class: "userPreview divWidget",
-                            id: student._id,
+                            id: student.id,
                         }).append($("<div>", {
                             class: " col-md-3",
 
