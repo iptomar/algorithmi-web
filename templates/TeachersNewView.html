@@ -1,0 +1,103 @@
+<form id="newteacherform" class="form">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div align="center" class="titleBox">
+                <img class="titleImage">
+                <span class="titleText">
+                      Inserir novo professor
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-gears"></i> Detalhes
+                <i id="infoPop" class="fa fa-info-circle" style="float: right;" data-original-title="" title=""></i>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="fileUploader emptyField">
+                        <span>Escolher imagem</span>
+                        <input type="file" class="form-control mandatory" id="filePickerImg" name="file">
+                        <input type="hidden" name="imagem" class="form-control" id="base64textarea">
+                        <img id="imagePrev">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input class="form-control mandatory" type="text"
+                               placeholder="Nome completo"
+                               name="name"/>
+                        <span class="input-group-addon btn-white"><i class="fa fa-user"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input class="form-control mandatory" type="text"
+                               placeholder="Nome de utilizador"
+                               name="username"/>
+                        <span class="input-group-addon btn-white"><i class="fa fa-user"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input type="email" class="form-control mandatory"
+                               title="Endereço de e-mail" placeholder="Endereço de e-mail" name="email"/>
+                        <span class="input-group-addon btn-white"><i class="fa fa-envelope"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-book"></i> Segurança</div>
+            <div class="panel-body ">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="password" class="form-control mandatory" id="password"
+                               title="Palavra-passe" placeholder="Palavra-passe" name="password"/>
+                        <span class="input-group-addon btn-white"><i class="fa fa-lock"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="password" class="form-control mandatory"
+                               title="Palavra-passe" placeholder="Confirmar palavra-passe" id="confPassword"/>
+                        <span class="input-group-addon btn-white"><i class="fa fa-lock"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-book"></i> Turmas</div>
+            <div class="panel-body ">
+                <div class=" col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon btn-white">
+                            <i class="fa fa-building"></i>
+                        </span>
+                        <select id="ddInstitutionsList" name="institution" class="form-control mandatory">
+                        </select>
+                    </div>
+                </div>
+                <div class=" col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon btn-white">
+                            <i class="fa fa-building"></i>
+                        </span>
+                        <select id="ddSchoolsList" name="school" class="form-control mandatory">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 row">
+        <div class="btn-group" role="group" aria-label="...">
+            <button id="buttonCancelar" type="reset" class="btn btn-default">Cancelar</button>
+            <button id="newteacherbtn" type="submit" class="btn btn-success">Inserir</button>
+        </div>
+    </div>
+</form>

@@ -2,30 +2,18 @@ window.InstitutionsView = Backbone.View.extend({
     events: {
         "click #btnCreateInst": "createInstitution",
         "click .deleteInstitution": "confirmDelete",
-        "submit #newPopUpInstitution": "newInstitution",
+
     },
+
 
     createInstitution: function (e) {
         e.preventDefault();
-        // POST ("/api/students")
-        var institutionDetails = $("#newInstitutionForm").serializeObject();
-        var institution = new Institution(institutionDetails);
-        institution.save(null, {
-            success: function (inst, response) {
 
-                $("#newInstitutionModal").modal("hide");
-                sucssesMsg($(".form"), response.text);
-                setTimeout(function () {
-                    document.location.reload(true);
-                }, 1000);
-            },
-            error: function (inst, response) {
-                $("#newInstitutionModal").modal("hide");
-                failMsg($(".form"), response.text);
-            },
-        })
+        app.navigate('/institutions/new', {
+            trigger: true
+        });
+
     },
-
     confirmDelete: function (e) {
         e.preventDefault();
         var id = $(e.currentTarget).attr("value");
@@ -36,7 +24,7 @@ window.InstitutionsView = Backbone.View.extend({
                 sucssesMsg($(".form"), response.text);
                 setTimeout(function () {
                     document.location.reload(true);
-                }, 1000);
+                }, 2000);
 
             }, error: function (inst, response) {
                 $("#newInstitutionModal").modal("hide");

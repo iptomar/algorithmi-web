@@ -31,13 +31,23 @@ var Router = Backbone.Router.extend({
         elem.html(rendered.el);
     },
     routes: {
+        //--------------------TEACHERS
         "teachers": "teachers",
+        "teachers/new": "teachersNew",
+
+
+        //--------------------STUDENTS
         "students": "students",
         "students/new": "studentsNew",
         "students/:id": "studentsInfo",
         "schools": "schools",
         "questions": "questions",
+
+
         "courses": "courses",
+        "courses/:id/edit": "coursesEdit",
+
+
         "tests": "tests",
         "home": "home",
         "submissions": "submissions",
@@ -45,7 +55,7 @@ var Router = Backbone.Router.extend({
 
 
         "institutions": "institutions",
-
+        "institutions/new": "institutionsNew",
         "institutions/:id/edit": "institutionsEdit",
 
         "statistics": "statistics",
@@ -161,12 +171,28 @@ var Router = Backbone.Router.extend({
 
         templateLoader.load(["TeachersView"],
             function () {
-                var v = new TeachersView({});
-                self.showView(v, $('#content'));
+                var ss = new Teachers();
+                ss.fetch(function () {
+                    var v = new TeachersView({
+                        collection: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
             }
         );
     },
 
+    teachersNew: function () {
+        var self = this;
+
+
+        templateLoader.load(["TeachersNewView"],
+            function () {
+                var v = new TeachersNewView({});
+                self.showView(v, $('#content'));
+            }
+        );
+    },
 
     questions: function () {
         var self = this;
@@ -183,12 +209,30 @@ var Router = Backbone.Router.extend({
         var self = this;
         templateLoader.load(["CoursesView"],
             function () {
-                var v = new CoursesView({});
-                self.showView(v, $('#content'));
+                var ss = new Courses();
+                ss.fetch(function () {
+                    var v = new CoursesView({
+                        collection: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
             }
         );
     },
-
+    coursesEdit: function (id) {
+        var self = this;
+        templateLoader.load(["CoursesEditView"],
+            function () {
+                var ss = new Course({id: id});
+                ss.fetch(function () {
+                    var v = new CoursesEditView({
+                        model: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
+            }
+        );
+    },
 
     institutions: function () {
         var self = this;
@@ -201,7 +245,15 @@ var Router = Backbone.Router.extend({
                     });
                     self.showView(v, $('#content'));
                 })
-
+            }
+        );
+    },
+    institutionsNew: function () {
+        var self = this;
+        templateLoader.load(["InstitutionsNewView"],
+            function () {
+                var v = new InstitutionsNewView({});
+                self.showView(v, $('#content'));
             }
         );
     },
@@ -244,6 +296,7 @@ var Router = Backbone.Router.extend({
             }
         );
     },
+
     submissionsInfo: function (id) {
         var self = this;
 

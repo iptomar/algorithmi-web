@@ -1,381 +1,46 @@
-<div id="someParent" class="row">
+<div class="form">
     <div class="col-md-12 col-xs-12 ">
         <div class="divWidget1" align="center">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
                     <div class="divWidget" align="center">
-                        <h4 align="center">CURSOS<button id="newCourse" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">+</button></h4>
+                        <h4 align="center">CURSOS
+                            <button id="newCourse" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                                    data-toggle="modal" data-target="#newCourseModal">+
+                            </button>
+                        </h4>
                     </div>
                 </div>
             </div>
+            <!-- Creates a box with every single course information -->
+            <% _.each(collection,function(course){ %>
 
-            <div class="row">
-                <div class="col-md-2 col-xs-2">
-                <div class="divWidget">
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12" align=" center">
-                            <div class="fileUploader">
-                                <img id="imagePrev">
-                            </div>
-                            <br>
+            <div class="col-md-3">
+                <div class="divWidget dataBox">
+                    <div class="col-md-12 col-xs-12" align=" center">
+                        <img id="imagePrev" src="../images/<%=course.image%>">
 
-                            <div>
-                                <p align="center">NOME</p>
+                        <div>
+                            <p align="center"><%=course.name%></p>
 
-                                <p align="center">ESCOLA</p>
-                            </div>
+                            <p align="center"><%=course.school%></p>
                         </div>
-                        <div class="col-md-6 btn-group" align="left">
+                    </div>
+                    <div class="col-md-6 btn-group" align="left">
 
 
-                            <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="col-md-6 btn-group" align="right">
-                            <a id="editCourse" type="button">
-                                <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                            </a>
-                        </div>
-
-
+                        <a class="deleteCourse" value="<%=course.id%>" type="button">
+                            <i href="" class="fa fa-trash-o fa-2x"
+                               aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 btn-group" align="right">
+                        <a href="#courses/<%= course.id %>/edit">
+                            <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <div class="divWidget">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align=" center">
-                                <div class="fileUploader">
-                                    <img id="imagePrev">
-                                </div>
-                                <br>
-
-                                <div>
-                                    <p align="center">NOME</p>
-
-                                    <p align="center">ESCOLA</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 btn-group" align="left">
-
-
-                                <a id="deleteCourse" type="button"><i href="" class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-6 btn-group" align="right">
-                                <a id="editCourse" type="button">
-                                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <% }); %>
         </div>
     </div>
     <!-- Button trigger modal -->
@@ -392,7 +57,7 @@
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" >
+                <h4 class="modal-title">
                     Eliminar Curso
                 </h4>
             </div>
@@ -404,147 +69,21 @@
                     <br>
                     <div class="col-md-12 col-xs-12">
                         <div class="col-md-6 col-xs-6" align="center">
-                            <a id="confirmDeleteCourse" type="button"><i href="" class="glyphicon glyphicon-remove fa-4x" aria-hidden="true"></i></a>
+                            <a id="confirmDeleteCourse" type="button">
+                                <i href="" class="glyphicon glyphicon-remove fa-4x"
+                                   aria-hidden="true"></i></a>
                         </div>
                         <div class="col-md-6 col-xs-6" align="center">
-                            <a id="cancelDeleteCourse" type="button"><i href="" class="glyphicon glyphicon-ok fa-4x" aria-hidden="true"></i></a>
+                            <a id="cancelDeleteCourse" type="button">
+                                <i href="" class="glyphicon glyphicon-ok fa-4x"
+                                   aria-hidden="true"></i></a>
                         </div>
-                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="editCourseModal" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" >
-                    Editar Curso
-                </h4>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <!--<form id="newPopUpTest">-->
-                <!--&lt;!&ndash; Nav tabs &ndash;&gt;-->
-                <!--<ul class="nav nav-tabs" role="tablist">-->
-                <!--<li role="presentation" class="active"><a href="#Teste" aria-controls="Teste" role="tab"-->
-                <!--data-toggle="tab" aria-expanded="true">TESTE</a></li>-->
-                <!--</ul>-->
-
-                <!--&lt;!&ndash; Tab panes &ndash;&gt;-->
-                <!--<div class="tab-content">-->
-                <!--<div role="tabpanel" class="tab-pane active" id="Cabecalho">-->
-
-                <!--<div class="row">-->
-                <!--<div class="col-md-12">-->
-                <!--<div class="col-md-12">-->
-                <!--<div class="input-group">-->
-                <!--<span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>-->
-                <!--<input id="txtTitulo" name="title" autofocus type="text"-->
-                <!--class="form-control mandatory"-->
-                <!--placeholder="Título">-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-12">-->
-
-
-                <!--<div class="col-sm-6">-->
-                <!--<div class='input-group date' id='datePicker'>-->
-                <!--<input type='text' class="form-control" name="dateBirth"-->
-                <!--placeholder="Data de Inicio"/>-->
-                <!--<span class="input-group-addon">-->
-                <!--<i class="glyphicon glyphicon-calendar"></i>-->
-                <!--</span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<script type="text/javascript">-->
-                <!--$(function () {-->
-                <!--$('#datePicker').datetimepicker({-->
-                <!--viewMode: 'years',-->
-                <!--format: 'DD/MM/YYYY'-->
-                <!--});-->
-                <!--});-->
-                <!--</script>-->
-
-
-                <!--<div class=" col-md-6">-->
-                <!--<div class="input-group">-->
-                <!--<span class="input-group-addon btn-white"><i class="fa fa-book"></i></span>-->
-                <!--<select id="ddTeachers" name="course" class="form-control mandatory">-->
-                <!--<option disabled selected>Curso</option>-->
-                <!--<option value="1">Eng. Informática</option>-->
-                <!--<option value="2">Eng. Electrótécnica</option>-->
-                <!--<option value="3">C.E.T. - T.P.S.I,</option>-->
-                <!--<option value="4">...</option>-->
-                <!--</select>-->
-                <!--</div>-->
-
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-12">-->
-
-
-                <!--<div class="col-sm-6">-->
-                <!--<div class='input-group date' id='datePicker2'>-->
-                <!--<input type='text' class="form-control" name="dateBirth"-->
-                <!--placeholder="Data de Fim"/>-->
-                <!--<span class="input-group-addon">-->
-                <!--<i class="glyphicon glyphicon-calendar"></i>-->
-                <!--</span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<script type="text/javascript">-->
-                <!--$(function () {-->
-                <!--$('#datePicker2').datetimepicker({-->
-                <!--viewMode: 'years',-->
-                <!--format: 'DD/MM/YYYY'-->
-                <!--});-->
-                <!--});-->
-                <!--</script>-->
-                <!--</div>-->
-                <!--<div id="1line" class="col-md-12 col-xs-12">-->
-
-                <!--</div>-->
-
-                <!--<div class="col-md-12 btn-group" align="center">-->
-                <!--<div class="col-md-6 btn-group" align="center">-->
-                <!--<div align="center">-->
-                <!--<button id="Criar" type="submit" class="btn btn-success btn_created">CRIAR-->
-                <!--</button>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-3 btn-group" align="center">-->
-                <!--<div align="center">-->
-                <!--<button id="addLine" type="button" class="btn btn btn_created">NOVO-->
-                <!--</button>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-3 btn-group" align="center">-->
-                <!--<div align="center">-->
-                <!--<button id="removeLine" type="button" class="btn btn btn_cr">REM-->
-                <!--</button>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-
-                <!--</div>-->
-                <!--</form>-->
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="newCourseModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -565,59 +104,46 @@
             <div class="modal-body">
 
 
-                <form id="newPopUpCourse" >
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Course" aria-controls="Course" role="tab" data-toggle="tab" aria-expanded="true">CURSOS</a></li>
-                    </ul>
+                <form id="newCourseForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="fileUploader">
+                                <span>Escolher imagem</span>
+                                <input type="file" class="form-control mandatory" id="filePickerImg"
+                                       name="file">
+                                <input type="hidden" name="image" class="form-control" id="base64textarea">
+                                <img id="imagePrever">
+                            </div>
+                        </div>
+                        <div class=" col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
+                                <input id="txtNome" name="name" type="text" class="form-control mandatory"
+                                       placeholder="Nome">
+                            </div>
+                            <br>
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="Course">
+                            <div class=" col-md-13">
+                                <div class="input-group">
+                                            <span class="input-group-addon btn-white"><i
+                                                    class="fa fa-building"></i></span>
+                                    <select id="ddSchoolsList" name="school" class="form-control mandatory">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="fileUploader">
-                                        <span>Escolher imagem</span>
-                                        <input type="file" class="form-control mandatory" id="filePickerImg" name="file">
-                                        <input type="hidden" name="image" class="form-control" id="base64textarea">
-                                        <img id="imagePrever">
-                                    </div>
-                                </div>
-                                <div class=" col-md-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
-                                        <input id="txtNome" name="name" type="text" class="form-control mandatory"
-                                               placeholder="Nome">
-                                    </div>
-                                    <br>
-
-                                    <div class=" col-md-13">
-                                        <div class="input-group">
-                                            <span class="input-group-addon btn-white"><i class="fa fa-building"></i></span>
-                                            <select id="ddInst" name="school" class="form-control mandatory">
-                                                <option disabled selected>Escola</option>
-                                                <option value="1">ESTA</option>
-                                                <option value="2">ESGT</option>
-                                                <option value="3">ESTT</option>
-                                                <option value="4">...</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-
-                                    <div class="col-md-12 btn-group" align="center">
-                                        <div align="center">
-                                            <button id="Criar" type="submit" class="btn btn-success btn_created">Criar
-                                            </button>
-                                        </div>
-                                    </div>
-
+                                    </select>
                                 </div>
                             </div>
+                            <br>
+
+                            <div class="col-md-12 btn-group" align="center">
+                                <div align="center">
+                                    <button id="btnCreateCourse" type="submit" class="btn btn-success btn_created">Criar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
-
-
 
 
             </div>

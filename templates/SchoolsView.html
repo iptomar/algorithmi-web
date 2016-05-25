@@ -20,7 +20,7 @@
                         <div>
                             <p align="center"><%=school.name%></p>
 
-                            <p align="center"><%=school.institution%></p>
+                            <p align="center"><%=school.institutionName%></p>
                         </div>
                     </div>
                     <div class="col-md-6 btn-group" align="left">
@@ -31,7 +31,7 @@
                                aria-hidden="true"></i></a>
                     </div>
                     <div class="col-md-6 btn-group" align="right">
-                        <a href="#institutions/<%= school.id %>/edit">
+                        <a href="#schools/<%= school.id %>/edit">
                             <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -110,7 +110,7 @@
                             </div>
                             <br>
 
-                            <div class=" col-md-13">
+                            <div class=" col-md-12">
                                 <div class="input-group">
                                             <span class="input-group-addon btn-white"><i
                                                     class="fa fa-building"></i></span>

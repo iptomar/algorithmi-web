@@ -253,16 +253,52 @@ window.showCropper = function (form, base_image, resWidth, aspectRatio, result) 
 
 
 };
+function getDataUri(url, callback) {
+    var image = new Image();
+    //splits url to get format type
+    var type = url.split(".");
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+
+        callback(canvas.toDataURL('image/' + type[type.length - 1]));
+
+    };
+
+    image.src = url;
+}
 
 window.populateInstitutionsDD = function () {
     var inst = new Institutions();
     inst.fetch(
         function () {
+            $("#ddInstitutionsList").append('<option value="" disabled selected>Instituição</option>');
             $.each(inst.models, function (iInst, inst) {
-                console.log(inst.attributes)
                 $("#ddInstitutionsList").append(
                     $("<option>", {html: inst.attributes.name, id: inst.attributes.id, value: inst.attributes.id})
                 );
+            })
+        }
+    )
+};
+window.populateSchoolsDD = function (selectedSchool) {
+    var inst = new Schools();
+    inst.fetch(
+        function () {
+            $("#ddSchoolsList").append('<option value="" disabled selected>Escola</option>');
+            $.each(inst.models, function (ischool, school) {
+                $("#ddSchoolsList").append(
+                    $("<option>", {
+                        html: school.attributes.name,
+                        id: school.attributes.id, value: school.attributes.id
+                    })
+                );
+                //se for passada uma escola por parametro(no caso do edit) selecciona-a
+                $("#" + selectedSchool).attr("selected", true)
             })
 
         }

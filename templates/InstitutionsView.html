@@ -5,8 +5,7 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="divWidget " align="center">
                         <h4 align="center">INSTITUIÇÕES
-                            <button id="newInstitution" type="button" class="btn btn-primary btn-lg"
-                                    data-toggle="modal" data-target="#newInstitutionModal">+
+                            <button id="btnCreateInst" type="button" class="btn btn-primary btn-lg">+
                             </button>
                         </h4>
                     </div>
@@ -80,88 +79,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="newInstitutionModal" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Nova Instituição
-                </h4>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-
-
-                <form id="newInstitutionForm">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
-                            <a href="#Institution" aria-controls="Institution"
-                               role="tab" data-toggle="tab" aria-expanded="true">INSTITUIÇÃO</a>
-                        </li>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="Institution">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="fileUploader">
-                                        <span>Escolher imagem</span>
-                                        <input type="file" class="form-control mandatory" id="filePickerImg"
-                                               name="file">
-                                        <input type="hidden"
-                                               name="image" class="form-control" id="base64textarea">
-                                        <img id="imagePrev2">
-                                    </div>
-                                </div>
-                                <div class=" col-md-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
-                                        <input name="name" type="text" class="form-control mandatory"
-                                               placeholder="Nome">
-                                    </div>
-                                    <br>
-
-                                    <div class=" col-md-13">
-                                        <div class="input-group">
-                                            <span class="input-group-addon btn-white"><i
-                                                    class="fa fa-map-marker"></i></span>
-                                            <input name="address" type="text"
-                                                   class="form-control mandatory"
-                                                   placeholder="Localização">
-                                        </div>
-                                    </div>
-                                    <br>
-
-                                    <div class="col-md-12 btn-group" align="center">
-                                        <div align="center">
-                                            <button id="btnCreateInst" type="submit" class="btn btn-success btn_created">
-                                                Criar
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
         </div>
     </div>
 </div>

@@ -1,13 +1,10 @@
-/**
- * Created by Fábio Cruz on 10/04/2016.
- */
-window.InstitutionsEditView = Backbone.View.extend({
+window.InstitutionsNewView = Backbone.View.extend({
     events: {
         "change #filePicker": "convertPhoto",
         "click #btnCrop": "getFoto",
-        "submit": "editInstitution"
+        "click #btnCreateInst": "createInstitution",
     },
-    //Convert Photo To Base64 String
+    //Exibe o cropper
     convertPhoto: function (e) {
         var file = e.target.files[0];
 
@@ -17,7 +14,7 @@ window.InstitutionsEditView = Backbone.View.extend({
         reader.onload = function (readerEvent) {
             var image = new Image();
             image.src = readerEvent.target.result;
-            showCropper(".form", image, 300, 16 / 9);
+            showCropper("#content > div", image, 300, 16 / 9);
         }
         reader.readAsDataURL(file);
     },
@@ -30,46 +27,39 @@ window.InstitutionsEditView = Backbone.View.extend({
         $("#base64textarea").val(dataUrl);
         $("#imagePrev").attr('src', dataUrl);
         $(".cropBG").remove();
+        $(".profile-pic").removeClass("emptyField");
     },
 
-    editInstitution: function (e) {
+    createInstitution: function (e) {
         e.preventDefault();
-        var id = parseInt($(e.currentTarget).attr("value"));
+        // POST ("/api/students")
+        var institutionDetails = $("#newInstitutionForm").serializeObject();
+        var institution = new Institution(institutionDetails);
+        institution.save(null, {
+            success: function (inst, response) {
 
-
-        var institutionDetails = $('#editInstitution').serializeObject();
-        console.log(institutionDetails)
-        var institution = new Institution({id: this.data.id});
-        institution.save(institutionDetails, {
-            success: function (user) {
                 $("#newInstitutionModal").modal("hide");
-                sucssesMsg($(".form"), "Instituição alterada com sucesso!");
+                sucssesMsg($(".form"), response.text);
                 setTimeout(function () {
                     app.navigate('/institutions', {
                         trigger: true
                     });
-                }, 1500);
-            }
+                }, response.text.length * 50);
+
+            },
+            error: function (inst, response) {
+                $("#newInstitutionModal").modal("hide");
+                failMsg($(".form"), response.text);
+            },
         })
-
     },
-
-
-    checkAuth: function () {
-        if (!sessionStorage.getItem('keyo')) {
-            showLoginModal($("#someParent"));
-        }
-    },
-
-
     initialize: function () {
-        this.data = this.model.toJSON();
-        console.log(this.data)
+
     },
 
     render: function () {
         var self = this;
-        $(this.el).html(this.template({model: self.data}));
+        $(this.el).html(this.template());
         return this;
     }
 });

@@ -9,8 +9,14 @@ var Institution = Backbone.Model.extend({
         modem('GET', '/api/institutions/' + this.id,
             function (json) {
                 console.log(json)
-                self.attributes = (json);
-                after_fetch();
+
+                //Gets image as b64
+                getDataUri("../images/" + json.image, function (dataUri) {
+                    self.attributes = (json);
+                    self.attributes.b64 = dataUri;
+                    after_fetch();
+                });
+
             },
             //Precisamos enviar para a Tabela escolas o id do professor.
             function (xhr, ajaxOptions, thrownError) {

@@ -26,7 +26,7 @@ window.sucssesMsg = function (form, txt) {
 
 window.failMsg = function (form, txt) {
     var $edit = $("<div>", {
-        class: "modal fade",
+        class: "modal",
         tabindex: "-1",
         id: "infoModal",
         role: "dialog",

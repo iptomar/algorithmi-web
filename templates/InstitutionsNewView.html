@@ -1,5 +1,5 @@
 <div class="form divWidget">
-    <form id="editInstitution" class="row">
+    <form id="newInstitutionForm" class="row">
 
         <div class="col-md-6">
             <div class="col-md-12">
@@ -8,8 +8,8 @@
                     <input type="file" class="form-control mandatory" id="filePicker"
                            name="file">
                     <input type="hidden"
-                           name="image" class="form-control" id="base64textarea" value="<%= model.b64 %>">
-                    <img id="imagePrev" src="../images/<%= model.image %>">
+                           name="image" class="form-control" id="base64textarea">
+                    <img id="imagePrev">
                 </div>
             </div>
         </div>
@@ -18,18 +18,18 @@
                 <div class="input-group">
                     <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
                     <input name="name" type="text" class="form-control mandatory"
-                           placeholder="Nome" value="<%= model.name %>">
+                           placeholder="Nome">
                 </div>
             </div>
             <br>
 
             <div class=" col-md-12">
                 <div class="input-group">
-                    <span class="input-group-addon btn-white">
-                        <i class="fa fa-map-marker"></i>
-                    </span>
-                    <input name="address" type="text" class="form-control mandatory"
-                           placeholder="Localização" value="<%= model.address %>">
+                                            <span class="input-group-addon btn-white"><i
+                                                    class="fa fa-map-marker"></i></span>
+                    <input name="address" type="text"
+                           class="form-control mandatory"
+                           placeholder="Localização">
                 </div>
             </div>
             <br>
@@ -38,7 +38,7 @@
                 <div align="center">
                     <button id="btnCreateInst" type="submit"
                             class="btn btn-success btn_created">
-                        Guardar alterações
+                        Criar Instituição
                     </button>
                 </div>
             </div>
