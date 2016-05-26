@@ -1,7 +1,6 @@
 window.InstitutionsNewView = Backbone.View.extend({
     events: {
         "change #filePicker": "convertPhoto",
-        "click #btnCrop": "getFoto",
         "click #btnCreateInst": "createInstitution",
     },
     //Exibe o cropper
@@ -17,17 +16,6 @@ window.InstitutionsNewView = Backbone.View.extend({
             showCropper("#content > div", image, 300, 16 / 9);
         }
         reader.readAsDataURL(file);
-    },
-
-    //Recorta a foto
-    getFoto: function (e) {
-        e.preventDefault();
-        var canvas = $("#preview")[0];
-        var dataUrl = canvas.toDataURL('image/jpeg');
-        $("#base64textarea").val(dataUrl);
-        $("#imagePrev").attr('src', dataUrl);
-        $(".cropBG").remove();
-        $(".profile-pic").removeClass("emptyField");
     },
 
     createInstitution: function (e) {

@@ -227,7 +227,16 @@ window.showCropper = function (form, base_image, resWidth, aspectRatio, result) 
                 $("<button>", {
                     type: "submit", id: "btnCrop", class: "btn btn-lg btn-login btn-block",
                     text: "Recortar", value: result
-                })
+                }).click(
+                    function () {
+                        var canvas = $("#preview")[0];
+                        var dataUrl = canvas.toDataURL('image/jpeg');
+                        $("#base64textarea").val(dataUrl);
+                        $("#imagePrev").attr('src', dataUrl);
+                        $(".cropBG").remove();
+                        $(".profile-pic").removeClass("emptyField");
+                    }
+                )
             ));
         $(form).append($("<div>", {class: 'cropBG'}).append($cropperModal));
 
@@ -249,6 +258,8 @@ window.showCropper = function (form, base_image, resWidth, aspectRatio, result) 
             aspectRatio: aspectRatio
             //aspectRatio: 16 / 9
         });
+
+
     }
 
 
@@ -274,35 +285,81 @@ function getDataUri(url, callback) {
 
 window.populateInstitutionsDD = function () {
     var inst = new Institutions();
+    //Gets schools
+    var schools = new Schools();
+    schools.fetch(function () {
+    });
+
     inst.fetch(
+        //Populates dd institutions with registed institutions
         function () {
-            $("#ddInstitutionsList").append('<option value="" disabled selected>Instituição</option>');
+            $("#ddInstitutionsList").append('<option value="" disabled selected>Instituição</option>').change(
+                function () {
+                    populateSchoolsDD(schools);
+                }
+            );
             $.each(inst.models, function (iInst, inst) {
                 $("#ddInstitutionsList").append(
-                    $("<option>", {html: inst.attributes.name, id: inst.attributes.id, value: inst.attributes.id})
-                );
-            })
-        }
-    )
-};
-window.populateSchoolsDD = function (selectedSchool) {
-    var inst = new Schools();
-    inst.fetch(
-        function () {
-            $("#ddSchoolsList").append('<option value="" disabled selected>Escola</option>');
-            $.each(inst.models, function (ischool, school) {
-                $("#ddSchoolsList").append(
                     $("<option>", {
-                        html: school.attributes.name,
-                        id: school.attributes.id, value: school.attributes.id
+                        html: inst.attributes.name,
+                        id: inst.attributes.id,
+                        value: inst.attributes.id
                     })
                 );
-                //se for passada uma escola por parametro(no caso do edit) selecciona-a
-                $("#" + selectedSchool).attr("selected", true)
-            })
+            });
+
 
         }
     )
+};
+window.populateSchoolsDD = function (schools) {
+    //Gets courses
+    var courses = new Courses();
+    courses.fetch(function () {
+    });
+    $("#ddSchoolsList").empty();
+    var selectedInst = $("#ddInstitutionsList").val();
+
+    $("#ddSchoolsList").append('<option value="" disabled selected>Escola</option>').change(
+        function () {
+            //Se existir a dd de cursos
+            if ($("#ddCoursesList").length) {
+                populateCoursesDD(courses);
+            }
+
+        }
+    );
+    $.each(schools.models, function (ischool, school) {
+        if (school.attributes.institutionID == selectedInst) {
+            $("#ddSchoolsList").append(
+                $("<option>", {
+                    html: school.attributes.name,
+                    id: school.attributes.id, value: school.attributes.id
+                })
+            );
+        }
+    })
+
+};
+window.populateCoursesDD = function (courses) {
+
+    $("#ddCoursesList").empty();
+    var selectedSchool = $("#ddSchoolsList").val();
+    console.log(selectedSchool)
+
+    $("#ddCoursesList").append('<option value="" disabled selected>Curso</option>');
+    $.each(courses.models, function (icourses, course) {
+        console.log(course.attributes)
+        if (course.attributes.schoolID == selectedSchool) {
+            $("#ddCoursesList").append(
+                $("<option>", {
+                    html: course.attributes.name,
+                    id: course.attributes.id, value: course.attributes.id
+                })
+            );
+        }
+    })
+
 };
 function updatePreview(c) {
 

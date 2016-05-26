@@ -4,14 +4,25 @@
 window.CoursesView = Backbone.View.extend({
 
     events: {
+        "change #filePicker": "convertPhoto",
+        "click #btnCrop": "getFoto",
         "click #btnCreateCourse": "createCourse",
-        "click #newCourse": "getCourses",
         "click .deleteCourse": "confirmDelete",
         "submit #newPopUpCourse": "newCourse",
     },
-    //Preenche a dd das escolas
-    getCourses: function (e) {
-        populateSchoolsDD();
+//Exibe o cropper
+    convertPhoto: function (e) {
+        var file = e.target.files[0];
+
+        // Load the image
+        var reader = new FileReader();
+
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.src = readerEvent.target.result;
+            showCropper("#content > div", image, 150, 1);
+        }
+        reader.readAsDataURL(file);
     },
 
     createCourse: function (e) {
@@ -63,7 +74,7 @@ window.CoursesView = Backbone.View.extend({
 
     initialize: function () {
         this.data = this.collection.toJSON();
-        console.log(this.data)
+        populateInstitutionsDD();
     },
 
     render: function () {

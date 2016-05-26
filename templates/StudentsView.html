@@ -1,5 +1,68 @@
-<div id='subcontent'>
-    aawww
-    wsdsd
-    sddasd
+<div class="form">
+
+    <% _.each(collection,function(student){ %>
+
+    <div class="col-md-4">
+        <div class="divWidget dataBox">
+            <div class="col-md-12 col-xs-12" align=" center">
+                <img id="imagePrev" src="../images/<%=student.image%>">
+
+                <div>
+                    <p align="center"><%=student.name%> (<%=student.username%>)</p>
+                </div>
+            </div>
+            <div class="col-md-6 btn-group" align="left">
+                <a class="deleteStudent" value="<%=student.id%>" type="button">
+                    <i href="" class="fa fa-trash-o fa-2x"
+                       aria-hidden="true"></i></a>
+            </div>
+            <div class="col-md-6 btn-group" align="right">
+                <a href="#students/<%= student.id %>/edit">
+                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+
+    <!-- Button trigger modal -->
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="deleteStudentModal" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">
+                    Eliminar Aluno
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body" style="height: 150px">
+                <form id="deletePopUpStudent">
+                    <p align="center">TEM A CERTEZA QUE PRETENDE ELIMNAR ESTA INSTITUIÇÃO?</p>
+                    <br>
+                    <div class="col-md-12 col-xs-12">
+                        <div class="col-md-6 col-xs-6" align="center">
+                            <a id="confirmDeleteStudent" type="button"><i href=""
+                                                                          class="glyphicon glyphicon-remove fa-4x"
+                                                                          aria-hidden="true"></i></a>
+                        </div>
+                        <div class="col-md-6 col-xs-6" align="center">
+                            <a id="cancelDeleteStudent" type="button"><i href=""
+                                                                         class="glyphicon glyphicon-ok fa-4x"
+                                                                         aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

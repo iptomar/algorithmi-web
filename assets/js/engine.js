@@ -29,7 +29,7 @@ window.modem = function (type, url, success, error, data) {
         url: url,
         dataType: 'json',
         beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Basic ' + btoa("teste:12"));
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa("pacn91@gmail.com:" + btoa('123qwe')));
         },
         data: data,
         success: success,

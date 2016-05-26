@@ -79,7 +79,6 @@ body {
     background-color: #fff;
     width: 300px;
     margin: auto;
-    top: 50px;
     position: relative;
     border-radius: 5px;
 }
@@ -119,13 +118,10 @@ body {
     padding: 20px 10px 10px 10px;
     text-align: left;
     position: relative;
+    display: inline-block;
     min-width: 100%;
     border-color: transparent;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.275);
-}
-
-.dataBox {
-    display: inline-block;
 }
 
 .input-group {

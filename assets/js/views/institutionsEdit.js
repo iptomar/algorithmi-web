@@ -4,7 +4,6 @@
 window.InstitutionsEditView = Backbone.View.extend({
     events: {
         "change #filePicker": "convertPhoto",
-        "click #btnCrop": "getFoto",
         "submit": "editInstitution"
     },
     //Convert Photo To Base64 String
@@ -22,15 +21,6 @@ window.InstitutionsEditView = Backbone.View.extend({
         reader.readAsDataURL(file);
     },
 
-    //Recorta a foto
-    getFoto: function (e) {
-        e.preventDefault();
-        var canvas = $("#preview")[0];
-        var dataUrl = canvas.toDataURL('image/jpeg');
-        $("#base64textarea").val(dataUrl);
-        $("#imagePrev").attr('src', dataUrl);
-        $(".cropBG").remove();
-    },
 
     editInstitution: function (e) {
         e.preventDefault();

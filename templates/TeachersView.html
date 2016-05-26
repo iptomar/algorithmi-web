@@ -1,45 +1,18 @@
 <div class="row">
-    <div class="col-md-12 col-xs-12 ">
-        <div class="divWidget1" align="center">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <div class="divWidget" align="center">
-                        <h4 align="center">PROFESSORES
-                    </div>
+    <!-- Creates a box with every single course information -->
+    <% _.each(collection,function(teacher){ %>
+    <div class="col-md-3">
+        <div class="divWidget dataBox">
+            <div class="col-md-12 col-xs-12" align=" center">
+                <img id="imagePrev" src="../images/<%=teacher.image%>">
+
+                <div>
+                    <p align="center"><%=teacher.name%></p>
+
+                    <p align="center"><%=teacher.username%></p>
                 </div>
             </div>
-
-            <!-- Creates a box with every single course information -->
-            <% _.each(collection,function(teacher){ %>
-
-            <div class="col-md-3">
-                <div class="divWidget dataBox">
-                    <div class="col-md-12 col-xs-12" align=" center">
-                        <img id="imagePrev" src="../images/<%=teacher.image%>">
-
-                        <div>
-                            <p align="center"><%=teacher.name%></p>
-
-                            <p align="center"><%=teacher.username%></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 btn-group" align="left">
-
-
-                        <a class="deleteTeacher" value="<%=teacher.id%>" type="button">
-                            <i href="" class="fa fa-trash-o fa-2x"
-                               aria-hidden="true"></i></a>
-                    </div>
-                    <div class="col-md-6 btn-group" align="right">
-                        <a href="#teachers/<%= teacher.id %>/edit">
-                            <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <% }); %>
-
         </div>
     </div>
-
+    <% }); %>
 </div>

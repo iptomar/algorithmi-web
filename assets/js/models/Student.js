@@ -1,6 +1,8 @@
 var Student = Backbone.Model.extend({
     urlRoot: 'api/students',
-    defaults: {},
+    defaults: {
+        type: 4
+    },
     initialize: function (options) {
 
     },

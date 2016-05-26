@@ -1,36 +1,52 @@
 window.LoginView = Backbone.View.extend({
     events: {
+        "change #filePicker": "convertPhoto",
+        "click #btnLogin": "attemptLogin",
         "click #btnRegist": "regist"
     },
-    
+
+    attemptLogin: function (e) {
+        e.preventDefault();
+
+    },
+    //Exibe o cropper
+    convertPhoto: function (e) {
+        var file = e.target.files[0];
+
+        // Load the image
+        var reader = new FileReader();
+
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.src = readerEvent.target.result;
+            showCropper("#content > div", image, 300, 1);
+        }
+        reader.readAsDataURL(file);
+    },
+
+    //Regista o novo aluno
     regist: function (e) {
         e.preventDefault();
-        console.log(encodeURI(JSON.stringify($("#formRegist").serializeObject())));
-        //prepara-se par enviar os dados para a API
-        modem('POST', '/api/user',
-            //Se correr tudo bem
-            function (json) {
-                //Mostra uma mensagem de sucesso com a string que vem da API
-                sucssesMsg($("#formRegist"), json.resposta);
-                console.log(json);
+        var userDetails = $("#newUserForm").serializeObject();
+        userDetails.password = btoa(userDetails.password);
+        var user = new Student(userDetails);
+        user.save(null, {
+            success: function (user, response) {
+                sucssesMsg($(".form"), response.text);
             },
-            //Se ocorrer um erro
-            function (xhr, ajaxOptions, thrownError) {
-                //Mostra uma mensagem de erro com a string que vem da API
-                failMsg($("#formRegist"), "Não foi possível alterar os dados. " + thrownError);
+            error: function (inst, response) {
+                $("#newInstitutionModal").modal("hide");
+                failMsg($(".form"), response.text);
             },
-            //Prepara os dados da view para os entregar a api
-            encodeURI(JSON.stringify($("#formRegist").serializeObject()))
-        )
-
+        })
     },
-    
+
     initialize: function () {
     },
-    
+
     render: function () {
         $(this.el).html(this.template());
-
+        populateInstitutionsDD();
         return this;
     }
 });

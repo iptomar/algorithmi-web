@@ -1,9 +1,9 @@
 window.StudentsView = Backbone.View.extend({
     events: {
         "mouseover .userPreview": "scaleUser",
+        "click .deleteStudent": "confirmDelete",
     },
-    initialize: function () {
-    },
+
     scaleUser: function (e) {
 
         $(".userPreview").css("z-Index", 0);
@@ -11,36 +11,32 @@ window.StudentsView = Backbone.View.extend({
         $(e.currentTarget).css("z-Index", 100).css("opacity", 1);
 
     },
-    render: function () {
-        $(this.el).html(this.template());
-        modem('GET', '/api/students',
-            function (studentsData) {
+    confirmDelete: function (e) {
+        e.preventDefault();
+        var id = $(e.currentTarget).attr("value");
 
-                $.each(studentsData, function (i, student) {
+        var student = new Student({id: id});
+        student.destroy({
+            success: function (user, response) {
+                sucssesMsg($(".form"), response.text);
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, 2000);
 
-                    var $userDiv = $("<div>", {
-                        class: " col-md-4",
-                        id: student.id,
-
-                    }).append($("<div>", {
-                            class: "userPreview divWidget",
-                            id: student.id,
-                        }).append($("<div>", {
-                            class: " col-md-3",
-
-                        }).append('<img src="' + student.imgB64 + '" alt="' + student.email + '">'))
-                        .append('<div class="col-md-9"><lable class="lblName">' + student.name + '</lable></br><lable>' + student.email + '</lable></div>')
-                    );
-
-                    $("#studentsList").append($userDiv);
-                })
-
-            },
-            function (xhr, ajaxOptions, thrownError) {
-                var json = JSON.parse(xhr.responseText);
-                error_launch(json.message);
+            }, error: function (inst, response) {
+                $("#newInstitutionModal").modal("hide");
+                failMsg($(".form"), "Não foi possível apagar o aluno.");
             }
-        );
+        })
+    },
+    initialize: function () {
+        this.data = this.collection.toJSON();
+        console.log(this.data)
+    },
+
+    render: function () {
+        var self = this;
+        $(this.el).html(this.template({collection: self.data}));
         return this;
     }
 });

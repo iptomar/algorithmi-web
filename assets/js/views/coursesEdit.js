@@ -17,7 +17,7 @@ window.CoursesEditView = Backbone.View.extend({
         reader.onload = function (readerEvent) {
             var image = new Image();
             image.src = readerEvent.target.result;
-            showCropper(".form", image, 300, 16 / 9);
+            showCropper(".form", image, 150, 1);
         }
         reader.readAsDataURL(file);
     },
@@ -44,9 +44,11 @@ window.CoursesEditView = Backbone.View.extend({
         course.save(courseDetails, {
             success: function (user) {
                 $("#newCourseModal").modal("hide");
-                sucssesMsg($("#someParent"), "Instituição alterada com sucesso!");
+                sucssesMsg($(".form"), "Curso alterada com sucesso!");
                 setTimeout(function () {
-                    document.location.reload(true);
+                    app.navigate('/courses', {
+                        trigger: true
+                    });
                 }, 1000);
             }
         })
@@ -63,7 +65,6 @@ window.CoursesEditView = Backbone.View.extend({
 
     initialize: function () {
         this.data = this.model.toJSON();
-        console.log(this.data)
     },
 
     render: function () {

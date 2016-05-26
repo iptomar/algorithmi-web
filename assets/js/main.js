@@ -8,7 +8,7 @@ Backbone.ajax = function () {
     var args = Array.prototype.slice.call(arguments, 0);
 
     args[0].beforeSend = function (xhr) {
-        xhr.setRequestHeader('Authorization', 'Basic ' + btoa("teste:teste12345"));
+        xhr.setRequestHeader('Authorization', 'Basic ' + btoa("pacn91@gmail.com:123qwe"));
     };
 
     return Backbone.$.ajax.apply(Backbone.$, args);
@@ -112,11 +112,15 @@ var Router = Backbone.Router.extend({
 
     students: function () {
         var self = this;
-
         templateLoader.load(["StudentsView"],
             function () {
-                var v = new StudentsView({});
-                self.showView(v, $('#content'));
+                var ss = new Students();
+                ss.fetch(function () {
+                    var v = new StudentsView({
+                        collection: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
             }
         );
     },
