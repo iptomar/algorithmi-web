@@ -1,83 +1,84 @@
+<nav class="navbar navbar-default sidebar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-sidebar-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Total: <%=collection.length%>
+                        <span style="font-size:16px;"
+                              class="pull-right hidden-xs showopacity fa fa-building-o"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="modal" id="newSchool"
+                       data-toggle="modal" data-target="#newSchoolModal">Inserir
+                        <span style="font-size:16px;"
+                              class="pull-right hidden-xs showopacity glyphicon glyphicon-plus-sign"></span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Filtrar <span
+                            class="caret"></span><span
+                            style="font-size:16px;"
+                            class="pull-right hidden-xs showopacity glyphicon glyphicon-filter"></span></a>
+                    <ul class="dropdown-menu forAnimate" role="menu">
+                        <li><a href="{{URL::to('createusuario')}}">Crear</a></li>
+                        <li><a href="#">Modificar</a></li>
+                        <li><a href="#">Reportar</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Informes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Libros<span style="font-size:16px;"
+                                            class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+                </li>
+                <li><a href="#">Tags<span style="font-size:16px;"
+                                          class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="form">
-    <div class="col-md-12 col-xs-12 ">
-        <div class="divWidget1" align="center">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <div class="divWidget" align="center">
-                        <h4 align="center">ESCOLAS
-                            <button id="newSchool" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                                    data-toggle="modal" data-target="#newSchoolModal">+
-                            </button>
-                        </h4>
-                    </div>
+
+
+    <% _.each(collection,function(school){ %>
+
+    <div class="col-md-3">
+        <div class="divWidget dataBox">
+            <div class="col-md-12" align=" center">
+                <div>
+                    <p align="center"><%=school.name%></p>
+
+                    <p align="center"><%=school.institutionName%></p>
                 </div>
             </div>
-            <% _.each(collection,function(school){ %>
-
-            <div class="col-md-4">
-                <div class="divWidget dataBox">
-                    <div class="col-md-12" align=" center">
-                        <div>
-                            <p align="center"><%=school.name%></p>
-
-                            <p align="center"><%=school.institutionName%></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 btn-group" align="left">
+            <div class="col-md-6 btn-group" align="left">
 
 
-                        <a class="deleteSchool" value="<%=school.id%>" type="button">
-                            <i href="" class="fa fa-trash-o fa-2x"
-                               aria-hidden="true"></i></a>
-                    </div>
-                    <div class="col-md-6 btn-group" align="right">
-                        <a href="#schools/<%= school.id %>/edit">
-                            <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
+                <a class="deleteSchool" value="<%=school.id%>" type="button">
+                    <i href="" class="fa fa-trash-o fa-2x"
+                       aria-hidden="true"></i></a>
             </div>
-            <% }); %>
+            <div class="col-md-6 btn-group" align="right">
+                <a href="#schools/<%= school.id %>/edit">
+                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </div>
+    <% }); %>
     <!-- Button trigger modal -->
-</div>
-<!-- Modal -->
-<div class="modal fade" id="deleteSchoolModal" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title">
-                    Eliminar Escola
-                </h4>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body" style="height: 150px">
-                <form id="deletePopUpSchool">
-                    <p align="center">TEM A CERTEZA QUE PRETENDE ELIMNAR ESTA ESCOLA?</p>
-                    <br>
-                    <div class="col-md-12 col-xs-12">
-                        <div class="col-md-6 col-xs-6" align="center">
-                            <a id="confirmDeleteSchool" type="button"><i href=""
-                                                                         class="glyphicon glyphicon-remove fa-4x"
-                                                                         aria-hidden="true"></i></a>
-                        </div>
-                        <div class="col-md-6 col-xs-6" align="center">
-                            <a id="cancelDeleteSchool" type="button"><i href="" class="glyphicon glyphicon-ok fa-4x"
-                                                                        aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
 
 

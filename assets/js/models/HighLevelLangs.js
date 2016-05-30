@@ -1,20 +1,15 @@
-var Course = Backbone.Model.extend({
-    urlRoot: 'api/courses',
+var HighLevelLang = Backbone.Model.extend({
+    urlRoot: 'api/highlevellangs',
     defaults: {},
     initialize: function (options) {
 
     },
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/courses/' + this.id,
+        modem('GET', '/api/highlevellangs/' + this.id,
             function (json) {
                 console.log(json)
-                //Gets image as b64
-                getDataUri("../images/" + json.image, function (dataUri) {
-                    self.attributes = (json);
-                    self.attributes.b64 = dataUri;
-                    after_fetch();
-                });
+                self.attributes = (json);
                 after_fetch();
             },
             function (xhr, ajaxOptions, thrownError) {
@@ -30,14 +25,14 @@ var Course = Backbone.Model.extend({
     }
 });
 
-var Courses = Backbone.Collection.extend({
-    model: Course,
+var HighLevelLangs = Backbone.Collection.extend({
+    model: HighLevelLangs,
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/courses',
+        modem('GET', '/api/highlevellangs',
             function (json) {
                 for (i = 0; i < json.length; i++) {
-                    self.models.push(new Course(json[i]));
+                    self.models.push(new HighLevelLang(json[i]));
                 }
                 after_fetch();
             },

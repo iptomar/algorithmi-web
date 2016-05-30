@@ -8,7 +8,7 @@ Backbone.ajax = function () {
     var args = Array.prototype.slice.call(arguments, 0);
 
     args[0].beforeSend = function (xhr) {
-        xhr.setRequestHeader('Authorization', 'Basic ' + btoa("pacn91@gmail.com:123qwe"));
+        xhr.setRequestHeader('Authorization', 'Basic ' + window.sessionStorage.getItem("keyo"));
     };
 
     return Backbone.$.ajax.apply(Backbone.$, args);
@@ -41,12 +41,15 @@ var Router = Backbone.Router.extend({
         "students/new": "studentsNew",
         "students/:id": "studentsInfo",
         "schools": "schools",
+
+
         "questions": "questions",
 
 
         "courses": "courses",
         "courses/:id/edit": "coursesEdit",
 
+        "tools": "tools",
 
         "tests": "tests",
         "home": "home",
@@ -80,13 +83,21 @@ var Router = Backbone.Router.extend({
     home: function () {
 
         var self = this;
-
         templateLoader.load(["HomeView"],
             function () {
                 var v = new HomeView({});
                 self.showView(v, $('#content'));
             }
         );
+    },
+
+    isLogged: function () {
+        if (!sessionStorage.getItem('keyo')) {
+            app.navigate('/home', {
+                trigger: true
+            });
+            return;
+        }
     },
 
 
@@ -100,7 +111,7 @@ var Router = Backbone.Router.extend({
 
     statistics: function () {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["StatisticsView"],
             function () {
                 var v = new StatisticsView({});
@@ -112,6 +123,7 @@ var Router = Backbone.Router.extend({
 
     students: function () {
         var self = this;
+        self.isLogged();
         templateLoader.load(["StudentsView"],
             function () {
                 var ss = new Students();
@@ -126,7 +138,7 @@ var Router = Backbone.Router.extend({
     },
     studentsNew: function () {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["StudentsNewView"],
             function () {
                 var v = new StudentsNewView({});
@@ -136,7 +148,7 @@ var Router = Backbone.Router.extend({
     },
     studentsInfo: function (id) {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["StudentsInfoView"],
             function () {
 
@@ -154,7 +166,7 @@ var Router = Backbone.Router.extend({
 
     schools: function () {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["SchoolsView"],
             function () {
                 var schools = new Schools();
@@ -169,10 +181,29 @@ var Router = Backbone.Router.extend({
         );
     },
 
+    tools: function () {
+        var self = this;
+        self.isLogged();
+        templateLoader.load(["ToolsView"],
+            function () {
+                var categories = new Categories();
+                var highlevellangs = new HighLevelLangs();
+                categories.fetch(function () {
+                    highlevellangs.fetch(function () {
+                        var v = new ToolsView({
+                            collection: [categories, highlevellangs]
+                        });
+                        self.showView(v, $('#content'));
+                    })
+                })
+            }
+        );
+    },
+
 
     teachers: function () {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["TeachersView"],
             function () {
                 var ss = new Teachers();
@@ -188,8 +219,7 @@ var Router = Backbone.Router.extend({
 
     teachersNew: function () {
         var self = this;
-
-
+        self.isLogged();
         templateLoader.load(["TeachersNewView"],
             function () {
                 var v = new TeachersNewView({});
@@ -200,6 +230,7 @@ var Router = Backbone.Router.extend({
 
     questions: function () {
         var self = this;
+        self.isLogged();
         templateLoader.load(["QuestionsView"],
             function () {
                 var v = new QuestionsView({});
@@ -211,6 +242,7 @@ var Router = Backbone.Router.extend({
 
     courses: function (id) {
         var self = this;
+        self.isLogged();
         templateLoader.load(["CoursesView"],
             function () {
                 var ss = new Courses();
@@ -225,6 +257,7 @@ var Router = Backbone.Router.extend({
     },
     coursesEdit: function (id) {
         var self = this;
+        self.isLogged();
         templateLoader.load(["CoursesEditView"],
             function () {
                 var ss = new Course({id: id});
@@ -240,6 +273,7 @@ var Router = Backbone.Router.extend({
 
     institutions: function () {
         var self = this;
+        self.isLogged();
         templateLoader.load(["InstitutionsView"],
             function () {
                 var ss = new Institutions();
@@ -254,6 +288,7 @@ var Router = Backbone.Router.extend({
     },
     institutionsNew: function () {
         var self = this;
+        self.isLogged();
         templateLoader.load(["InstitutionsNewView"],
             function () {
                 var v = new InstitutionsNewView({});
@@ -263,6 +298,7 @@ var Router = Backbone.Router.extend({
     },
     institutionsEdit: function (id) {
         var self = this;
+        self.isLogged();
         templateLoader.load(["InstitutionsEditView"],
             function () {
                 var ss = new Institution({id: id});
@@ -280,7 +316,7 @@ var Router = Backbone.Router.extend({
 
     tests: function () {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["TestsView"],
             function () {
                 var v = new TestsView({});
@@ -292,7 +328,7 @@ var Router = Backbone.Router.extend({
 
     submissions: function () {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["SubmissionsView"],
             function () {
                 var v = new SubmissionsView({});
@@ -303,7 +339,7 @@ var Router = Backbone.Router.extend({
 
     submissionsInfo: function (id) {
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["SubmissionsInfoView"],
             function () {
                 var v = new SubmissionsInfoView({});

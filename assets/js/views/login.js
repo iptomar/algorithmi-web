@@ -7,7 +7,34 @@ window.LoginView = Backbone.View.extend({
 
     attemptLogin: function (e) {
         e.preventDefault();
+        //Create Credentials
+        var cre = $('#username').val() + ':' + btoa($("#password").val());   //Credentials = Username:Password
+        window.sessionStorage.setItem("keyo", btoa(cre));
 
+        //Check User Authenticity
+        modem('GET', '/api/me',
+
+            //Response Handler
+            function (user) {
+                console.log(user);
+                window.sessionStorage.setItem("username", user.name);
+                sucssesMsg($("body"), "Bem-vindo, " + window.sessionStorage.getItem("username"));
+                setTimeout(function () {
+                    app.navigate('/home', {
+                        trigger: true
+                    });
+                }, "Bem-vindo, " + window.sessionStorage.getItem("username").length);
+                $("#txtUser").val(window.sessionStorage.getItem("username"));
+            },
+            //Error Handling
+            function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(xhr.responseText);
+                //Remove Session Key if login atempt failed
+                window.sessionStorage.removeItem("keyo");
+                failMsg($("body"), "Não foi possível efectuar login.");
+
+            }
+        );
     },
     //Exibe o cropper
     convertPhoto: function (e) {
@@ -42,6 +69,7 @@ window.LoginView = Backbone.View.extend({
     },
 
     initialize: function () {
+
     },
 
     render: function () {

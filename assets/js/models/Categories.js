@@ -1,20 +1,17 @@
-var Course = Backbone.Model.extend({
-    urlRoot: 'api/courses',
+var Category = Backbone.Model.extend({
+    urlRoot: 'api/categories',
     defaults: {},
     initialize: function (options) {
 
     },
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/courses/' + this.id,
+        modem('GET', '/api/categories/' + this.id,
             function (json) {
                 console.log(json)
-                //Gets image as b64
-                getDataUri("../images/" + json.image, function (dataUri) {
-                    self.attributes = (json);
-                    self.attributes.b64 = dataUri;
-                    after_fetch();
-                });
+
+                self.attributes = (json);
+
                 after_fetch();
             },
             function (xhr, ajaxOptions, thrownError) {
@@ -30,14 +27,14 @@ var Course = Backbone.Model.extend({
     }
 });
 
-var Courses = Backbone.Collection.extend({
-    model: Course,
+var Categories = Backbone.Collection.extend({
+    model: Category,
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/courses',
+        modem('GET', '/api/categories',
             function (json) {
                 for (i = 0; i < json.length; i++) {
-                    self.models.push(new Course(json[i]));
+                    self.models.push(new Category(json[i]));
                 }
                 after_fetch();
             },
