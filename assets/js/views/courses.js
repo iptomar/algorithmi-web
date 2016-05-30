@@ -4,52 +4,84 @@
 window.CoursesView = Backbone.View.extend({
 
     events: {
-        "submit": "beforeSend",
-        "click #newCourse": "newCoursePopup",
-        "click #editCourse": "editCoursePopup",
-        "click #deleteCourse": "deleteCoursePopup",
+        "change #filePicker": "convertPhoto",
+        "click #btnCrop": "getFoto",
+        "click #btnCreateCourse": "createCourse",
+        "click .deleteCourse": "confirmDelete",
         "submit #newPopUpCourse": "newCourse",
     },
+//Exibe o cropper
+    convertPhoto: function (e) {
+        var file = e.target.files[0];
 
-    beforeSend: function (e) {
+        // Load the image
+        var reader = new FileReader();
+
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.src = readerEvent.target.result;
+            showCropper("#content > div", image, 150, 1);
+        }
+        reader.readAsDataURL(file);
+    },
+
+    createCourse: function (e) {
         e.preventDefault();
+        // POST ("/api/courses")
+        var coursesDetails = $("#newCourseForm").serializeObject();
+        var courses = new Course(coursesDetails);
 
-        modem('POST', '/api/course/new',
-            function (json) {
+        courses.save(null, {
+            success: function (inst, response) {
+
+                $("#newCourseModal").modal("hide");
+                sucssesMsg($(".form"), response.text);
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, 1000);
             },
-            function (xhr, ajaxOptions, thrownError) {
+            error: function (inst, response) {
+                $("#newCourseModal").modal("hide");
+                failMsg($(".form"), response.text);
             },
-            encodeURI(JSON.stringify($("#newPopUpCourse").serializeObject()))
-        );
-
+        })
     },
-    
-    newCoursePopup: function (e) {
+
+    confirmDelete: function (e) {
         e.preventDefault();
+        var id = $(e.currentTarget).attr("value");
 
-        $("#newCourseModal").modal('show');
+        var course = new Course({id: id});
+        course.destroy({
+            success: function (scchool, response) {
+                sucssesMsg($(".form"), "Escola apagada com sucesso.");
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, 1000);
 
+            }, error: function (inst, response) {
+                $("#newInstitutionModal").modal("hide");
+                failMsg($(".form"), "Não foi possível apagar a escola.");
+            }
+        })
     },
 
-    editCoursePopup: function (e) {
-        e.preventDefault();
-
-        $("#editCourseModal").modal('show');
-
+    checkAuth: function () {
+        if (!sessionStorage.getItem('keyo')) {
+            showLoginModal($(".form"));
+        }
     },
 
-    deleteCoursePopup: function (e) {
-        e.preventDefault();
-
-        $("#deleteCourseModal").modal('show');
-
-    },
-    
     initialize: function () {
+        this.data = this.collection.toJSON();
+        populateInstitutionsDD();
     },
 
     render: function () {
-        $(this.el).html(this.template());
+        var self = this;
+        $(this.el).html(this.template({collection: self.data}));
+
+
         return this;
     }
 });

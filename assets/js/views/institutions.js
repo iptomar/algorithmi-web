@@ -1,72 +1,55 @@
-/**
- * Created by Fábio Cruz on 10/04/2016.
- */
 window.InstitutionsView = Backbone.View.extend({
     events: {
-        "submit": "beforeSend",
-        "click #newInstitution": "newInstitutionPopup",
-        "click #editInstitution": "editInstitutionPopup",
-        "click #deleteInstitution": "deleteInstitutionPopup",
-        "submit #newPopUpInstitution": "newInstitution",
+        "click #btnCreateInst": "createInstitution",
+        "click .deleteInstitution": "confirmDelete",
+
     },
 
-    beforeSend: function (e) {
+
+    createInstitution: function (e) {
         e.preventDefault();
 
-        modem('POST', '/api/institution/new',
-            function (json) {
-            },
-            function (xhr, ajaxOptions, thrownError) {
-            },
-            encodeURI(JSON.stringify($("#newPopUpInstitution").serializeObject()))
-        );
+        app.navigate('/institutions/new', {
+            trigger: true
+        });
 
     },
-    
-    newInstitutionPopup: function (e) {
+    confirmDelete: function (e) {
         e.preventDefault();
+        var id = $(e.currentTarget).attr("value");
 
-        $("#newInstitutionModal").modal('show');
+        var institution = new Institution({id: id});
+        institution.destroy({
+            success: function (user, response) {
+                sucssesMsg($(".form"), response.text);
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, 2000);
 
+            }, error: function (inst, response) {
+                $("#newInstitutionModal").modal("hide");
+                failMsg($(".form"), "Não foi possível apagar a instituição.");
+            }
+        })
     },
-
-    editInstitutionPopup: function (e) {
-        e.preventDefault();
-
-        $("#editInstitutionModal").modal('show');
-
-    },
-
-    deleteInstitutionPopup: function (e) {
-        e.preventDefault();
-
-        $("#deleteInstitutionModal").modal('show');
-
-    },
-    
     checkAuth: function () {
         if (!sessionStorage.getItem('keyo')) {
-            showLoginModal($("#someParent"));
+            app.navigate('/home', {
+                trigger: true
+            });
         }
-    },
 
-    initialize: function () {
-    },
-
-    render: function () {
-        $(this.el).html(this.template());
-
-        showLoginModal($("#someParent"));
-
-        return this;
     },
 
 
     initialize: function () {
+        this.data = this.collection.toJSON();
+        this.checkAuth();
     },
 
     render: function () {
-        $(this.el).html(this.template());
+        var self = this;
+        $(this.el).html(this.template({collection: self.data}));
         return this;
     }
 });

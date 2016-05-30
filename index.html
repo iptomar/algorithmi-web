@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8"/>
     <title>Algorithmi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -12,6 +12,8 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="assets/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="assets/libs/google-code-prettify/prettify.css" rel="stylesheet"/>
+
+    <link href="assets/css/jquery.Jcrop.min.css" rel="stylesheet"/>
 
     <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"
           rel="stylesheet">
@@ -68,19 +70,21 @@
                         </ul>
                     </li>
                 </ul>
+                <!--
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                </form> -->
                 <ul class="nav navbar-nav navbar-right">
 
 
                     <li><a id="login" href="#login">Sign Up / Login</a></li>
                     <li><a href="#">Ajuda</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        <a href="#" class="dropdown-toggle" id="txtUser" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
@@ -97,9 +101,8 @@
 </div>
 
 <div id="page">
-    <div class="container">
-        <div id="content"></div>
-    </div>
+    <div id="content"></div>
+
 </div>
 
 <div id="loadingbar" style="position: fixed; bottom:-21px;width:100%;display:none">
@@ -114,6 +117,8 @@
 <script src="assets/libs/jquery.min.js"></script>
 <script src="assets/libs/jquery.cookie.js"></script>
 
+<script type="text/javascript" src="assets/libs/jquery.Jcrop.min.js"></script>
+
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/utils.js"></script>
 <script src="assets/js/responses.js"></script>
@@ -124,10 +129,19 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
 
+
+<script src="assets/js/models/Institution.js"></script>
+<script src="assets/js/models/School.js"></script>
+
+
+<script src="assets/js/models/Categories.js"></script>
+<script src="assets/js/models/HighLevelLangs.js"></script>
 <script src="assets/js/models/Teacher.js"></script>
 <script src="assets/js/models/Question.js"></script>
 <script src="assets/js/models/Student.js"></script>
-<script src="assets/js/models/Institution.js"></script>
+<script src="assets/js/models/Users.js"></script>
+<script src="assets/js/models/UserType.js"></script>
+
 <script src="assets/js/models/Course.js"></script>
 
 <script src="assets/js/engine.js"></script>
