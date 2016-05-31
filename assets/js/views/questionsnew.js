@@ -12,7 +12,7 @@ window.QuestionsNewView = Backbone.View.extend({
         //Evita que o browser efectue a accao por defeito
         e.preventDefault();
         //Mostra os dados na console do browser
-        console.log($("form").serialize());
+        console.log($("form").serializeObject());
         //Se algum dos campos estiver vazio
         var allElements = $(".mandatory");
         $.each(allElements, function (key, elem) {
@@ -29,46 +29,64 @@ window.QuestionsNewView = Backbone.View.extend({
     verify: function (e) {
         isEmpty($(e.currentTarget));
     },
-    send: function (e) {
-        //prepara-se par enviar os dados para a API
-        modem('POST', '/api/question',
-            //Se correr tudo bem
-            function (json) {
-                //Mostra uma mensagem de sucesso com a string que vem da API
-                sucssesMsg($(form), json.resposta);
-            },
-            //Se ocorrer um erro
-            function (xhr, ajaxOptions, thrownError) {
-                //Mostra uma mensagem de erro com a string que vem da API
-                failMsg($(form), "Não foi possível alterar os dados. \n (" + JSON.parse(xhr.responseText).result + ").");
-            },
-            //Prepara os dados da view para os entregar a api
+    send: function () {
 
-            $("form").serialize()
-        );
+        // POST ("/api/questions")
+        var questionDetails = $("#newQuestionForm").serializeObject();
+        var question = new Question(questionDetails);
+
+        question.save(null, {
+            success: function (question, response) {
+                sucssesMsg($(".form"), response.text);
+                setTimeout(function () {
+                    //  app.navigate('/questions', {
+                    //       trigger: true
+                    //   });
+                }, response.text.length * 50);
+
+            },
+            error: function (inst, response) {
+               // failMsg($(".form"), response.text);
+            },
+        })
     },
 
     //Convert Photo To Base64 String
     convertPhoto: function (e) {
 
-        convertImage(e);
+        var file = e.target.files[0];
+
+        // Load the image
+        var reader = new FileReader();
+
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.src = readerEvent.target.result;
+            showCropper("#content > div", image, 300, 16 / 9);
+        }
+        reader.readAsDataURL(file);
 
     },
 
     addIO: function (e) {
         e.preventDefault();
-        if (isIOvalide()) {
-            $("#divIOList").append($("<div>", {
-                class: "divIO",
-            }).append($("<div>", {
-                class: "subDivIO",
-            }).append('<label id="lblIO">I/O</label></br>'
-                + '<b class="col-md-2">I: </b>' + $("#txtEntrada").val() + '</br>'
-                + '<b class="col-md-2">O: </b>' + $("#txtSaida").val())));
-        }
+
+        $("#divIOList").append($("<div>", {
+            class: "divIO",
+        }).append($("<div>", {
+            class: "subDivIO",
+        }).append('<label id="lblIO">I/O</label></br>'
+            , '<span class="col-md-6">I: </s>' + $("#txtEntrada").val() + '</br>'
+            , '<span class="col-md-6">O: </span>' + $("#txtSaida").val()
+        )));
+        var ioList = jQuery.parseJSON($("#txtIOlist").val());
+
+        ioList.push({I: $("#txtEntrada").val(), O: $("#txtSaida").val()});
+        $("#txtIOlist").val(JSON.stringify(ioList));
 
     },
     initialize: function () {
+        populateCategoriesDD();
     },
 
     render: function () {

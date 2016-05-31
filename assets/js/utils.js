@@ -361,6 +361,25 @@ window.populateCoursesDD = function (courses) {
     })
 
 };
+
+window.populateCategoriesDD = function () {
+    var categories = new Categories();
+    categories.fetch(function () {
+        $.each(categories.models, function (icategory, category) {
+            console.log(category.attributes)
+            $("#ddCategoriesList").append(
+                $("<option>", {
+                    html: category.attributes.description,
+                    id: category.attributes.id, value: category.attributes.id
+                })
+            );
+
+        })
+    })
+
+
+};
+
 function updatePreview(c) {
 
     if (parseInt(c.w) > 0) {

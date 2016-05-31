@@ -1,157 +1,87 @@
 window.QuestionsView = Backbone.View.extend({
 
     events: {
-        "submit": "beforeSend",
-        "click #newQuestion": "newQuestionPopup",
-        "click #editQuestion": "editQuestionPopup",
-        "click #deleteQuestion": "deleteQuestionPopup",
-        "submit #newPopUpQuestion": "newQuestion",
-        "click #addLanguage": "adicionarLinguagem",
-        "click #removeLanguage": "removerLinguagem",
-        "click #addIo": "addIo",
-        "click #btn_questions_delete_io": "removeIo",
-        "click #btn_questions_delete_All_io": "removeAllIo",
-        "click #btn_questions_delete_All_io": "removeAllIo",
-
-
+        "click #btnCriarPerg ": "beforeSend",
+        "change #filePickerImg": "convertPhoto",
+        "click #btnAddIO": "addIO",
+        "blur .mandatory": "verify",
     },
 
     beforeSend: function (e) {
+        var self = this;
+        var isAllOk = true;
+        //Evita que o browser efectue a accao por defeito
         e.preventDefault();
+        //Mostra os dados na console do browser
+        console.log($("form").serialize());
+        //Se algum dos campos estiver vazio
+        var allElements = $(".mandatory");
+        $.each(allElements, function (key, elem) {
+            if (isEmpty($(elem))) {
+                isAllOk = false;
+            }
+        });
 
-
-        modem('POST', '/api/question/new',
+        if (isAllOk) {
+            self.send();
+        }
+    },
+    //Verifica se o elemento esta preenchido quando perde o foco
+    verify: function (e) {
+        isEmpty($(e.currentTarget));
+    },
+    send: function (e) {
+        //prepara-se par enviar os dados para a API
+        modem('POST', 'question',
+            //Se correr tudo bem
             function (json) {
+                //Mostra uma mensagem de sucesso com a string que vem da API
+                sucssesMsg($(form), json.resposta);
             },
+            //Se ocorrer um erro
             function (xhr, ajaxOptions, thrownError) {
+                //Mostra uma mensagem de erro com a string que vem da API
+                failMsg($(form), "Não foi possível alterar os dados. \n (" + JSON.parse(xhr.responseText).result + ").");
             },
-            encodeURI(JSON.stringify($("#newPopUpQuestion").serializeObject()))
+            //Prepara os dados da view para os entregar a api
+
+            $("form").serialize()
         );
+    },
+
+    //Convert Photo To Base64 String
+    convertPhoto: function (e) {
+
+        convertImage(e);
 
     },
 
-    newQuestionPopup: function (e) {
+    addIO: function (e) {
         e.preventDefault();
-
-        $("#newQuestionModal").modal('show');
-
-    },
-
-    editQuestionPopup: function (e) {
-        e.preventDefault();
-
-        $("#editQuestionModal").modal('show');
-
-    },
-
-
-    deleteQuestionPopup: function (e) {
-        e.preventDefault();
-
-        $("#deleteQuestionModal").modal('show');
-
-    },
-
-    checkAuth: function () {
-        if (!sessionStorage.getItem('keyo')) {
-            showLoginModal($("#someParent"));
+        if (isIOvalide()) {
+            $("#divIOList").append($("<div>", {
+                class: "divIO",
+            }).append($("<div>", {
+                class: "subDivIO",
+            }).append('<label id="lblIO">I/O</label></br>'
+                + '<b class="col-md-2">I: </b>' + $("#txtEntrada").val() + '</br>'
+                + '<b class="col-md-2">O: </b>' + $("#txtSaida").val())));
         }
     },
 
     initialize: function () {
-    },
+        this.data = this.collection.toJSON();
+        console.log(this.data)
+    }
+    ,
 
     render: function () {
-        $(this.el).html(this.template());
-
-        // this.checkAuth();
-
+        var self = this;
+        $(this.el).html(this.template({collection: self.data}));
         return this;
-    },
+    }
 
-    addIo: function (e) {
-        e.preventDefault();
-
-        $("#files").append($("<div>", {
-                class: "divIO",
-            }).append($("<div>", {
-                class: "subDivIO",
-            }).append('<label id="lblIO"><i class="fa fa-file-o fa-3x" aria-hidden="true"></i></label></br>'
-                + '<b class="col-md-12">Input: </b></br>' + $("#txtEntrada").val() + '</br>'
-                + '<b class="col-md-12">Outup: </b></br>' + $("#txtSaida").val() + '</br>'
-                + '<b class="col-md-5"><button id="btn_questions_edit_io" href=""><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></button></b>'
-                + '<b class="col-md-5"><button id="btn_questions_delete_io" href=""><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></button></b></br>'
-            ))
-        );
-    },
-
-    //Apagar todas os I/O
-    removeAllIo: function () {
-        $(".divIO").remove();
-    },
-
-    removeIo: function (e) {
-        e.preventDefault();
-
-        var $removableIO = $(e.target).parent().parent().parent().parent();
-        $removableIO.remove();
-    },
-    
-    adicionarLinguagem: function () {
-
-        var $language = $('#linguagens').find(":selected").text();
-        console.log($language);
-
-        switch ($language) {
-            case "JAVA":
-                $("#language")
-                    .append($("<div>", {class: "col-md-2"})
-                        .append($("<img>", {
-                            src: "assets/ico/JAVA.png",
-                            alt: "Smiley Face",
-                            width: "37",
-                            height: "37"
-                        }))
-                    );
-                break;
-            case "PHP":
-                $("#language")
-                    .append($("<div>", {class: "col-md-2"})
-                        .append($("<img>", {
-                            src: "assets/ico/PHP.png",
-                            alt: "Smiley Face",
-                            width: "37",
-                            height: "37"
-                        }))
-                    );
-                break;
-            case "C":
-                $("#language")
-                    .append($("<div>", {class: "col-md-2"})
-                        .append($("<img>", {
-                            src: "assets/ico/c.png",
-                            alt: "Smiley Face",
-                            width: "37",
-                            height: "37"
-                        }))
-                    );
-                break;
-            case "C++":
-                $("#language")
-                    .append($("<div>", {class: "col-md-2"})
-                        .append($("<img>", {
-                            src: "assets/ico/c++.png",
-                            alt: "Smiley Face",
-                            width: "37",
-                            height: "37"
-                        }))
-                    );
-                break;
-            default:
-                break;
-        }
-
-
-    }});
+})
+;
 
 

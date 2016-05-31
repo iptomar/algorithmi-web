@@ -32,19 +32,10 @@ window.InstitutionsView = Backbone.View.extend({
             }
         })
     },
-    checkAuth: function () {
-        if (!sessionStorage.getItem('keyo')) {
-            app.navigate('/home', {
-                trigger: true
-            });
-        }
-
-    },
-
 
     initialize: function () {
         this.data = this.collection.toJSON();
-        this.checkAuth();
+        console.log(this.data)
     },
 
     render: function () {
