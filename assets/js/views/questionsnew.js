@@ -2,8 +2,14 @@ window.QuestionsNewView = Backbone.View.extend({
     events: {
         "click #btnCriarPerg ": "beforeSend",
         "change #filePickerImg": "convertPhoto",
+        "change #inputFicheiro": "convertFile",
         "click #btnAddIO": "addIO",
+        "click #btnAddCode": "addCode",
         "blur .mandatory": "verify",
+    },
+
+    convertFile: function (e) {
+        fileToB64(e);
     },
 
     beforeSend: function (e) {
@@ -46,7 +52,7 @@ window.QuestionsNewView = Backbone.View.extend({
 
             },
             error: function (inst, response) {
-               // failMsg($(".form"), response.text);
+                // failMsg($(".form"), response.text);
             },
         })
     },
@@ -85,8 +91,18 @@ window.QuestionsNewView = Backbone.View.extend({
         $("#txtIOlist").val(JSON.stringify(ioList));
 
     },
+
+    addCode: function (e) {
+        e.preventDefault();
+        var ioList = jQuery.parseJSON($("#txtCodelist").val());
+
+        ioList.push({code: $("#txtB64File").val(), language: $("#ddLanguagesList").val()});
+        $("#txtCodelist").val(JSON.stringify(ioList));
+
+    },
     initialize: function () {
         populateCategoriesDD();
+        populateLanguagessDD();
     },
 
     render: function () {

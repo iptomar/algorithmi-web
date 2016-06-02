@@ -283,6 +283,24 @@ function getDataUri(url, callback) {
     image.src = url;
 }
 
+window.fileToB64 = function (evt) {
+
+    var files = evt.target.files;
+    var file = files[0];
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload = function (readerEvt) {
+            var binaryString = readerEvt.target.result;
+            console.log(btoa(binaryString));
+            $("#txtB64File").val(btoa(binaryString));
+        };
+
+        reader.readAsBinaryString(file);
+    }
+};
+
 window.populateInstitutionsDD = function (institution, school) {
     var inst = new Institutions();
 
@@ -346,6 +364,7 @@ window.populateSchoolsDD = function (school) {
 
 
 };
+
 window.populateCoursesDD = function () {
     //Gets courses
     var courses = new Courses();
@@ -380,6 +399,23 @@ window.populateCategoriesDD = function () {
                 $("<option>", {
                     html: category.attributes.description,
                     id: category.attributes.id, value: category.attributes.id
+                })
+            );
+
+        })
+    })
+
+
+};
+window.populateLanguagessDD = function () {
+    var languages = new Languages();
+    languages.fetch(function () {
+        $.each(languages.models, function (ilanguage, language) {
+            console.log(language.attributes)
+            $("#ddLanguagesList").append(
+                $("<option>", {
+                    html: language.attributes.description,
+                    id: language.attributes.id, value: language.attributes.id
                 })
             );
 

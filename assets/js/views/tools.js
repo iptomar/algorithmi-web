@@ -51,7 +51,7 @@ window.ToolsView = Backbone.View.extend({
         // POST ("/api/categories")
         var langDetails = $("#newLanguageForm").serializeObject();
         console.log(langDetails)
-        var lang = new HighLevelLang(langDetails);
+        var lang = new Language(langDetails);
         lang.save(null, {
             success: function (inst, response) {
                 sucssesMsg($(".form"), response.text);
@@ -69,7 +69,7 @@ window.ToolsView = Backbone.View.extend({
         e.preventDefault();
         var id = $(e.currentTarget).attr("value");
 
-        var language = new HighLevelLang({id: id});
+        var language = new Language({id: id});
         language.destroy({
             success: function (user, response) {
                 sucssesMsg($(".form"), response.text);

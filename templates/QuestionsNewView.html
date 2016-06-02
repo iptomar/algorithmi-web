@@ -81,13 +81,22 @@
 
         </div>
         <div class="col-md-12">
-            <div class="col-md-12">
-                <div class="fileUploader">
-                    <span>Seleccionar ficheiro</span>
-                    <input type="file" name="algoritmo" class="form-control mandatory" id="inputFicheiro" name="file">
-                </div>
+            <div class="input-group">
+                <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
+                <input type="file" name="algoritmo" class="form-control mandatory" id="inputFicheiro"
+                       name="file">
+                <input type="hidden" id="txtB64File">
+                <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
+                <select id="ddLanguagesList" name="category" class=" form-control mandatory">
+                    <option disabled selected>Linguagem</option>
+                </select>
+                <span class="input-group-addon btn-white" title="Adicionar código">
+                    <button id="btnAddCode" class="fa fa-plus" style="color:#8BC34A"></button>
+                </span>
             </div>
+            <input id="txtCodelist" value="[]" name="ios">
         </div>
+
         <div class="col-md-12">
             <div class="col-md-12 btn-group">
                 <button id="btnCriarPerg" type="submit" class="btn btn-success btn_created">Criar</button>

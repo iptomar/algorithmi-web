@@ -21,5 +21,26 @@ var User = Backbone.Model.extend({
                 error_launch(json.message);
             }
         );
+    },
+    changeStatus: function () {
+        var self = this;
+        modem('POST', '/api/userStatus/' + this.id,
+            function (response) {
+                sucssesMsg($("body"), response.text);
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, 2000);
+            },
+            //Precisamos enviar para a Tabela escolas o id do professor.
+            function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(xhr.responseText);
+                failMsg($("body"), json.text);
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, json.text.length * 45);
+            },
+            "true"
+        )
+        ;
     }
 });

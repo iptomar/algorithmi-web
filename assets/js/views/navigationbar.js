@@ -2,6 +2,7 @@ window.NavigationBarView = Backbone.View.extend({
 
     events: {
         "click #btnLogout": "logout",
+        "click #btnConfirmUser": "confirmUser",
     },
     //Check Auth
     auth: function () {
@@ -10,7 +11,12 @@ window.NavigationBarView = Backbone.View.extend({
         }
         return true;
     },
+    confirmUser: function (e) {
+        console.log(e.target.value)
+        var user = new User({id: e.target.value});
+        user.changeStatus();
 
+    },
     logout: function (e) {
         e.preventDefault();
         console.log("out");

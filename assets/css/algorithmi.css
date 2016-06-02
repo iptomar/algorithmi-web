@@ -53,14 +53,35 @@ nav.sidebar, .main {
     width: 40px;
 }
 
-.badge-notify{background: #4CAF50;
+.badge-notify {
+    background: #4CAF50;
     position: relative;
     top: -10px;
-    left: -14px;}
+    left: -14px;
+}
 
 /*************************************/
+
+/************Notificacoes***********/
+
+li .notification {
+    display: flex;
+}
+
+.notification i {
+    padding-top: 11px;
+    float: right;
+}
+
 .open.options > .dropdown-menu {
     display: flex;
+}
+
+.input-group-addon > button {
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0px 5px;
 }
 
 @media (min-width: 765px) {

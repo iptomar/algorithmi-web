@@ -62,20 +62,33 @@
                 <!--Pendding stuff-->
                 <% if (model.type < 4) { %>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true"
                        aria-expanded="false">
                         <i class="fa fa-bell"></i>
                         <span class="badge badge-notify"><%=model.pendingUsers.length%></span>
                     </a>
+
                     <ul class="dropdown-menu">
+                        <li class="list-group-item">
+                            <span class="label label-default label-pill pull-xs-right"></span>
+                            Pedidos de acesso
+                        </li>
                         <!--Por cada professor pendente-->
                         <% _.each(model.pendingUsers,function(user){ %>
 
-                        <li><a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img id="myFoto" src="../images/<%=user.image%>">
-                            <span><%=user.name%></span>
-                        </a></li>
+                        <li class="notification">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <img id="myFoto" src="../images/<%=user.image%>">
+                                <span><%=user.name%></span>
+                            </a>
+                            <a data-toggle="" class="dropdown-toggle" href="#">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a data-toggle="" class="dropdown-toggle">
+                                <button id="btnConfirmUser" value="<%=user.id%>" class="fa fa-check"></button>
+                            </a>
+                        </li>
                         <% }); %>
 
                     </ul>

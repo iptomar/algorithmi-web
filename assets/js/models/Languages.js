@@ -1,4 +1,4 @@
-var HighLevelLang = Backbone.Model.extend({
+var Language = Backbone.Model.extend({
     urlRoot: 'api/highlevellangs',
     defaults: {},
     initialize: function (options) {
@@ -25,14 +25,14 @@ var HighLevelLang = Backbone.Model.extend({
     }
 });
 
-var HighLevelLangs = Backbone.Collection.extend({
-    model: HighLevelLangs,
+var Languages = Backbone.Collection.extend({
+    model: Language,
     fetch: function (after_fetch) {
         var self = this;
         modem('GET', '/api/highlevellangs',
             function (json) {
                 for (i = 0; i < json.length; i++) {
-                    self.models.push(new HighLevelLang(json[i]));
+                    self.models.push(new Language(json[i]));
                 }
                 after_fetch();
             },
