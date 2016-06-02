@@ -18,6 +18,7 @@ window.LoginView = Backbone.View.extend({
             function (user) {
                 console.log(user);
                 window.sessionStorage.setItem("username", user.name);
+                window.sessionStorage.setItem("image", user.image);
                 sucssesMsg($("body"), "Bem-vindo, " + window.sessionStorage.getItem("username"));
                 setTimeout(function () {
                     app.navigate('/home', {
@@ -56,7 +57,7 @@ window.LoginView = Backbone.View.extend({
         e.preventDefault();
         var userDetails = $("#newUserForm").serializeObject();
         userDetails.password = btoa(userDetails.password);
-        var user = new Student(userDetails);
+        var user = new User(userDetails);
         user.save(null, {
             success: function (user, response) {
                 sucssesMsg($(".form"), response.text);

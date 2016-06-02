@@ -25,7 +25,7 @@ var Schools = Backbone.Collection.extend({
     model: School,
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/schools',
+        modem('GET', '/schools',
             function (json) {
                 for (i = 0; i < json.length; i++) {
                     self.models.push(new School(json[i]));

@@ -31,7 +31,7 @@ var Institutions = Backbone.Collection.extend({
     model: Institution,
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/institutions',
+        modem('GET', '/institutions',
             function (json) {
                 for (i = 0; i < json.length; i++) {
                     self.models.push(new Institution(json[i]));

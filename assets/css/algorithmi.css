@@ -43,6 +43,26 @@ nav.sidebar, .main {
     z-index: 100;
 }
 
+/***************DADOS DO USER - BARRA*/
+
+#txtUser {
+    padding: 5px;
+}
+
+#myFoto {
+    width: 40px;
+}
+
+.badge-notify{background: #4CAF50;
+    position: relative;
+    top: -10px;
+    left: -14px;}
+
+/*************************************/
+.open.options > .dropdown-menu {
+    display: flex;
+}
+
 @media (min-width: 765px) {
 
     .main {

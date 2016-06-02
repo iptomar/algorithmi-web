@@ -52,25 +52,57 @@
 
     <% _.each(collection,function(student){ %>
 
-    <div class="col-md-2">
+    <div class="col-md-3">
         <div class="divWidget dataBox">
+
             <div class="col-md-12 col-xs-12" align=" center">
                 <img id="imagePrev" src="../images/<%=student.image%>">
 
-                <div>
-                    <p align="center"><%=student.name%> (<%=student.username%>)</p>
+                <div class=" dropdown">
+                    <a data-target="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <%=student.name%> (<%=student.username%>)
+                        <span class="fa fa-info"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#students/<%= student.id %>/edit">
+                                E-mail: <%= student.email %>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#students/<%= student.id %>/edit">
+                                Curso: <%= student.courseName %>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class=" dropdown options">
+                    <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <span class="fa fa-gear"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#students/<%= student.id %>/edit">
+                                <i href="" class="fa fa-pencil" aria-hidden="true">
+                                </i> Editar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="deleteStudent" value="<%=student.id%>" type="button">
+                                <i href="" class="fa fa-trash-o"
+                                   aria-hidden="true">
+                                </i> Eliminar
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-6 btn-group" align="left">
-                <a class="deleteStudent" value="<%=student.id%>" type="button">
-                    <i href="" class="fa fa-trash-o fa-2x"
-                       aria-hidden="true"></i></a>
-            </div>
-            <div class="col-md-6 btn-group" align="right">
-                <a href="#students/<%= student.id %>/edit">
-                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                </a>
-            </div>
+
         </div>
     </div>
     <% }); %>

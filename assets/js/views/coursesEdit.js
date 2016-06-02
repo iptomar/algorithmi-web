@@ -56,21 +56,17 @@ window.CoursesEditView = Backbone.View.extend({
     },
 
 
-    checkAuth: function () {
-        if (!sessionStorage.getItem('keyo')) {
-            showLoginModal($("#someParent"));
-        }
-    },
-
-
     initialize: function () {
         this.data = this.model.toJSON();
+        populateInstitutionsDD(this.data.institution, this.data.school);
+        //  $("#ddInstitutionsList").val(this.data.institution).change();
+        $("#ddInstitutionsList > #" + this.data.institution).attr("selected", true)
     },
 
     render: function () {
         var self = this;
         $(this.el).html(this.template({model: self.data}));
-        populateSchoolsDD(self.data.school);
+
         return this;
     }
 });
