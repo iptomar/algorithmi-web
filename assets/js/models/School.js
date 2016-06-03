@@ -1,6 +1,8 @@
 var School = Backbone.Model.extend({
     urlRoot: 'api/schools',
-    defaults: {},
+    defaults: {
+       //course: 4
+    },
     initialize: function (options) {
 
     },
@@ -15,7 +17,12 @@ var School = Backbone.Model.extend({
             //Precisamos enviar para a Tabela escolas o id do professor.
             function (xhr, ajaxOptions, thrownError) {
                 var json = JSON.parse(xhr.responseText);
-                error_launch(json.message);
+                failMsg($("body"), json.text);
+                setTimeout(function () {
+                    app.navigate('/schools', {
+                        trigger: true
+                    });
+                }, json.text.length * 45);
             }
         );
     }
@@ -25,7 +32,7 @@ var Schools = Backbone.Collection.extend({
     model: School,
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/schools',
+        modem('GET', '/schools',
             function (json) {
                 for (i = 0; i < json.length; i++) {
                     self.models.push(new School(json[i]));

@@ -44,6 +44,7 @@ var Router = Backbone.Router.extend({
 
 
         "questions": "questions",
+        "questions/new": "questionsNew",
 
 
         "courses": "courses",
@@ -67,10 +68,41 @@ var Router = Backbone.Router.extend({
         "": "index"
     },
 
+    //Load NavigationBar
+    navbar: function () {
+        var self = this;
+        //Load NavigationBar
+        templateLoader.load(["NavigationBarView"],
+            function () {
+                var ss = new User();
+                ss.fetch(function () {
+                    var v = new NavigationBarView({
+                        model: ss
+                    });
+                    self.showView(v, $('#header'));
+                })
+            }
+        );
+    },
+
+    //Verica se o utilizador esta loggado
+    isLogged: function () {
+        var self = this;
+        if (!sessionStorage.getItem('keyo')) {
+            app.navigate('/home', {
+                trigger: true
+            });
+            return;
+        } else {
+            self.navbar();
+        }
+    },
+
+
     index: function () {
 
         var self = this;
-
+        self.isLogged();
         templateLoader.load(["HomeView"],
             function () {
                 var v = new HomeView({});
@@ -83,6 +115,8 @@ var Router = Backbone.Router.extend({
     home: function () {
 
         var self = this;
+        self.isLogged();
+
         templateLoader.load(["HomeView"],
             function () {
                 var v = new HomeView({});
@@ -91,20 +125,10 @@ var Router = Backbone.Router.extend({
         );
     },
 
-    isLogged: function () {
-        if (!sessionStorage.getItem('keyo')) {
-            app.navigate('/home', {
-                trigger: true
-            });
-            return;
-        }
-    },
-
-
     login: function () {
         var login = new LoginView();
-        $('#header').html("");
-        $('#footer').html("");
+        // $('#header').html("");
+        //  $('#footer').html("");
         $('#content').html(login.render().el);
     },
 
@@ -187,11 +211,11 @@ var Router = Backbone.Router.extend({
         templateLoader.load(["ToolsView"],
             function () {
                 var categories = new Categories();
-                var highlevellangs = new HighLevelLangs();
+                var languages = new Languages();
                 categories.fetch(function () {
-                    highlevellangs.fetch(function () {
+                    languages.fetch(function () {
                         var v = new ToolsView({
-                            collection: [categories, highlevellangs]
+                            collection: [categories, languages]
                         });
                         self.showView(v, $('#content'));
                     })
@@ -220,6 +244,7 @@ var Router = Backbone.Router.extend({
     teachersNew: function () {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["TeachersNewView"],
             function () {
                 var v = new TeachersNewView({});
@@ -231,18 +256,35 @@ var Router = Backbone.Router.extend({
     questions: function () {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["QuestionsView"],
             function () {
-                var v = new QuestionsView({});
+                var ss = new Questions();
+                ss.fetch(function () {
+                    var v = new QuestionsView({
+                        collection: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
+            }
+        );
+    },
+    questionsNew: function () {
+        var self = this;
+        self.isLogged();
+        self.navbar();
+        templateLoader.load(["QuestionsNewView"],
+            function () {
+                var v = new QuestionsNewView({});
                 self.showView(v, $('#content'));
             }
         );
     },
 
-
     courses: function (id) {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["CoursesView"],
             function () {
                 var ss = new Courses();
@@ -258,6 +300,7 @@ var Router = Backbone.Router.extend({
     coursesEdit: function (id) {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["CoursesEditView"],
             function () {
                 var ss = new Course({id: id});
@@ -274,6 +317,7 @@ var Router = Backbone.Router.extend({
     institutions: function () {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["InstitutionsView"],
             function () {
                 var ss = new Institutions();
@@ -289,6 +333,7 @@ var Router = Backbone.Router.extend({
     institutionsNew: function () {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["InstitutionsNewView"],
             function () {
                 var v = new InstitutionsNewView({});
@@ -299,6 +344,7 @@ var Router = Backbone.Router.extend({
     institutionsEdit: function (id) {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["InstitutionsEditView"],
             function () {
                 var ss = new Institution({id: id});
@@ -317,6 +363,7 @@ var Router = Backbone.Router.extend({
     tests: function () {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["TestsView"],
             function () {
                 var v = new TestsView({});
@@ -329,6 +376,7 @@ var Router = Backbone.Router.extend({
     submissions: function () {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["SubmissionsView"],
             function () {
                 var v = new SubmissionsView({});
@@ -340,6 +388,7 @@ var Router = Backbone.Router.extend({
     submissionsInfo: function (id) {
         var self = this;
         self.isLogged();
+        self.navbar();
         templateLoader.load(["SubmissionsInfoView"],
             function () {
                 var v = new SubmissionsInfoView({});

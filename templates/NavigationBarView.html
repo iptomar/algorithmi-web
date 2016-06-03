@@ -1,0 +1,116 @@
+<nav class="navbar navbar-default navbar-fixed-top" style="z-index: 100">
+    <div class="container-fluid">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#home">
+                <img src="assets/ico/iconAlgorithmi.png" href="#home"
+                     style="width:28px;height:40px;align-content: center" ;>
+            </a>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li><a href="#home"><i class="fa fa"></i>Algorithmi</a></li>
+                <!-- Se for professor-->
+                <% if (model.type < 4) { %>
+                <li><a href="#questions"><i class="fa fa-question"></i>Perguntas
+                    <span class="sr-only">(current)</span></a>
+                </li>
+                <li><a href="#tests"><i class="fa fa-list-alt"></i>Testes</a></li>
+                <li><a href="#students"><i class="fa fa-graduation-cap"></i>Alunos</a></li>
+                <% } %>
+                <!-- Se  for admin -->
+                <% if (model.type < 3) { %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fa fa-black-tie"></i>Administração <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#institutions"><i class="fa fa-building"></i>Instituições</a></li>
+                        <li><a href="#schools"><i class="fa fa-building-o "></i>Escolas</a></li>
+                        <li><a href="#courses"><i class="fa  fa-book"></i>Cursos</a></li>
+                        <li><a href="#teachers"><i class="fa fa-group"></i>Professores</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#statistics"><i class="fa fa-university fa-pie-chart"></i>Estatísticas</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#tools"><i class="fa fa-wrench"></i>Ferramentas</a></li>
+                    </ul>
+                </li>
+                <% } %>
+
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Se nao estiver loggado -->
+                <% if (typeof(logged) !== "undefined") { %>
+                <li><a href="#login">Sign Up / Login</a></li>
+                <% } %>
+
+                <!--Pendding stuff-->
+                <% if (model.type < 4) { %>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-notify"><%=model.pendingUsers.length%></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li class="list-group-item">
+                            <span class="label label-default label-pill pull-xs-right"></span>
+                            Pedidos de acesso
+                        </li>
+                        <!--Por cada professor pendente-->
+                        <% _.each(model.pendingUsers,function(user){ %>
+
+                        <li class="notification">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <img id="myFoto" src="../images/<%=user.image%>">
+                                <span><%=user.name%></span>
+                            </a>
+                            <a data-toggle="" class="dropdown-toggle" href="#">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a data-toggle="" class="dropdown-toggle">
+                                <button id="btnConfirmUser" value="<%=user.id%>" class="fa fa-check"></button>
+                            </a>
+                        </li>
+                        <% }); %>
+
+                    </ul>
+                </li>
+                <% } %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="txtUser" data-toggle="dropdown" role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false"><%=model.name%> <img id="myFoto" src="../images/<%=model.image%>"><span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge bg-success">8</span>
+                        </a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a id="btnLogout">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

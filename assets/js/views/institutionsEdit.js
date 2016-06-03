@@ -39,6 +39,16 @@ window.InstitutionsEditView = Backbone.View.extend({
                         trigger: true
                     });
                 }, 1500);
+            },
+            //se não conseguir
+            error: function (institution, xhr) {
+                var json = JSON.parse(xhr.responseText);
+                failMsg($("body"), json.text);
+                setTimeout(function () {
+                    app.navigate('/institutions', {
+                        trigger: true
+                    });
+                }, json.text.length * 45);
             }
         })
 

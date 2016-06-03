@@ -15,7 +15,6 @@ var Course = Backbone.Model.extend({
                     self.attributes.b64 = dataUri;
                     after_fetch();
                 });
-                after_fetch();
             },
             function (xhr, ajaxOptions, thrownError) {
                 var json = JSON.parse(xhr.responseText);
@@ -34,7 +33,7 @@ var Courses = Backbone.Collection.extend({
     model: Course,
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/courses',
+        modem('GET', '/courses',
             function (json) {
                 for (i = 0; i < json.length; i++) {
                     self.models.push(new Course(json[i]));
@@ -42,6 +41,7 @@ var Courses = Backbone.Collection.extend({
                 after_fetch();
             },
             function (xhr, ajaxOptions, thrownError) {
+
                 var json = JSON.parse(xhr.responseText);
                 failMsg($("body"), json.text);
                 setTimeout(function () {

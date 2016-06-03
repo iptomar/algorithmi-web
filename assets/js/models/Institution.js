@@ -21,7 +21,12 @@ var Institution = Backbone.Model.extend({
             //Precisamos enviar para a Tabela escolas o id do professor.
             function (xhr, ajaxOptions, thrownError) {
                 var json = JSON.parse(xhr.responseText);
-                error_launch(json.message);
+                failMsg($("body"), json.text);
+                setTimeout(function () {
+                    app.navigate('/home', {
+                        trigger: true
+                    });
+                }, json.text.length * 45);
             }
         );
     }
@@ -31,14 +36,19 @@ var Institutions = Backbone.Collection.extend({
     model: Institution,
     fetch: function (after_fetch) {
         var self = this;
-        modem('GET', '/api/institutions',
+        modem('GET', '/institutions',
             function (json) {
                 for (i = 0; i < json.length; i++) {
                     self.models.push(new Institution(json[i]));
                 }
                 after_fetch();
             },
-            function () {
+            function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(ajaxOptions.responseText);
+                failMsg($("body"), json.text);
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, json.text.length * 45);
             }
         );
     },

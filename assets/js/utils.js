@@ -283,19 +283,34 @@ function getDataUri(url, callback) {
     image.src = url;
 }
 
-window.populateInstitutionsDD = function () {
-    var inst = new Institutions();
-    //Gets schools
-    var schools = new Schools();
-    schools.fetch(function () {
-    });
+window.fileToB64 = function (evt) {
 
+    var files = evt.target.files;
+    var file = files[0];
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload = function (readerEvt) {
+            var binaryString = readerEvt.target.result;
+            console.log(btoa(binaryString));
+            $("#txtB64File").val(btoa(binaryString));
+        };
+
+        reader.readAsBinaryString(file);
+    }
+};
+
+window.populateInstitutionsDD = function (institution, school) {
+    var inst = new Institutions();
+
+    console.log("here")
     inst.fetch(
         //Populates dd institutions with registed institutions
         function () {
             $("#ddInstitutionsList").append('<option value="" disabled selected>Instituição</option>').change(
                 function () {
-                    populateSchoolsDD(schools);
+                    populateSchoolsDD(school);
                 }
             );
             $.each(inst.models, function (iInst, inst) {
@@ -307,60 +322,109 @@ window.populateInstitutionsDD = function () {
                     })
                 );
             });
-
-
+            //Selecciona a Instituição passada por parametro
+            if (institution) {
+                $("#ddInstitutionsList").val(institution)
+                $("#ddInstitutionsList").change();
+            }
         }
     )
 };
-window.populateSchoolsDD = function (schools) {
+window.populateSchoolsDD = function (school) {
+    //Gets schools
+    var schools = new Schools();
+    schools.fetch(function () {
+        $("#ddSchoolsList").empty();
+        var selectedInst = $("#ddInstitutionsList").val();
+
+        $("#ddSchoolsList").append('<option value="" disabled selected>Escola</option>').change(
+            function () {
+                //Se existir a dd de cursos
+                if ($("#ddCoursesList").length) {
+                    populateCoursesDD();
+                }
+            }
+        );
+        $.each(schools.models, function (ischool, school) {
+            if (school.attributes.institutionID == selectedInst) {
+                $("#ddSchoolsList").append(
+                    $("<option>", {
+                        html: school.attributes.name,
+                        id: school.attributes.id, value: school.attributes.id
+                    })
+                );
+            }
+        })
+        //Selecciona a escola passada por parametro
+        if (school) {
+            $("#ddSchoolsList").val(school)
+            $("#ddSchoolsList").change();
+        }
+    });
+
+
+};
+
+window.populateCoursesDD = function () {
     //Gets courses
     var courses = new Courses();
     courses.fetch(function () {
-    });
-    $("#ddSchoolsList").empty();
-    var selectedInst = $("#ddInstitutionsList").val();
+        $("#ddCoursesList").empty();
+        var selectedSchool = $("#ddSchoolsList").val();
+        console.log(selectedSchool)
 
-    $("#ddSchoolsList").append('<option value="" disabled selected>Escola</option>').change(
-        function () {
-            //Se existir a dd de cursos
-            if ($("#ddCoursesList").length) {
-                populateCoursesDD(courses);
+        $("#ddCoursesList").append('<option value="" disabled selected>Curso</option>');
+        $.each(courses.models, function (icourses, course) {
+            console.log(course.attributes)
+            if (course.attributes.schoolID == selectedSchool) {
+                $("#ddCoursesList").append(
+                    $("<option>", {
+                        html: course.attributes.name,
+                        id: course.attributes.id, value: course.attributes.id
+                    })
+                );
             }
+        })
+    });
 
-        }
-    );
-    $.each(schools.models, function (ischool, school) {
-        if (school.attributes.institutionID == selectedInst) {
-            $("#ddSchoolsList").append(
-                $("<option>", {
-                    html: school.attributes.name,
-                    id: school.attributes.id, value: school.attributes.id
-                })
-            );
-        }
-    })
 
 };
-window.populateCoursesDD = function (courses) {
 
-    $("#ddCoursesList").empty();
-    var selectedSchool = $("#ddSchoolsList").val();
-    console.log(selectedSchool)
-
-    $("#ddCoursesList").append('<option value="" disabled selected>Curso</option>');
-    $.each(courses.models, function (icourses, course) {
-        console.log(course.attributes)
-        if (course.attributes.schoolID == selectedSchool) {
-            $("#ddCoursesList").append(
+window.populateCategoriesDD = function () {
+    var categories = new Categories();
+    categories.fetch(function () {
+        $.each(categories.models, function (icategory, category) {
+            console.log(category.attributes)
+            $("#ddCategoriesList").append(
                 $("<option>", {
-                    html: course.attributes.name,
-                    id: course.attributes.id, value: course.attributes.id
+                    html: category.attributes.description,
+                    id: category.attributes.id, value: category.attributes.id
                 })
             );
-        }
+
+        })
     })
 
+
 };
+window.populateLanguagessDD = function () {
+    var languages = new Languages();
+    languages.fetch(function () {
+        $.each(languages.models, function (ilanguage, language) {
+            console.log(language.attributes)
+            $("#ddLanguagesList").append(
+                $("<option>", {
+                    html: language.attributes.description,
+                    id: language.attributes.id, value: language.attributes.id
+                })
+            );
+
+        })
+    })
+
+
+};
+
 function updatePreview(c) {
 
     if (parseInt(c.w) > 0) {

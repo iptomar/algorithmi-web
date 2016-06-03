@@ -23,6 +23,8 @@ body {
 /* SIDE MENU*/
 body, html {
     height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 nav.sidebar, .main {
@@ -39,6 +41,47 @@ nav.sidebar, .main {
 .sidebar {
     position: absolute;
     z-index: 100;
+}
+
+/***************DADOS DO USER - BARRA*/
+
+#txtUser {
+    padding: 5px;
+}
+
+#myFoto {
+    width: 40px;
+}
+
+.badge-notify {
+    background: #4CAF50;
+    position: relative;
+    top: -10px;
+    left: -14px;
+}
+
+/*************************************/
+
+/************Notificacoes***********/
+
+li .notification {
+    display: flex;
+}
+
+.notification i {
+    padding-top: 11px;
+    float: right;
+}
+
+.open.options > .dropdown-menu {
+    display: flex;
+}
+
+.input-group-addon > button {
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0px 5px;
 }
 
 @media (min-width: 765px) {
@@ -99,6 +142,7 @@ nav.sidebar, .main {
     nav.sidebar {
         width: 200px;
         height: 100%;
+        position: fixed;
         margin-left: -160px;
         float: left;
         margin-bottom: 0px;

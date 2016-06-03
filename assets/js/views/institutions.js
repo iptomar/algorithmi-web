@@ -26,25 +26,17 @@ window.InstitutionsView = Backbone.View.extend({
                     document.location.reload(true);
                 }, 2000);
 
-            }, error: function (inst, response) {
-                $("#newInstitutionModal").modal("hide");
-                failMsg($(".form"), "Não foi possível apagar a instituição.");
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(ajaxOptions.responseText);
+                failMsg($("body"), json.text);
+
             }
         })
     },
-    checkAuth: function () {
-        if (!sessionStorage.getItem('keyo')) {
-            app.navigate('/home', {
-                trigger: true
-            });
-        }
-
-    },
-
 
     initialize: function () {
         this.data = this.collection.toJSON();
-        this.checkAuth();
+        console.log(this.data)
     },
 
     render: function () {

@@ -41,7 +41,6 @@ window.ToolsView = Backbone.View.extend({
                 }, 2000);
 
             }, error: function (inst, response) {
-                $("#newInstitutionModal").modal("hide");
                 failMsg($(".form"), "Não foi possível apagar a categoria.");
             }
         })
@@ -51,7 +50,7 @@ window.ToolsView = Backbone.View.extend({
         // POST ("/api/categories")
         var langDetails = $("#newLanguageForm").serializeObject();
         console.log(langDetails)
-        var lang = new HighLevelLang(langDetails);
+        var lang = new Language(langDetails);
         lang.save(null, {
             success: function (inst, response) {
                 sucssesMsg($(".form"), response.text);
@@ -69,7 +68,7 @@ window.ToolsView = Backbone.View.extend({
         e.preventDefault();
         var id = $(e.currentTarget).attr("value");
 
-        var language = new HighLevelLang({id: id});
+        var language = new Language({id: id});
         language.destroy({
             success: function (user, response) {
                 sucssesMsg($(".form"), response.text);
@@ -78,7 +77,6 @@ window.ToolsView = Backbone.View.extend({
                 }, 2000);
 
             }, error: function (inst, response) {
-                $("#newInstitutionModal").modal("hide");
                 failMsg($(".form"), "Não foi possível apagar a linguagem.");
             }
         })
@@ -92,7 +90,44 @@ window.ToolsView = Backbone.View.extend({
 
     render: function () {
         var self = this;
-        console.log(this.highlevellangs)
+        /*
+         Para alterar a categoria, vai bucar a do id 3 e altera a desciçao
+         var cat = new Category({id: 3});
+         var catDetails = cat.fetch(
+         function () {
+         console.log(cat.attributes)
+         cat.attributes.description = "isto é um teste";
+         cat.save(null, {
+         success: function (user) {
+         alert("categoia alterada")
+         },
+         //se não conseguir
+         error: function (institution, xhr) {
+         alert("categoia não alterada")
+         }
+         });
+         }
+         );
+         */
+        /*
+         // Para alterar a linguagem, vai bucar a do id 3 e altera a desciçao
+         var ling = new Language({id: 7});
+         var lingDetails = ling.fetch(
+         function () {
+         console.log(ling.attributes)
+         ling.attributes.description = "isto é um teste";
+         ling.save(null, {
+         success: function (user) {
+         alert("linguagem alterada")
+         },
+         //se não conseguir
+         error: function (institution, xhr) {
+         alert("linguagem não alterada")
+         }
+         });
+         }
+         );
+         */
         $(this.el).html(this.template({categories: self.categories, highlevellangs: self.highlevellangs}));
         return this;
     }

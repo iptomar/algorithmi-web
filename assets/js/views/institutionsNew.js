@@ -18,15 +18,15 @@ window.InstitutionsNewView = Backbone.View.extend({
         reader.readAsDataURL(file);
     },
 
+    //Tenta inserir a instituição
     createInstitution: function (e) {
         e.preventDefault();
         // POST ("/api/students")
         var institutionDetails = $("#newInstitutionForm").serializeObject();
         var institution = new Institution(institutionDetails);
         institution.save(null, {
+            //Se conseguir
             success: function (inst, response) {
-
-                $("#newInstitutionModal").modal("hide");
                 sucssesMsg($(".form"), response.text);
                 setTimeout(function () {
                     app.navigate('/institutions', {
@@ -35,9 +35,15 @@ window.InstitutionsNewView = Backbone.View.extend({
                 }, response.text.length * 50);
 
             },
-            error: function (inst, response) {
-                $("#newInstitutionModal").modal("hide");
-                failMsg($(".form"), response.text);
+            //se não conseguir
+            error: function (institution, xhr) {
+                var json = JSON.parse(xhr.responseText);
+                failMsg($("body"), json.text);
+                setTimeout(function () {
+                    app.navigate('/institutions', {
+                        trigger: true
+                    });
+                }, json.text.length * 45);
             },
         })
     },

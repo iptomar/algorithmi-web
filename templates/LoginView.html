@@ -3,7 +3,7 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-            <a href="#Login" aria-controls="Login" role="tab" data-toggle="tab"
+            <a href="#formLogin" aria-controls="Login" role="tab" data-toggle="tab"
                aria-expanded="true">Login</a>
         </li>
         <li role="presentation"><a href="#SignUp" aria-controls="SignUp" role="tab" data-toggle="tab"
@@ -34,8 +34,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <button id="btnLogin" type="submit" class="btn btn-info">Entrar</button>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" id="cbRemeber">Remember me</label>
                 </div>
             </div>
         </form>
@@ -57,7 +60,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-hashtag"></i></span>
-                            <input name="username" type="text" class="form-control mandatory"
+                            <input name="username" id="txtUsername" type="text" class="form-control mandatory"
                                    placeholder="Username">
                         </div>
                     </div>
@@ -68,7 +71,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-envelope"></i></span>
-                            <input name="email" type="text" class="form-control mandatory"
+                            <input name="email" id="txtEmail" type="text" class="form-control mandatory"
                                    placeholder="Email">
                         </div>
                     </div>
@@ -110,7 +113,15 @@
                         });
                     </script>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="radio-inline"><input type="radio" value="4" checked name="type">Estudante</label>
 
+                    </div>
+                    <div class="col-md-6">
+                        <label class="radio-inline"><input type="radio" value="3" name="type">Professor</label>
+                    </div>
+                </div>
                 <div class=" row">
                     <div class=" col-md-12">
                         <div class="input-group">

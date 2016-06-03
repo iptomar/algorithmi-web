@@ -1,0 +1,108 @@
+<form id="newQuestionForm" class="form">
+    <div class="divWidget ">
+        <div class="col-md-12">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
+                    <input id="txtTitulo" name="title" autofocus type="text" class="form-control mandatory"
+                           placeholder="Título">
+                </div>
+            </div>
+            <div class=" col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon btn-white"><i class="fa fa-flag"></i></span>
+                    <select id="ddCategoriesList" name="category" class="form-control mandatory">
+                        <option disabled selected>Categoria</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class=" col-md-8">
+                <div class="input-group">
+                    <span class="input-group-addon btn-white"><i class="fa fa-bookmark"></i></span>
+                    <input id="txtDescricao" name="description" type="text" class="form-control mandatory"
+                           placeholder="Descrição">
+                </div>
+            </div>
+            <div class=" col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon btn-white"><i class="fa fa-bar-chart"></i></span>
+                    <select id="ddDificuldade" name="difficulty" class="form-control mandatory">
+                        <option disabled selected>Dificuldade</option>
+                        <option value="1">Fácil</option>
+                        <option value="2">Médio</option>
+                        <option value="3">Díficil</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <textarea rows="4" id="algorithm" class="form-control" placeholder="Algoritmo"
+                          name="algorithm"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <div class="fileUploader">
+                    <span>Escolher imagem</span>
+                    <input type="file" class="form-control mandatory" id="filePickerImg" name="file">
+                    <input type="hidden" name="image" class="form-control" id="base64textarea">
+                    <img id="imagePrev">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class=" col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="glyphicon glyphicon-save"></i></span>
+                            <textarea rows="4" id="txtEntrada" class="form-control" placeholder="Entrada"></textarea>
+                        </div>
+                    </div>
+                    <div class=" col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="glyphicon glyphicon-open"></i></span>
+                            <textarea rows="4" id="txtSaida" class="form-control" placeholder="Saída"></textarea>
+                        </div>
+                    </div>
+                    <div id="divIOList" class=" col-md-12">
+                        <button class="btn btn-success-outline" id="btnAddIO">Adicionar I/O</button>
+                    </div>
+                    <input id="txtIOlist" value="[]" name="ios">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+
+        </div>
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
+                <input type="file" name="algoritmo" class="form-control mandatory" id="inputFicheiro"
+                       name="file">
+                <input type="hidden" id="txtB64File">
+                <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
+                <select id="ddLanguagesList" name="language" class=" form-control mandatory">
+                    <option disabled selected>Linguagem</option>
+                </select>
+                <span class="input-group-addon btn-white" title="Adicionar código">
+                    <button id="btnAddCode" class="fa fa-plus" style="color:#8BC34A"></button>
+                </span>
+            </div>
+            <input id="txtCodelist" value="[]">
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-12 btn-group">
+                <button id="btnCriarPerg" type="submit" class="btn btn-success btn_created">Criar</button>
+                <button class="btn btn-default">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</form>
