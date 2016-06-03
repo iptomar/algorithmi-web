@@ -49,7 +49,7 @@ window.InstitutionsEditView = Backbone.View.extend({
                         trigger: true
                     });
                 }, json.text.length * 45);
-            },
+            }
         })
 
     },

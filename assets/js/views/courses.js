@@ -54,14 +54,15 @@ window.CoursesView = Backbone.View.extend({
         var course = new Course({id: id});
         course.destroy({
             success: function (scchool, response) {
-                sucssesMsg($(".form"), "Escola apagada com sucesso.");
+                sucssesMsg($("body"), response.text);
                 setTimeout(function () {
                     document.location.reload(true);
                 }, 1000);
 
-            }, error: function (inst, response) {
-                $("#newInstitutionModal").modal("hide");
-                failMsg($(".form"), "Não foi possível apagar a escola.");
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(ajaxOptions.responseText);
+                failMsg($("body"), json.text);
+
             }
         })
     },

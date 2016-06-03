@@ -29,11 +29,11 @@ window.SchoolsView = Backbone.View.extend({
                 setTimeout(function () {
                     document.location.reload(true);
                 }, 1000);
-            },
-            error: function (inst, response) {
-                $("#newSchoolModal").modal("hide");
-                failMsg($(".form"), response.text);
-            },
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(ajaxOptions.responseText);
+                failMsg($("body"), json.text);
+
+            }
         })
     },
 
@@ -49,9 +49,10 @@ window.SchoolsView = Backbone.View.extend({
                     document.location.reload(true);
                 }, 1000);
 
-            }, error: function (inst, response) {
-                $("#newInstitutionModal").modal("hide");
-                failMsg($(".form"), "Não foi possível apagar a escola.");
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(ajaxOptions.responseText);
+                failMsg($("body"), json.text);
+
             }
         })
     },
@@ -82,6 +83,29 @@ window.SchoolsView = Backbone.View.extend({
 
     render: function () {
         var self = this;
+
+        /*
+        var school = new School({id: 8});
+        var schoolDetails = school.fetch(
+            function () {
+                console.log(school.attributes)
+                school.attributes.name = "isto é um teste";
+                school.attributes.institution = school.attributes.institutionID;
+                school.save(null, {
+                    success: function (user) {
+                        alert("school alterada")
+                    },
+                    //se não conseguir
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        var json = JSON.parse(ajaxOptions.responseText);
+                        failMsg($("body"), json.text);
+
+                    }
+                });
+            }
+        );
+*/
+
         $(this.el).html(this.template({collection: self.data}));
         return this;
     }

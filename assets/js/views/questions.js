@@ -1,7 +1,7 @@
 window.QuestionsView = Backbone.View.extend({
 
     events: {
-        "click #btnCriarPerg ": "beforeSend",
+        "click #btnCriarPerg ": "send",
         "change #filePickerImg": "convertPhoto",
         "click #btnAddIO": "addIO",
         "blur .mandatory": "verify",
@@ -32,11 +32,12 @@ window.QuestionsView = Backbone.View.extend({
     },
     send: function (e) {
         //prepara-se par enviar os dados para a API
-        modem('POST', 'question',
+        modem('POST', 'questions',
             //Se correr tudo bem
             function (json) {
+                console.log(json)
                 //Mostra uma mensagem de sucesso com a string que vem da API
-                sucssesMsg($(form), json.resposta);
+                sucssesMsg($("form"), json.resposta);
             },
             //Se ocorrer um erro
             function (xhr, ajaxOptions, thrownError) {
@@ -77,6 +78,15 @@ window.QuestionsView = Backbone.View.extend({
 
     render: function () {
         var self = this;
+
+        // Para alterar a linguagem, vai bucar a do id 3 e altera a desciçao
+        var quest = new Question({id: 10});
+        var questDetails = quest.fetch(
+            function () {
+                console.log(quest.attributes)
+
+            }
+        );
         $(this.el).html(this.template({collection: self.data}));
         return this;
     }

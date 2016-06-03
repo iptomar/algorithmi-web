@@ -50,6 +50,10 @@ window.CoursesEditView = Backbone.View.extend({
                         trigger: true
                     });
                 }, 1000);
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(ajaxOptions.responseText);
+                failMsg($("body"), json.text);
+
             }
         })
 

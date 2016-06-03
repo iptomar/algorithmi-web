@@ -1,6 +1,6 @@
 window.QuestionsNewView = Backbone.View.extend({
     events: {
-        "click #btnCriarPerg ": "beforeSend",
+        "click #btnCriarPerg ": "send",
         "change #filePickerImg": "convertPhoto",
         "change #inputFicheiro": "convertFile",
         "click #btnAddIO": "addIO",
@@ -35,10 +35,13 @@ window.QuestionsNewView = Backbone.View.extend({
     verify: function (e) {
         isEmpty($(e.currentTarget));
     },
-    send: function () {
-
+    send: function (e) {
+        e.preventDefault();
+        console.log(jQuery.parseJSON($("#txtIOlist").val()))
+        console.log($("#newQuestionForm").serializeObject())
         // POST ("/api/questions")
         var questionDetails = $("#newQuestionForm").serializeObject();
+        questionDetails.ios = jQuery.parseJSON($("#txtIOlist").val())
         var question = new Question(questionDetails);
 
         question.save(null, {
@@ -87,7 +90,7 @@ window.QuestionsNewView = Backbone.View.extend({
         )));
         var ioList = jQuery.parseJSON($("#txtIOlist").val());
 
-        ioList.push({I: $("#txtEntrada").val(), O: $("#txtSaida").val()});
+        ioList.push({input: $("#txtEntrada").val(), output: $("#txtSaida").val()});
         $("#txtIOlist").val(JSON.stringify(ioList));
 
     },

@@ -44,12 +44,10 @@ var Institutions = Backbone.Collection.extend({
                 after_fetch();
             },
             function (xhr, ajaxOptions, thrownError) {
-                var json = JSON.parse(xhr.responseText);
+                var json = JSON.parse(ajaxOptions.responseText);
                 failMsg($("body"), json.text);
                 setTimeout(function () {
-                    app.navigate('/home', {
-                        trigger: true
-                    });
+                    document.location.reload(true);
                 }, json.text.length * 45);
             }
         );

@@ -211,11 +211,11 @@ var Router = Backbone.Router.extend({
         templateLoader.load(["ToolsView"],
             function () {
                 var categories = new Categories();
-                var highlevellangs = new HighLevelLangs();
+                var languages = new Languages();
                 categories.fetch(function () {
-                    highlevellangs.fetch(function () {
+                    languages.fetch(function () {
                         var v = new ToolsView({
-                            collection: [categories, highlevellangs]
+                            collection: [categories, languages]
                         });
                         self.showView(v, $('#content'));
                     })

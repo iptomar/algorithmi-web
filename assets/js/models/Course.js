@@ -41,6 +41,7 @@ var Courses = Backbone.Collection.extend({
                 after_fetch();
             },
             function (xhr, ajaxOptions, thrownError) {
+
                 var json = JSON.parse(xhr.responseText);
                 failMsg($("body"), json.text);
                 setTimeout(function () {

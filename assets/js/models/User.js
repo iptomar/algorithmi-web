@@ -1,6 +1,8 @@
 var User = Backbone.Model.extend({
     urlRoot: 'user',
-    defaults: {},
+    defaults: {
+        course: 1
+    },
     initialize: function (options) {
 
     },
