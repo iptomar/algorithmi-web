@@ -83,8 +83,6 @@ window.SchoolsView = Backbone.View.extend({
     render: function () {
         var self = this;
         $(this.el).html(this.template({collection: self.data}));
-
-
         return this;
     }
 });

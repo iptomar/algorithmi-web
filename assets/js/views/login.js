@@ -2,40 +2,39 @@ window.LoginView = Backbone.View.extend({
     events: {
         "change #filePicker": "convertPhoto",
         "click #btnLogin": "attemptLogin",
+        "blur #txtUsername, #txtEmail": "isUserNameAvailable",
         "click #btnRegist": "regist"
     },
+    //checks if email is available
+    isUserNameAvailable: function (e) {
 
+        console.log()
+        modem('POST', '/isUserValid',
+            //Response Handler
+            function (valid) {
+                if (!valid) {
+                    $(e.target).addClass("emptyField");
+                } else {
+                    $(e.target).removeClass("emptyField");
+                }
+            },
+            //Error Handling
+            function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(xhr.responseText);
+                failMsg($("body"), json.text);
+            },
+            e.target.value
+        );
+    },
     attemptLogin: function (e) {
         e.preventDefault();
         //Create Credentials
         var cre = $('#username').val() + ':' + btoa($("#password").val());   //Credentials = Username:Password
         window.sessionStorage.setItem("keyo", btoa(cre));
 
-        //Check User Authenticity
-        modem('GET', '/api/me',
-
-            //Response Handler
-            function (user) {
-                console.log(user);
-                window.sessionStorage.setItem("username", user.name);
-                window.sessionStorage.setItem("image", user.image);
-                sucssesMsg($("body"), "Bem-vindo, " + window.sessionStorage.getItem("username"));
-                setTimeout(function () {
-                    app.navigate('/home', {
-                        trigger: true
-                    });
-                }, "Bem-vindo, " + window.sessionStorage.getItem("username").length);
-                $("#txtUser").val(window.sessionStorage.getItem("username"));
-            },
-            //Error Handling
-            function (xhr, ajaxOptions, thrownError) {
-                var json = JSON.parse(xhr.responseText);
-                //Remove Session Key if login atempt failed
-                window.sessionStorage.removeItem("keyo");
-                failMsg($("body"), "Não foi possível efectuar login.");
-
-            }
-        );
+        //Attempts login
+        var me = new User();
+        me.login();
     },
     //Exibe o cropper
     convertPhoto: function (e) {

@@ -15,7 +15,12 @@ var School = Backbone.Model.extend({
             //Precisamos enviar para a Tabela escolas o id do professor.
             function (xhr, ajaxOptions, thrownError) {
                 var json = JSON.parse(xhr.responseText);
-                error_launch(json.message);
+                failMsg($("body"), json.text);
+                setTimeout(function () {
+                    app.navigate('/schools', {
+                        trigger: true
+                    });
+                }, json.text.length * 45);
             }
         );
     }

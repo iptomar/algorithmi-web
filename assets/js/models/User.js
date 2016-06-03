@@ -8,8 +8,7 @@ var User = Backbone.Model.extend({
         var self = this;
         modem('GET', '/api/me',
             function (json) {
-                console.log("My data")
-                console.log(json)
+                console.log("My data" + json)
                 self.attributes = (json);
                 self.attributes.logged = true;
                 after_fetch();
@@ -19,6 +18,32 @@ var User = Backbone.Model.extend({
                 console.log("ups")
                 var json = JSON.parse(xhr.responseText);
                 error_launch(json.message);
+            }
+        );
+    },
+    login: function () {
+        var self = this;
+        //Check User Authenticity
+        modem('GET', '/api/me',
+            //Response Handler
+            function (user) {
+                console.log(user);
+                window.sessionStorage.setItem("username", user.name);
+                window.sessionStorage.setItem("image", user.image);
+                sucssesMsg($("body"), "Bem-vindo, " + window.sessionStorage.getItem("username"));
+                setTimeout(function () {
+                    app.navigate('/home', {
+                        trigger: true
+                    });
+                }, "Bem-vindo, " + window.sessionStorage.getItem("username").length);
+                $("#txtUser").val(window.sessionStorage.getItem("username"));
+            },
+            //Error Handling
+            function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(xhr.responseText);
+                //Remove Session Key if login atempt failed
+                window.sessionStorage.removeItem("keyo");
+                failMsg($("body"), json.text);
             }
         );
     },

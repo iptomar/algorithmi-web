@@ -142,6 +142,7 @@ li .notification {
     nav.sidebar {
         width: 200px;
         height: 100%;
+        position: fixed;
         margin-left: -160px;
         float: left;
         margin-bottom: 0px;

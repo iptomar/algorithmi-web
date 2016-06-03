@@ -12,7 +12,6 @@ window.NavigationBarView = Backbone.View.extend({
         return true;
     },
     confirmUser: function (e) {
-        console.log(e.target.value)
         var user = new User({id: e.target.value});
         user.changeStatus();
 
@@ -29,7 +28,6 @@ window.NavigationBarView = Backbone.View.extend({
     //Class Initializer
     initialize: function () {
         this.data = this.model.toJSON();
-        console.log(this.data)
     },
 
     render: function () {
