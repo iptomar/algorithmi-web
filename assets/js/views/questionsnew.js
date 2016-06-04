@@ -85,8 +85,8 @@ window.QuestionsNewView = Backbone.View.extend({
         }).append($("<div>", {
             class: "subDivIO",
         }).append('<label id="lblIO">I/O</label></br>'
-            , '<span class="col-md-6">I: </s>' + $("#txtEntrada").val() + '</br>'
-            , '<span class="col-md-6">O: </span>' + $("#txtSaida").val()
+            , '<textarea class="col-md-6">I:' + $("#txtEntrada").val() + '</textarea>'
+            , '<textarea class="col-md-6">I:' + $("#txtEntrada").val() + '</textarea>'
         )));
         var ioList = jQuery.parseJSON($("#txtIOlist").val());
 

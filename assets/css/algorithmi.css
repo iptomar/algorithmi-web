@@ -473,11 +473,11 @@ section {
 }
 
 .divIO {
-    width: 65px;
+    width: 30px;
     border: solid 0px #ccc;
     border-radius: 5px;
     float: left;
-    height: 50px;
+    height: 30px;
     margin-left: 5px;
     z-index: 0;
     overflow: hidden;
@@ -505,10 +505,15 @@ section {
 }
 
 .subDivIO {
-    width: 130px;
+    width: 200px;
+    height: 200px;
     position: absolute;
     background: white;
     border-radius: 5px;
+}
+
+.subDivIO textarea {
+    height: 90%;
 }
 
 .divInfo {

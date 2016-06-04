@@ -33,6 +33,8 @@ window.modem = function (type, url, success, error, data) {
         },
         data: data,
         success: success,
-        error: error
+        error: error,
+        processData: false,
+        contentType: false
     });
 };

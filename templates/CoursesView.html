@@ -1,138 +1,147 @@
-<nav class="navbar navbar-default sidebar" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-sidebar-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="#institutions/new">Total: <%=collection.length%>
+<div id="divCourses">
+
+    <nav class="navbar navbar-default sidebar" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-sidebar-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#institutions/new">Total: <%=collection.length%>
                         <span style="font-size:16px;"
                               class="pull-right hidden-xs showopacity fa fa-building"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#demo" data-toggle="collapse">Inserir
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#newCourseDiv" data-toggle="collapse">Inserir
                         <span style="font-size:16px;"
                               class="pull-right hidden-xs showopacity glyphicon glyphicon-plus-sign"></span>
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Filtrar <span
-                            class="caret"></span><span
-                            style="font-size:16px;"
-                            class="pull-right hidden-xs showopacity glyphicon glyphicon-filter"></span></a>
-                    <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="{{URL::to('createusuario')}}">Crear</a></li>
-                        <li><a href="#">Modificar</a></li>
-                        <li><a href="#">Reportar</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Informes</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Libros<span style="font-size:16px;"
-                                            class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
-                </li>
-                <li><a href="#">Tags<span style="font-size:16px;"
-                                          class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div id="demo" class="collapse">
-    <form id="newCourseForm" class="form">
-        <div class="divWidget">
-            <div class="col-md-5">
-                <div class="col-md-12">
-                    <div class="fileUploader">
-                        <span>Escolher imagem</span>
-                        <input type="file" class="form-control mandatory" id="filePicker"
-                               name="file">
-                        <input type="hidden"
-                               name="image" class="form-control" id="base64textarea">
-                        <img id="imagePrev">
-                    </div>
-                </div>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Filtrar <span
+                                class="caret"></span><span
+                                style="font-size:16px;"
+                                class="pull-right hidden-xs showopacity glyphicon glyphicon-filter"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a href="{{URL::to('createusuario')}}">Crear</a></li>
+                            <li><a href="#">Modificar</a></li>
+                            <li><a href="#">Reportar</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Informes</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Libros<span style="font-size:16px;"
+                                                class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+                    </li>
+                    <li><a href="#">Tags<span style="font-size:16px;"
+                                              class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-7">
-                <div class=" col-md-12">
-                    <div class="input-group">
-                        <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
-                        <input id="txtNome" name="name" type="text" class="form-control mandatory"
-                               placeholder="Nome">
+        </div>
+    </nav>
+
+    <div id="newCourseDiv" class="collapse">
+        <form id="courseForm" class="form">
+            <div class="divWidget">
+                <div class="col-md-5">
+                    <div class="col-md-12">
+                        <div class="fileUploader">
+                            <span>Escolher imagem</span>
+                            <input type="file" class="form-control mandatory" id="filePicker"
+                                   name="file">
+                            <input type="hidden"
+                                   name="image" class="form-control" id="base64textarea">
+                            <img id="imagePrev">
+                        </div>
                     </div>
                 </div>
-                <div class=" col-md-12">
-                    <div class="input-group">
+                <div class="col-md-7">
+                    <div class=" col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
+                            <input id="txtNome" name="name" type="text" class="form-control mandatory"
+                                   placeholder="Nome">
+                        </div>
+                    </div>
+                    <div class=" col-md-12">
+                        <div class="input-group">
                                             <span class="input-group-addon btn-white"><i
                                                     class="fa fa-building"></i></span>
-                        <select id="ddInstitutionsList" class="form-control mandatory">
+                            <select id="ddInstitutionsList" class="form-control mandatory" ready='false'>
 
-                        </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class=" col-md-12">
-                    <div class="input-group">
+                    <div class=" col-md-12">
+                        <div class="input-group">
                                             <span class="input-group-addon btn-white"><i
                                                     class="fa fa-building-o"></i></span>
-                        <select id="ddSchoolsList" name="school" class="form-control mandatory">
+                            <select id="ddSchoolsList" name="school" class="form-control mandatory">
 
-                        </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" href="#demo" data-toggle="collapse" class="btn btn-default">Cancelar
-                        </button>
-                        <button id="btnCreateCourse" type="submit" class="btn btn-success btn_created">
-                            Criar curso
-                        </button>
+                    <div class="col-md-12">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button id="btnCancelSubmit" type="button" href="#newCourseDiv" data-toggle="collapse"
+                                    class="btn btn-default">
+                                Cancelar
+                            </button>
+                            <button id="btnSubmitCourse" type="submit" class="btn btn-success btn_created">
+                                Criar curso
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-            </div>
-        </div>
-    </form>
-</div>
-<div class="form">
-    <!-- Creates a box with every single course information -->
-    <% _.each(collection,function(course){ %>
-
-    <div class="col-md-3">
-        <div class="divWidget dataBox">
-            <div class="col-md-12 col-xs-12" align=" center">
-                <img src="../images/<%=course.image%>">
-
-                <div>
-                    <p align="center"><%=course.name%></p>
-
-                    <p align="center"><%=course.schoolName%></p>
                 </div>
             </div>
-            <div class="col-md-6 btn-group" align="left">
-
-
-                <a class="deleteCourse" value="<%=course.id%>" type="button">
-                    <i href="" class="fa fa-trash-o fa-2x"
-                       aria-hidden="true"></i></a>
-            </div>
-            <div class="col-md-6 btn-group" align="right">
-                <a href="#courses/<%= course.id %>/edit">
-                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
+            <input id="txtId" type="hidden" name="id">
+        </form>
     </div>
-    <% }); %>
-    <!-- Button trigger modal -->
+
+    <div class="form">
+        <!-- Creates a box with every single course information -->
+        <% _.each(collection,function(course){ %>
+
+        <div class="col-md-3">
+            <div class="divWidget dataBox">
+                <div class="col-md-12 col-xs-12" align=" center">
+                    <img src="../images/<%=course.image%>">
+
+                    <div>
+                        <p align="center"><%=course.name%></p>
+
+                        <p align="center"><%=course.schoolName%></p>
+                    </div>
+                </div>
+                <div class="col-md-6 btn-group" align="left">
+
+
+                    <a class="deleteCourse" id="<%=course.id%>" value="<%=course.name%>" type="button">
+                        <i href="" class="fa fa-trash-o fa-2x"
+                           aria-hidden="true"></i></a>
+                </div>
+                <div class="col-md-6 btn-group" align="right">
+                    <a id="editCourse" value="<%=course.id%>" href="#newCourseDiv" data-toggle="collapse">
+                        <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+        <!-- Button trigger modal -->
+    </div>
+
+
 </div>

@@ -3,10 +3,27 @@ window.QuestionsView = Backbone.View.extend({
     events: {
         "click #btnCriarPerg ": "send",
         "change #filePickerImg": "convertPhoto",
+        "click .deleteQuestion": "confirmDelete",
         "click #btnAddIO": "addIO",
         "blur .mandatory": "verify",
     },
+    confirmDelete: function (e) {
+        e.preventDefault();
+        var id = $(e.currentTarget).attr("value");
 
+        var quest = new Question({id: id});
+        quest.destroy({
+            success: function (scchool, response) {
+                sucssesMsg($(".form"), "Escola apagada com sucesso.");
+
+
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                var json = JSON.parse(ajaxOptions.responseText);
+                failMsg($("body"), json.text);
+
+            }
+        })
+    },
     beforeSend: function (e) {
         var self = this;
         var isAllOk = true;
@@ -78,15 +95,6 @@ window.QuestionsView = Backbone.View.extend({
 
     render: function () {
         var self = this;
-
-        // Para alterar a linguagem, vai bucar a do id 3 e altera a desciçao
-        var quest = new Question({id: 10});
-        var questDetails = quest.fetch(
-            function () {
-                console.log(quest.attributes)
-
-            }
-        );
         $(this.el).html(this.template({collection: self.data}));
         return this;
     }

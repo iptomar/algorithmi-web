@@ -58,7 +58,7 @@ var Institutions = Backbone.Collection.extend({
         console.log(self.models);
         return (
             self.models.find(function (model) {
-                return model.get('id') === id;
+                return model.get('id') == id;
             }).attributes
         )
     }

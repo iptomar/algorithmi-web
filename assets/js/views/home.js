@@ -2,8 +2,31 @@
  * Created by Fábio Cruz on 10/04/2016.
  */
 window.HomeView = Backbone.View.extend({
-    events: {},
+    events: {
+        "submit": "submit"
+    },
+    submit: function (e) {
+        e.preventDefault();
 
+        console.log("here")
+
+
+        $.ajax({
+            url: '/upload',
+            type: "POST",
+            data: new FormData(document.getElementById("newForm")),
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            console.log(data)
+        }).fail(function (jqXHR, textStatus) {
+            //alert(jqXHR.responseText);
+            console.log(jqXHR)
+            console.log(jqXHR.responseText)
+            console.log(textStatus)
+        });
+    },
     initialize: function () {
     },
 
