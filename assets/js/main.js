@@ -45,6 +45,7 @@ var Router = Backbone.Router.extend({
 
         "questions": "questions",
         "questions/new": "questionsNew",
+        "questions/:id": "questionsEdit",
 
 
         "courses": "courses",
@@ -71,6 +72,7 @@ var Router = Backbone.Router.extend({
     //Load NavigationBar
     navbar: function () {
         var self = this;
+
         //Load NavigationBar
         templateLoader.load(["NavigationBarView"],
             function () {
@@ -88,6 +90,7 @@ var Router = Backbone.Router.extend({
     //Verica se o utilizador esta loggado
     isLogged: function () {
         var self = this;
+        $('#content').html(self.loadingSpinner());
         if (!sessionStorage.getItem('keyo')) {
             app.navigate('/home', {
                 trigger: true
@@ -128,6 +131,7 @@ var Router = Backbone.Router.extend({
     login: function () {
         var login = new LoginView();
         // $('#header').html("");
+
         //  $('#footer').html("");
         $('#content').html(login.render().el);
     },
@@ -280,6 +284,24 @@ var Router = Backbone.Router.extend({
             }
         );
     },
+    questionsEdit: function (id) {
+        var self = this;
+        var self = this;
+        self.isLogged();
+        self.navbar();
+        templateLoader.load(["QuestionsEditView"],
+            function () {
+                var ss = new Question({id: id});
+                ss.fetch(function () {
+                    var v = new QuestionsEditView({
+                        model: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
+
+            }
+        );
+    },
 
     courses: function (id) {
         var self = this;
@@ -396,6 +418,15 @@ var Router = Backbone.Router.extend({
             }
         );
     },
+
+    //http://cssload.net/en/spinners
+    loadingSpinner: function () {
+        return $('<div>', {class: "cssload-container"}).append(
+            $('<div>', {class: "cssload-whirlpool"}),
+            $('<p>', {text: "A carregar..."})
+        )
+    }
+
 });
 
 

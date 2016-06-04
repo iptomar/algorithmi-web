@@ -1,0 +1,159 @@
+<div class="form">
+    <div class="panel panel-default">
+        <div class="panel-heading">Detalhes</div>
+        <div class="panel-body">
+
+            <form id="editQuestionForm">
+                <div class="col-md-12">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
+                            <input id="txtTitulo" name="title" autofocus type="text" class="form-control mandatory"
+                                   placeholder="Título" value="<%=model.title%>">
+                        </div>
+                    </div>
+                    <div class=" col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="fa fa-flag"></i></span>
+                            <select id="ddCategoriesList" name="category" class="form-control mandatory">
+                                <option disabled selected>Categoria</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="fa fa-bookmark"></i></span>
+                            <input id="txtDescricao" name="description" type="text" class="form-control mandatory"
+                                   placeholder="Descrição" value="<%=model.description%>">
+                        </div>
+                    </div>
+                    <div class=" col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="fa fa-bar-chart"></i></span>
+                            <select id="ddDificuldade" name="difficulty" class="form-control mandatory">
+                                <option disabled selected>Dificuldade</option>
+                                <option id="1" value="1">Fácil</option>
+                                <option id="2" value="2">Médio</option>
+                                <option id="3" value="3">Díficil</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                <textarea rows="4" id="algorithm" class="form-control" placeholder="Algoritmo"
+                          name="algorithm"><%=model.algorithm%></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="fileUploader">
+                            <span>Escolher imagem</span>
+                            <input type="file" class="form-control mandatory" id="filePickerImg" name="file">
+                            <input type="hidden" name="image" class="form-control" id="base64textarea"
+                                   value="<%=model.b64%>">
+                            <img id="imagePrev" src="../images/<%=model.image%>">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class=" col-md-6">
+                                <div class="input-group">
+                                        <span class="input-group-addon btn-white"><i
+                                                class="glyphicon glyphicon-save"></i></span>
+                                        <textarea rows="4" id="txtEntrada" class="form-control"
+                                                  placeholder="Entrada"></textarea>
+                                </div>
+                            </div>
+                            <div class=" col-md-6">
+                                <div class="input-group">
+                                        <span class="input-group-addon btn-white"><i
+                                                class="glyphicon glyphicon-open"></i></span>
+                                        <textarea rows="4" id="txtSaida" class="form-control"
+                                                  placeholder="Saída"></textarea>
+                                </div>
+                            </div>
+                            <div id="divIOList" class=" col-md-12">
+                                <button class="btn btn-success-outline" id="btnAddIO">Adicionar I/O</button>
+
+                                <% _.each(model.IOs,function(io){ %>
+                                <div class="divIO">
+                                    <div class="subDivIO">
+                                        <label id="lblIO">I/O</label><br>
+                                <textarea class="col-md-6" style="margin-top: 0px; margin-bottom: 0px; height: 165px;"><%=io.input%>
+                                </textarea>
+                                <textarea class="col-md-6"><%=io.output%>
+                                </textarea></div>
+                                </div>
+                                <% }); %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12 btn-group">
+                        <button id="btnCriarPerg" type="submit" class="btn btn-success btn_created">Criar</button>
+                        <button class="btn btn-default">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Códigos existentes
+        </div>
+        <div class="panel-body">
+            <% _.each(model.Codes,function(code){ %>
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
+                    <input type="text" class="form-control mandatory" value="<%=code.programCode%>">
+                    <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
+                    <input type="text" class="form-control mandatory" value="<%=code.highLevelLangID%>">
+                        <span class="input-group-addon btn-white" title="Remover código">
+                            <button class="fa fa-trash" style="color:#a23830"></button>
+                        </span>
+                     <span class="input-group-addon btn-white" title="Adicionar código">
+                         <a href="../files/<%=code.programCode%>" download>
+                             <i class="fa fa-cloud-download"></i>
+                         </a>
+                        </span>
+                </div>
+            </div>
+            <% }); %>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Inserir códigos
+            <button id="btnAddInputFile" class="fa fa-plus" style="color:#8BC34A"></button>
+        </div>
+        <div class="panel-body">
+
+            <form method="POST" id="addCodeForm" enctype="multipart/form-data" action="/upload">
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
+                        <input type="file" name="algoritmo" class="form-control mandatory" id="inputFicheiro"
+                               name="file">
+                        <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
+                        <select id="ddLanguagesList" name="language" class=" form-control mandatory">
+                            <option disabled selected>Linguagem</option>
+                        </select>
+                        <span class="input-group-addon btn-white" title="Adicionar código">
+                            <button id="btnAddCode" class="fa fa-plus" style="color:#8BC34A"></button>
+                        </span>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

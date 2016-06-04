@@ -301,100 +301,117 @@ window.fileToB64 = function (evt) {
     }
 };
 
-window.populateInstitutionsDD = function (institution, school) {
+window.populateInstitutionsDD = function (selectedInstitution, selectedSchool, selectedCourse) {
     var inst = new Institutions();
-
-    console.log("here")
+    $("#ddInstitutionsList").attr("ready", false);
     inst.fetch(
         //Populates dd institutions with registed institutions
         function () {
+            console.log("getting institutions")
             $("#ddInstitutionsList").append('<option value="" disabled selected>Instituição</option>').change(
+                //Se existir a dd de escolas
                 function () {
-                    populateSchoolsDD(school);
+                    if ($("#ddSchoolsList").length) {
+                        //Preenche a dd com as escolas da instituicao seleccionada
+                        populateSchoolsDD(inst.getByID($("#ddInstitutionsList").val()).schools, selectedSchool, selectedCourse);
+                    }
                 }
-            );
+            )
+            ;
             $.each(inst.models, function (iInst, inst) {
+                var institutionData = inst.attributes;
                 $("#ddInstitutionsList").append(
                     $("<option>", {
-                        html: inst.attributes.name,
-                        id: inst.attributes.id,
-                        value: inst.attributes.id
+                        html: institutionData.name,
+                        id: institutionData.id,
+                        value: institutionData.id
                     })
                 );
             });
             //Selecciona a Instituição passada por parametro
-            if (institution) {
-                $("#ddInstitutionsList").val(institution)
+            if (selectedInstitution) {
+                $("#ddInstitutionsList").val(selectedInstitution)
                 $("#ddInstitutionsList").change();
             }
+            $("#ddInstitutionsList").attr("ready", true);
         }
     )
 };
-window.populateSchoolsDD = function (school) {
-    //Gets schools
-    var schools = new Schools();
-    schools.fetch(function () {
-        $("#ddSchoolsList").empty();
-        var selectedInst = $("#ddInstitutionsList").val();
+window.populateSchoolsDD = function (schoolsList, selectedSchool, selectedCourse) {
 
-        $("#ddSchoolsList").append('<option value="" disabled selected>Escola</option>').change(
+    if (schoolsList.length == 0) {
+        $("#ddSchoolsList").html('<option value="" disabled selected>Sem escolas associadas</option>');
+        $("#ddCoursesList").html('<option value="" disabled selected>Sem cursos associados</option>');
+    } else {
+        $("#ddSchoolsList").html('<option value="" disabled selected>Escola</option>').change(
             function () {
+                console.log("getting schools")
+
                 //Se existir a dd de cursos
                 if ($("#ddCoursesList").length) {
-                    populateCoursesDD();
+                    $("#ddCoursesList").html('<option value="" disabled selected>Curso</option>');
+                    //Obtem os cursos da escola seleccionada
+
+                    $.each(schoolsList, function (ischool, school) {
+                        if (school.id == $("#ddSchoolsList").val()) {
+                            //Preenche a dd dos cursos
+                            populateCoursesDD(school.courses, selectedCourse);
+                        }
+                    })
                 }
             }
         );
-        $.each(schools.models, function (ischool, school) {
-            if (school.attributes.institutionID == selectedInst) {
-                $("#ddSchoolsList").append(
-                    $("<option>", {
-                        html: school.attributes.name,
-                        id: school.attributes.id, value: school.attributes.id
-                    })
-                );
-            }
+        $.each(schoolsList, function (ischool, school) {
+
+            $("#ddSchoolsList").append(
+                $("<option>", {
+                    html: school.name,
+                    id: school.id, value: school.id
+                })
+            );
         })
         //Selecciona a escola passada por parametro
-        if (school) {
-            $("#ddSchoolsList").val(school)
+        if (selectedSchool) {
+            $("#ddSchoolsList").val(selectedSchool)
             $("#ddSchoolsList").change();
         }
-    });
-
+    }
 
 };
 
-window.populateCoursesDD = function () {
-    //Gets courses
-    var courses = new Courses();
-    courses.fetch(function () {
-        $("#ddCoursesList").empty();
-        var selectedSchool = $("#ddSchoolsList").val();
-        console.log(selectedSchool)
+window.populateCoursesDD = function (coursesList, selectedCourse) {
+
+    $("#ddCoursesList").empty();
+
+    //Se a escola nao possuir cursos associados
+    if (coursesList.length == 0) {
+        $("#ddCoursesList").append('<option value="" disabled selected>Sem cursos associados</option>');
+    } else {
+        console.log("getting courses")
 
         $("#ddCoursesList").append('<option value="" disabled selected>Curso</option>');
-        $.each(courses.models, function (icourses, course) {
-            console.log(course.attributes)
-            if (course.attributes.schoolID == selectedSchool) {
-                $("#ddCoursesList").append(
-                    $("<option>", {
-                        html: course.attributes.name,
-                        id: course.attributes.id, value: course.attributes.id
-                    })
-                );
-            }
-        })
-    });
+        $.each(coursesList, function (icourses, course) {
+            console.log(course)
+            $("#ddCoursesList").append(
+                $("<option>", {
+                    html: course.name,
+                    id: course.id, value: course.id
+                })
+            );
+        });
+        //Selecciona a escola passada por parametro
+        if (selectedCourse) {
+            $("#ddCoursesList").val(selectedCourse)
+        }
+    }
 
 
 };
 
-window.populateCategoriesDD = function () {
+window.populateCategoriesDD = function (selectedCategory) {
     var categories = new Categories();
     categories.fetch(function () {
         $.each(categories.models, function (icategory, category) {
-            console.log(category.attributes)
             $("#ddCategoriesList").append(
                 $("<option>", {
                     html: category.attributes.description,
@@ -403,6 +420,10 @@ window.populateCategoriesDD = function () {
             );
 
         })
+        //Selecciona a escola passada por parametro
+        if (selectedCategory) {
+            $("#ddCategoriesList").val(selectedCategory)
+        }
     })
 
 
@@ -411,7 +432,6 @@ window.populateLanguagessDD = function () {
     var languages = new Languages();
     languages.fetch(function () {
         $.each(languages.models, function (ilanguage, language) {
-            console.log(language.attributes)
             $("#ddLanguagesList").append(
                 $("<option>", {
                     html: language.attributes.description,

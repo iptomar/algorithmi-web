@@ -1,28 +1,53 @@
 window.QuestionsEditView = Backbone.View.extend({
-    events: {},
-    initialize: function (id) {
-        var self = this;
-        self.questionID = id;
+    events: {
+        "click #btnAddCode": "addCode"
+    },
+
+
+    addCode: function (e) {
+        e.preventDefault();
+
+        console.log("adding code")
+
+
+        $.ajax({
+            url: '/api/questions/' + this.data.id + '/' + $("#ddLanguagesList").val() + '/code',
+            type: "POST",
+            data: new FormData(document.getElementById("addCodeForm")),
+            enctype: 'multipart/form-data',
+            processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.sessionStorage.getItem("keyo"));
+            },
+            contentType: false
+        }).done(function (data) {
+            var json = JSON.parse(data);
+            sucssesMsg($("form"), json.text);
+            setTimeout(function () {
+                document.location.reload(true);
+            }, json.text.length * 45);
+        }).fail(function (xhr, ajaxOptions, thrownError) {
+
+            var json = JSON.parse(xhr.responseText);
+            failMsg($("body"), json.text);
+
+        });
+    },
+
+    initialize: function () {
+        this.data = this.model.toJSON();
+        populateCategoriesDD(this.data.category);
+        populateLanguagessDD();
+        $("#ddLanguagesList option").each(function () {
+            console.log($(this))
+        });
+        $("#ddDificuldade > #" + this.data.difficulty).attr("selected", true)
+
     },
 
     render: function () {
         var self = this;
-        $(this.el).html(this.template());
-        modem('GET', '/api/question/' + this.id,
-            function (questionData) {
-                console.log(questionData);
-                $("#txtTitulo").val(questionData.titulo);
-                $("#txtDescricao").val(questionData.descricao);
-                $("#imagePrev").attr('src', questionData.imagem);
-                //   $('#ddCategoria option:eq(' + questionData.categoria + ')');
-                $("#ddCategoria > option").eq(questionData.categoria).attr('selected', 'selected');
-                $("#ddDificuldade > option").eq(questionData.dificuldade).attr('selected', 'selected');
-            },
-            function (xhr, ajaxOptions, thrownError) {
-                var json = JSON.parse(xhr.responseText);
-                error_launch(json.message);
-            }
-        );
+        $(this.el).html(this.template({model: self.data}));
         return this;
     }
 });
