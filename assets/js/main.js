@@ -71,6 +71,7 @@ var Router = Backbone.Router.extend({
     //Load NavigationBar
     navbar: function () {
         var self = this;
+
         //Load NavigationBar
         templateLoader.load(["NavigationBarView"],
             function () {
@@ -88,6 +89,7 @@ var Router = Backbone.Router.extend({
     //Verica se o utilizador esta loggado
     isLogged: function () {
         var self = this;
+        $('#content').html(self.loadingSpinner());
         if (!sessionStorage.getItem('keyo')) {
             app.navigate('/home', {
                 trigger: true
@@ -128,6 +130,7 @@ var Router = Backbone.Router.extend({
     login: function () {
         var login = new LoginView();
         // $('#header').html("");
+
         //  $('#footer').html("");
         $('#content').html(login.render().el);
     },
@@ -396,6 +399,15 @@ var Router = Backbone.Router.extend({
             }
         );
     },
+
+    //http://cssload.net/en/spinners
+    loadingSpinner: function () {
+        return $('<div>', {class: "cssload-container"}).append(
+            $('<div>', {class: "cssload-whirlpool"}),
+            $('<p>', {text: "A carregar..."})
+        )
+    }
+
 });
 
 
