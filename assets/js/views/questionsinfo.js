@@ -1,4 +1,4 @@
-window.QuestionsEditView = Backbone.View.extend({
+window.QuestionsInfoView = Backbone.View.extend({
     events: {
         "click #btnAddCode": "addCode",
         "click .fa-trash": "delCode"
@@ -63,13 +63,10 @@ window.QuestionsEditView = Backbone.View.extend({
     },
     initialize: function () {
         var self = this;
-        self.data = this.model.toJSON();
+        self.data = self.model.toJSON();
         populateCategoriesDD(self.data.category);
         populateDificultyDD(self.data.difficulty);
-        populateLanguagessDD();
-        $("#ddLanguagesList option").each(function () {
-            console.log($(this))
-        });
+
 
     },
 

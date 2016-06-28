@@ -45,7 +45,8 @@ var Router = Backbone.Router.extend({
 
         "questions": "questions",
         "questions/new": "questionsNew",
-        "questions/:id": "questionsEdit",
+        "questions/:id/edit": "questionsEdit",
+        "questions/:id": "questionsInfo",
 
 
         "courses": "courses",
@@ -302,7 +303,24 @@ var Router = Backbone.Router.extend({
             }
         );
     },
+    questionsInfo: function (id) {
+        var self = this;
+        var self = this;
+        self.isLogged();
+        self.navbar();
+        templateLoader.load(["QuestionsInfoView"],
+            function () {
+                var ss = new Question({id: id});
+                ss.fetch(function () {
+                    var v = new QuestionsInfoView({
+                        model: ss
+                    });
+                    self.showView(v, $('#content'));
+                })
 
+            }
+        );
+    },
     courses: function (id) {
         var self = this;
         self.isLogged();

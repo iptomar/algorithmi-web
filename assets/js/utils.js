@@ -425,9 +425,44 @@ window.populateCategoriesDD = function (selectedCategory) {
             $("#ddCategoriesList").val(selectedCategory)
         }
     })
-
-
 };
+
+window.populateDificultyDD = function (selectedDif) {
+    $("#ddDificuldade").append(
+        $("<option>", {
+            html: 'Fácil',
+            value: 1
+        })
+    );
+    $("#ddDificuldade").append(
+        $("<option>", {
+            html: 'Médio',
+            value: 2
+        })
+    );
+    $("#ddDificuldade").append(
+        $("<option>", {
+            html: 'Díficil',
+            value: 3
+        })
+    );
+    //Selecciona a escola passada por parametro
+    if (selectedDif) {
+        $("#ddDificuldade").val(selectedDif)
+    }
+    console.log(selectedDif)
+    console.log($("#ddDificuldade"))
+};
+window.getDifficulty = function (dif) {
+    switch (dif) {
+        case 1 :
+            return 'Fácil';
+        case 2:
+            return 'Médio';
+        case 3:
+            return 'Díficil';
+    }
+}
 window.populateLanguagessDD = function () {
     var languages = new Languages();
     languages.fetch(function () {
@@ -459,3 +494,4 @@ function updatePreview(c) {
 
     }
 }
+

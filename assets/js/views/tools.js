@@ -90,44 +90,6 @@ window.ToolsView = Backbone.View.extend({
 
     render: function () {
         var self = this;
-        /*
-         Para alterar a categoria, vai bucar a do id 3 e altera a desciçao
-         var cat = new Category({id: 3});
-         var catDetails = cat.fetch(
-         function () {
-         console.log(cat.attributes)
-         cat.attributes.description = "isto é um teste";
-         cat.save(null, {
-         success: function (user) {
-         alert("categoia alterada")
-         },
-         //se não conseguir
-         error: function (institution, xhr) {
-         alert("categoia não alterada")
-         }
-         });
-         }
-         );
-         */
-        /*
-         // Para alterar a linguagem, vai bucar a do id 3 e altera a desciçao
-         var ling = new Language({id: 7});
-         var lingDetails = ling.fetch(
-         function () {
-         console.log(ling.attributes)
-         ling.attributes.description = "isto é um teste";
-         ling.save(null, {
-         success: function (user) {
-         alert("linguagem alterada")
-         },
-         //se não conseguir
-         error: function (institution, xhr) {
-         alert("linguagem não alterada")
-         }
-         });
-         }
-         );
-         */
         $(this.el).html(this.template({categories: self.categories, highlevellangs: self.highlevellangs}));
         return this;
     }

@@ -9,15 +9,14 @@
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
                             <input id="txtTitulo" name="title" autofocus type="text" class="form-control mandatory"
-                                   placeholder="Título" value="<%=model.title%>">
+                                   placeholder="Título" value="<%=model.title%>" readonly>
                         </div>
                     </div>
                     <div class=" col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-flag"></i></span>
-                            <select id="ddCategoriesList" name="category" class="form-control mandatory">
-                                <option disabled selected>Categoria</option>
-                            </select>
+                            <input id="txtTitulo" name="title" autofocus type="text" class="form-control mandatory"
+                                   placeholder="Título" value="<%=model.categoryName%>" readonly>
                         </div>
                     </div>
                 </div>
@@ -26,7 +25,7 @@
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-bookmark"></i></span>
                             <input id="txtDescricao" name="description" type="text" class="form-control mandatory"
-                                   placeholder="Descrição" value="<%=model.description%>">
+                                   placeholder="Descrição" value="<%=model.description%>" readonly>
                         </div>
                     </div>
                     <div class=" col-md-4">
@@ -34,50 +33,21 @@
                             <span class="input-group-addon btn-white"><i class="fa fa-bar-chart"></i></span>
                             <select id="ddDificuldade" name="difficulty" class="form-control mandatory">
                                 <option disabled selected>Dificuldade</option>
+
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="col-md-12">
-                <textarea rows="4" id="algorithm" class="form-control" placeholder="Algoritmo"
-                          name="algorithm"><%=model.algorithm%></textarea>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <hr>
-                </div>
+
                 <div class="col-md-12">
                     <div class="col-md-4">
-                        <div class="fileUploader">
-                            <span>Escolher imagem</span>
-                            <input type="file" class="form-control mandatory" id="filePickerImg" name="file">
-                            <input type="hidden" name="image" class="form-control" id="base64textarea"
-                                   value="<%=model.b64%>">
-                            <img id="imagePrev" src="../images/<%=model.image%>">
-                        </div>
+                        <img id="imagePrev" src="../images/<%=model.image%>">
                     </div>
                     <div class="col-md-8">
+                <textarea rows="4" id="algorithm" class="form-control" placeholder="Algoritmo"
+                          name="algorithm"><%=model.algorithm%></textarea>
                         <div class="row">
-                            <div class=" col-md-6">
-                                <div class="input-group">
-                                        <span class="input-group-addon btn-white"><i
-                                                class="glyphicon glyphicon-save"></i></span>
-                                        <textarea rows="4" id="txtEntrada" class="form-control"
-                                                  placeholder="Entrada"></textarea>
-                                </div>
-                            </div>
-                            <div class=" col-md-6">
-                                <div class="input-group">
-                                        <span class="input-group-addon btn-white"><i
-                                                class="glyphicon glyphicon-open"></i></span>
-                                        <textarea rows="4" id="txtSaida" class="form-control"
-                                                  placeholder="Saída"></textarea>
-                                </div>
-                            </div>
                             <div id="divIOList" class=" col-md-12">
-                                <button class="btn btn-success-outline" id="btnAddIO">Adicionar I/O</button>
-
                                 <% _.each(model.IOs,function(io){ %>
                                 <div class="divIO">
                                     <div class="subDivIO">
@@ -92,6 +62,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div><!--
                 <div class="col-md-12">
                     <div class="col-md-12 btn-group">
@@ -112,7 +83,7 @@
                     <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
                     <input type="text" class="form-control mandatory" value="<%=code.programCode%>">
                     <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
-                    <input type="text" class="form-control mandatory" value="<%=code.highLevelLangID%>">
+                    <input type="text" class="form-control mandatory" value="<%=code.description%>">
                         <span class="input-group-addon btn-white" title="Remover código">
                             <button class="fa fa-trash" question="<%=model.id%>" lang="<%=code.highLevelLangID%>"
                                     file="<%=code.programCode%>" style="color:#a23830"></button>
@@ -128,30 +99,5 @@
 
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Inserir códigos
-            <button id="btnAddInputFile" class="fa fa-plus" style="color:#8BC34A"></button>
-        </div>
-        <div class="panel-body">
 
-            <form method="POST" id="addCodeForm" enctype="multipart/form-data" action="/upload">
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
-                        <input type="file" name="algoritmo" class="form-control mandatory" id="inputFicheiro"
-                               name="file">
-                        <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
-                        <select id="ddLanguagesList" name="language" class=" form-control mandatory">
-                            <option disabled selected>Linguagem</option>
-                        </select>
-                        <span class="input-group-addon btn-white" title="Adicionar código">
-                            <button id="btnAddCode" class="fa fa-plus" style="color:#8BC34A"></button>
-                        </span>
-
-                    </div>
-                </div>
-            </form>
-
-        </div>
-    </div>
 </div>

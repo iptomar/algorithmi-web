@@ -1,13 +1,16 @@
 window.QuestionsNewView = Backbone.View.extend({
     events: {
         "click #btnCriarPerg ": "send",
+        "click #codesTab ": "codesTab",
         "change #filePickerImg": "convertPhoto",
         "change #inputFicheiro": "convertFile",
         "click #btnAddIO": "addIO",
         "click #btnAddCode": "addCode",
         "blur .mandatory": "verify",
     },
-
+    codesTab: function (e) {
+        alert("calma")
+    },
     convertFile: function (e) {
         fileToB64(e);
     },
@@ -37,21 +40,31 @@ window.QuestionsNewView = Backbone.View.extend({
     },
     send: function (e) {
         e.preventDefault();
-        console.log(jQuery.parseJSON($("#txtIOlist").val()))
-        console.log($("#newQuestionForm").serializeObject())
+
+        //Recolhe os IOS
+        var ioList = [];
+
+        $.each($(".subDivIO"), function (i, iIO) {
+            ioList.push({input: $(iIO).find('.input').val(), output: $(iIO).find('.output').val()});
+        })
+        $("#txtIOlist").val(JSON.stringify(ioList));
+
         // POST ("/api/questions")
         var questionDetails = $("#newQuestionForm").serializeObject();
         questionDetails.ios = jQuery.parseJSON($("#txtIOlist").val())
         var question = new Question(questionDetails);
-
+        console.log(question.attributes)
         question.save(null, {
+            //Se inseriu correctamente os detalhes da pergunta
             success: function (question, response) {
-                sucssesMsg($(".form"), response.text);
+                //insere os codigos da question
+                sucssesMsg($(".form"), "Questão inserida");
+                //Reencaminha para a pasta de edicao
                 setTimeout(function () {
-                    //  app.navigate('/questions', {
-                    //       trigger: true
-                    //   });
-                }, response.text.length * 50);
+                    app.navigate('/questions/' + response.text, {
+                        trigger: true
+                    });
+                }, "Questão inserida".length * 50);
 
             },
             error: function (inst, response) {
@@ -84,15 +97,10 @@ window.QuestionsNewView = Backbone.View.extend({
             class: "divIO",
         }).append($("<div>", {
             class: "subDivIO",
-        }).append('<label id="lblIO">I/O</label></br>'
-            , '<textarea class="col-md-6">I:' + $("#txtEntrada").val() + '</textarea>'
-            , '<textarea class="col-md-6">I:' + $("#txtEntrada").val() + '</textarea>'
+        }).append('<label id="lblIO">I/O</label></br><label class="col-md-6">Input</label><label class="col-md-6">Output</label></br>'
+            , '<textarea class="col-md-6 input">' + $("#txtEntrada").val() + '</textarea>'
+            , '<textarea class="col-md-6 output">' + $("#txtSaida").val() + '</textarea>'
         )));
-        var ioList = jQuery.parseJSON($("#txtIOlist").val());
-
-        ioList.push({input: $("#txtEntrada").val(), output: $("#txtSaida").val()});
-        $("#txtIOlist").val(JSON.stringify(ioList));
-
     },
 
     addCode: function (e) {

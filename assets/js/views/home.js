@@ -9,7 +9,7 @@ window.HomeView = Backbone.View.extend({
         e.preventDefault();
 
         console.log("here")
-
+        console.log(new FormData(document.getElementById("newForm")))
 
         $.ajax({
             url: '/upload',
