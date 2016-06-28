@@ -6,6 +6,7 @@ window.SchoolsView = Backbone.View.extend({
     events: {
         "click #btnCreateSchool": "createSchool",
         "click #newSchool": "getInstitutions",
+        "click #deletebtn": "deleteInstitution",
         "click .deleteSchool": "confirmDelete",
         "submit #newPopUpInstitution": "newInstitution",
     },
@@ -36,11 +37,26 @@ window.SchoolsView = Backbone.View.extend({
             }
         })
     },
-
+    //Solicita confirmação para apagar
     confirmDelete: function (e) {
-        e.preventDefault();
-        var id = $(e.currentTarget).attr("value");
 
+        var id = $(e.currentTarget).attr("id");
+        var title = $(e.currentTarget).attr("name");
+
+        var modal = delModal("Apagar instituição",
+            "Tem a certeza que pretende eliminar a escola <label>" + title + " </label> ?",
+            "deletebtn", id);
+
+
+        $('.form').append(modal);
+        $('#modalConfirmDel').modal("show");
+    },
+
+    //Remove instituicao
+    deleteInstitution: function (e) {
+        e.preventDefault();
+        $('#modalConfirmDel').modal("hide");
+        var id = $(e.currentTarget).attr("value");
         var school = new School({id: id});
         school.destroy({
             success: function (scchool, response) {
@@ -56,6 +72,7 @@ window.SchoolsView = Backbone.View.extend({
             }
         })
     },
+
     beforeSend: function (e) {
         e.preventDefault();
 
@@ -85,26 +102,26 @@ window.SchoolsView = Backbone.View.extend({
         var self = this;
 
         /*
-        var school = new School({id: 8});
-        var schoolDetails = school.fetch(
-            function () {
-                console.log(school.attributes)
-                school.attributes.name = "isto é um teste";
-                school.attributes.institution = school.attributes.institutionID;
-                school.save(null, {
-                    success: function (user) {
-                        alert("school alterada")
-                    },
-                    //se não conseguir
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        var json = JSON.parse(ajaxOptions.responseText);
-                        failMsg($("body"), json.text);
+         var school = new School({id: 8});
+         var schoolDetails = school.fetch(
+         function () {
+         console.log(school.attributes)
+         school.attributes.name = "isto é um teste";
+         school.attributes.institution = school.attributes.institutionID;
+         school.save(null, {
+         success: function (user) {
+         alert("school alterada")
+         },
+         //se não conseguir
+         error: function (xhr, ajaxOptions, thrownError) {
+         var json = JSON.parse(ajaxOptions.responseText);
+         failMsg($("body"), json.text);
 
-                    }
-                });
-            }
-        );
-*/
+         }
+         });
+         }
+         );
+         */
 
         $(this.el).html(this.template({collection: self.data}));
         return this;

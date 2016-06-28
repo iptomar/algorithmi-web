@@ -175,30 +175,6 @@ nav.sidebar, .main {
     left: -14px;
 }
 
-/*************************************/
-
-/************Notificacoes***********/
-
-li .notification {
-    display: flex;
-}
-
-.notification i {
-    padding-top: 11px;
-    float: right;
-}
-
-.open.options > .dropdown-menu {
-    display: flex;
-}
-
-.input-group-addon > button {
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    padding: 0px 5px;
-}
-
 @media (min-width: 765px) {
 
     .main {
@@ -357,6 +333,30 @@ section {
     box-shadow: none;
 }
 
+/*************************************/
+
+/************Notificacoes***********/
+
+li .notification {
+    display: flex;
+}
+
+.notification i {
+    padding-top: 11px;
+    float: right;
+}
+
+.open.options > .dropdown-menu {
+    display: flex;
+}
+
+.input-group-addon > button {
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0px 5px;
+}
+
 #topBar {
     background-color: #fff;
 }
@@ -383,7 +383,7 @@ section {
 }
 
 .nav-tabs {
-    border-radius: 5px;
+    border-radius: 0px 5px;
     border-bottom: 1px solid #ddd;
     background-color: beige;
 }
@@ -513,7 +513,7 @@ section {
 }
 
 .subDivIO textarea {
-    height: 90%;
+    height: 140px;
 }
 
 .divInfo {
@@ -646,4 +646,15 @@ section {
 .form {
     position: relative;
     padding: 50px;
+}
+
+.tab-content {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff;
+    opacity: 1;
 }

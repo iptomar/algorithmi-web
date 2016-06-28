@@ -23,27 +23,7 @@
                               class="pull-right hidden-xs showopacity glyphicon glyphicon-plus-sign"></span>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Filtrar <span
-                            class="caret"></span><span
-                            style="font-size:16px;"
-                            class="pull-right hidden-xs showopacity glyphicon glyphicon-filter"></span></a>
-                    <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="{{URL::to('createusuario')}}">Crear</a></li>
-                        <li><a href="#">Modificar</a></li>
-                        <li><a href="#">Reportar</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Informes</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Libros<span style="font-size:16px;"
-                                            class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
-                </li>
-                <li><a href="#">Tags<span style="font-size:16px;"
-                                          class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -53,7 +33,36 @@
     <% _.each(collection,function(question){ %>
 
     <div class="col-md-4">
+
         <div class="divWidget dataBox">
+            <div class=" dropdown options">
+                <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span class="fa fa-gear"></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#questions/<%= question.id %>">
+                            <i href="" class="fa fa-eye" aria-hidden="true">
+                            </i> Ver
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#questions/<%= question.id %>/edit">
+                            <i href="" class="fa fa-pencil" aria-hidden="true">
+                            </i> Editar
+                        </a>
+                    </li>
+                    <li>
+                        <a class="deleteQuestion" value="<%=question.id%>" type="button">
+                            <i href="" class="fa fa-trash-o"
+                               aria-hidden="true">
+                            </i> Eliminar
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div class="col-md-12 col-xs-12" align=" center">
                 <img id="imagePrev" src="../images/<%=question.image%>">
 
@@ -65,17 +74,9 @@
 
                 </div>
             </div>
-            <div class="col-md-6 btn-group" align="left">
-                <a class="deleteQuestion" value="<%=question.id%>" type="button">
-                    <i href="" class="fa fa-trash-o fa-2x"
-                       aria-hidden="true"></i></a>
-            </div>
-            <div class="col-md-6 btn-group" align="right">
-                <a href="#questions/<%= question.id %>/edit">
-                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                </a>
-            </div>
+
         </div>
+
     </div>
     <% }); %>
     <!-- Button trigger modal -->

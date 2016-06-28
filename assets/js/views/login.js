@@ -29,7 +29,7 @@ window.LoginView = Backbone.View.extend({
     attemptLogin: function (e) {
         e.preventDefault();
         //Create Credentials
-        var cre = $('#username').val() + ':' + btoa($("#password").val());   //Credentials = Username:Password
+        var cre = $('#username').val() + ':' + md5($("#password").val());   //Credentials = Username:Password
         window.sessionStorage.setItem("keyo", btoa(cre));
 
         //Attempts login
@@ -55,7 +55,7 @@ window.LoginView = Backbone.View.extend({
     regist: function (e) {
         e.preventDefault();
         var userDetails = $("#newUserForm").serializeObject();
-        userDetails.password = btoa(userDetails.password);
+        userDetails.password = md5(userDetails.password);
         var user = new User(userDetails);
         user.save(null, {
             success: function (user, response) {

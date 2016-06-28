@@ -10,7 +10,8 @@ var User = Backbone.Model.extend({
         var self = this;
         modem('GET', '/api/me',
             function (json) {
-                console.log("My data" + json)
+                console.log("My data:")
+                console.log(json)
                 self.attributes = (json);
                 self.attributes.logged = true;
                 after_fetch();

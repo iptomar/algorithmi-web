@@ -33,8 +33,9 @@ window.CoursesView = Backbone.View.extend({
         e.preventDefault();
         // POST ("/api/courses")
         var coursesDetails = $("#courseForm").serializeObject();
+        //Remove o id para ser um post
         var courses = new Course(coursesDetails);
-
+        courses.unset('id')
         courses.save(null, {
             success: function (inst, response) {
 
