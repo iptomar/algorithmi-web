@@ -11,7 +11,6 @@ window.CoursesView = Backbone.View.extend({
         "click #editCourse": "editCourse",
         "click .deleteCourse": "confirmDelete",
         "click #deletebtn": "delete",
-        "submit #newPopUpCourse": "newCourse",
     },
     //Exibe o cropper
     convertPhoto: function (e) {
@@ -35,7 +34,9 @@ window.CoursesView = Backbone.View.extend({
         var coursesDetails = $("#courseForm").serializeObject();
         //Remove o id para ser um post
         var courses = new Course(coursesDetails);
-        courses.unset('id')
+        if (coursesDetails.id == "") {
+            courses.unset('id')
+        }
         courses.save(null, {
             success: function (inst, response) {
 
@@ -55,8 +56,6 @@ window.CoursesView = Backbone.View.extend({
         //Espera que a dd das instituicoes esteja carregada
         var self = this;
 
-        console.log($("#ddSchoolsList").length)
-        console.log($(e.currentTarget).attr("value"));
         //Changes new button to edit button
         $("#btnSubmitCourse").html("Guardar alterações");
         //Gets data

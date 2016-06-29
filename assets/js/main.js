@@ -91,7 +91,7 @@ var Router = Backbone.Router.extend({
     //Verica se o utilizador esta loggado
     isLogged: function () {
         var self = this;
-        $('#content').html(self.loadingSpinner());
+        $('#content').html(loadingSpinner());
         if (!sessionStorage.getItem('keyo')) {
             app.navigate('/home', {
                 trigger: true
@@ -435,15 +435,9 @@ var Router = Backbone.Router.extend({
                 self.showView(v, $('#content'));
             }
         );
-    },
-
-    //http://cssload.net/en/spinners
-    loadingSpinner: function () {
-        return $('<div>', {class: "cssload-container"}).append(
-            $('<div>', {class: "cssload-whirlpool"}),
-            $('<p>', {text: "A carregar..."})
-        )
     }
+
+
 
 });
 

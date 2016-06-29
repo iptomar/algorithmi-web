@@ -428,19 +428,20 @@ window.populateCategoriesDD = function (selectedCategory) {
 };
 
 window.populateDificultyDD = function (selectedDif) {
-    $("#ddDificuldade").append(
+    var $dd = $('<select>', {});
+    $dd.append(
         $("<option>", {
             html: 'Fácil',
             value: 1
         })
     );
-    $("#ddDificuldade").append(
+    $dd.append(
         $("<option>", {
             html: 'Médio',
             value: 2
         })
     );
-    $("#ddDificuldade").append(
+    $dd.append(
         $("<option>", {
             html: 'Díficil',
             value: 3
@@ -448,11 +449,45 @@ window.populateDificultyDD = function (selectedDif) {
     );
     //Selecciona a escola passada por parametro
     if (selectedDif) {
-        $("#ddDificuldade").val(selectedDif)
+        $dd.val(selectedDif)
     }
     console.log(selectedDif)
     console.log($("#ddDificuldade"))
+    return $dd.html();
 };
+
+
+//Checks if all form inputs are OK
+window.isFormValid = function (elementsList) {
+    var isValid = true;
+    $.each(elementsList, function (key, elem) {
+
+        if (!$(elem).val()) {
+            //Se for o b64, muda a border do pai
+            if ($(elem).is("[type=hidden]")) {
+                $(elem).parent().addClass("emptyField");
+            }
+            //Se o elemento for um select
+            if ($(elem).is("select")) {
+                // $(elem).parent().addClass("emptyField");
+                $(elem).addClass("emptyField");
+
+            }
+            $(elem).addClass("emptyField");
+            isValid = false;
+            $("#infoPop").css("color", "#c9302c");
+            $('#infoPop').popover("show");
+            setTimeout(function () {
+                $('#infoPop').popover("hide");
+            }, 1500);
+            isValid = false;
+        } else {
+            $(elem).removeClass("emptyField");
+        }
+    });
+    return isValid;
+}
+
 window.getDifficulty = function (dif) {
     switch (dif) {
         case 1 :
@@ -480,6 +515,13 @@ window.populateLanguagessDD = function () {
 
 };
 
+//http://cssload.net/en/spinners
+window.loadingSpinner = function () {
+    return $('<div>', {class: "cssload-container"}).append(
+        $('<div>', {class: "cssload-whirlpool"}),
+        $('<p>', {text: "A carregar..."})
+    )
+}
 function updatePreview(c) {
 
     if (parseInt(c.w) > 0) {

@@ -4,6 +4,7 @@
         <div class="panel-body">
 
             <form id="editQuestionForm">
+                <input type="hidden" value="<%=model.id%>" name="id">
                 <div class="col-md-12">
                     <div class="col-md-8">
                         <div class="input-group">
@@ -34,6 +35,7 @@
                             <span class="input-group-addon btn-white"><i class="fa fa-bar-chart"></i></span>
                             <select id="ddDificuldade" name="difficulty" class="form-control mandatory">
                                 <option disabled selected>Dificuldade</option>
+                                <%=populateDificultyDD(model.difficulty)%>
                             </select>
                         </div>
                     </div>
@@ -81,24 +83,24 @@
                                 <% _.each(model.IOs,function(io){ %>
                                 <div class="divIO">
                                     <div class="subDivIO">
-                                        <label id="lblIO">I/O</label><br>
-                                <textarea class="col-md-6" style="margin-top: 0px; margin-bottom: 0px; height: 165px;"><%=io.input%>
-                                </textarea>
-                                <textarea class="col-md-6"><%=io.output%>
-                                </textarea></div>
+                                        <label id="lblIO">I/O</label><span class="rmvIO"><i
+                                            class="fa fa-close"></i></span><br>
+                                <textarea class="col-md-6 input"
+                                          style="margin-top: 0px; margin-bottom: 0px; height: 165px;"><%=io.input%></textarea>
+                                        <textarea class="col-md-6 output"><%=io.output%></textarea></div>
                                 </div>
                                 <% }); %>
-
                             </div>
+                            <input type="hidden" id="txtIOlist" value="[]" name="ios">
                         </div>
                     </div>
-                </div><!--
+                </div>
                 <div class="col-md-12">
                     <div class="col-md-12 btn-group">
                         <button id="btnEditPerg" type="submit" class="btn btn-success btn_created">Editar</button>
                         <button class="btn btn-default">Cancelar</button>
                     </div>
-                </div>-->
+                </div>
             </form>
         </div>
     </div>
@@ -112,7 +114,7 @@
                     <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
                     <input type="text" class="form-control mandatory" value="<%=code.programCode%>">
                     <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
-                    <input type="text" class="form-control mandatory" value="<%=code.highLevelLangID%>">
+                    <input readonly type="text" class="form-control mandatory" value="<%=code.description%>">
                         <span class="input-group-addon btn-white" title="Remover código">
                             <button class="fa fa-trash" question="<%=model.id%>" lang="<%=code.highLevelLangID%>"
                                     file="<%=code.programCode%>" style="color:#a23830"></button>
@@ -129,8 +131,7 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Inserir códigos
-            <button id="btnAddInputFile" class="fa fa-plus" style="color:#8BC34A"></button>
+        <div class="panel-heading">Inserir código
         </div>
         <div class="panel-body">
 
