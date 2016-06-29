@@ -3,7 +3,30 @@
     <% _.each(collection,function(teacher){ %>
     <div class="col-md-3">
         <div class="divWidget dataBox">
+
             <div class="col-md-12 col-xs-12" align=" center">
+                <div class=" dropdown options">
+                    <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <span class="fa fa-gear"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#teachers/<%= teacher.id %>/edit">
+                                <i href="" class="fa fa-pencil" aria-hidden="true">
+                                </i> Editar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="deleteTeacher" value="<%=teacher.id%>" type="button">
+                                <i href="" class="fa fa-trash-o"
+                                   aria-hidden="true">
+                                </i> Eliminar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <img id="imagePrev" src="../images/<%=teacher.image%>">
 
                 <div>

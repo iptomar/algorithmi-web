@@ -3,16 +3,15 @@ window.QuestionsNewView = Backbone.View.extend({
         "click #btnCriarPerg ": "send",
         "click #codesTab ": "codesTab",
         "change #filePickerImg": "convertPhoto",
-        "change #inputFicheiro": "convertFile",
         "click #btnAddIO": "addIO",
+        "click .rmvIO": "rmvIO",
+
         "click #btnAddCode": "addCode",
+
         "blur .mandatory": "verify",
     },
     codesTab: function (e) {
         alert("calma")
-    },
-    convertFile: function (e) {
-        fileToB64(e);
     },
 
     beforeSend: function (e) {
@@ -61,10 +60,10 @@ window.QuestionsNewView = Backbone.View.extend({
                 sucssesMsg($(".form"), "Questão inserida");
                 //Reencaminha para a pasta de edicao
                 setTimeout(function () {
-                    app.navigate('/questions/' + response.text, {
+                    app.navigate('/questions/' + response.text + "/edit", {
                         trigger: true
                     });
-                }, "Questão inserida".length * 50);
+                }, 3000);
 
             },
             error: function (inst, response) {
@@ -97,12 +96,17 @@ window.QuestionsNewView = Backbone.View.extend({
             class: "divIO",
         }).append($("<div>", {
             class: "subDivIO",
-        }).append('<label id="lblIO">I/O</label></br><label class="col-md-6">Input</label><label class="col-md-6">Output</label></br>'
-            , '<textarea class="col-md-6 input">' + $("#txtEntrada").val() + '</textarea>'
-            , '<textarea class="col-md-6 output">' + $("#txtSaida").val() + '</textarea>'
+        }).append($('<label>', {id: "lblIO", html: 'I/O'}),
+            $('<span>', {class: "rmvIO"}).append($('<i>', {class: 'fa fa-close'})), '</br>',
+            $('<label>', {class: "col-md-6", html: 'Input'}),
+            $('<label>', {class: "col-md-6", html: 'Output'}),
+            $('<textarea>', {class: "col-md-6 input", html: $("#txtEntrada").val()}),
+            $('<textarea>', {class: "col-md-6 output", html: $("#txtSaida").val()})
         )));
     },
-
+    rmvIO: function (e) {
+        $(e.currentTarget).parent().parent().remove();
+    },
     addCode: function (e) {
         e.preventDefault();
         var ioList = jQuery.parseJSON($("#txtCodelist").val());

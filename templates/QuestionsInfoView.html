@@ -15,8 +15,8 @@
                     <div class=" col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-flag"></i></span>
-                            <input id="txtTitulo" name="title" autofocus type="text" class="form-control mandatory"
-                                   placeholder="Título" value="<%=model.categoryName%>" readonly>
+                            <input type="text" class="form-control mandatory"
+                                   value="<%=model.categoryName%>" readonly>
                         </div>
                     </div>
                 </div>
@@ -31,10 +31,8 @@
                     <div class=" col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon btn-white"><i class="fa fa-bar-chart"></i></span>
-                            <select id="ddDificuldade" name="difficulty" class="form-control mandatory">
-                                <option disabled selected>Dificuldade</option>
-
-                            </select>
+                            <input type="text" class="form-control mandatory"
+                                   value="<%=model.difficulty%>" readonly>
                         </div>
                     </div>
                 </div>
@@ -44,7 +42,7 @@
                         <img id="imagePrev" src="../images/<%=model.image%>">
                     </div>
                     <div class="col-md-8">
-                <textarea rows="4" id="algorithm" class="form-control" placeholder="Algoritmo"
+                <textarea rows="4" id="algorithm" readonly class="form-control" placeholder="Algoritmo"
                           name="algorithm"><%=model.algorithm%></textarea>
                         <div class="row">
                             <div id="divIOList" class=" col-md-12">
@@ -52,9 +50,11 @@
                                 <div class="divIO">
                                     <div class="subDivIO">
                                         <label id="lblIO">I/O</label><br>
-                                <textarea class="col-md-6" style="margin-top: 0px; margin-bottom: 0px; height: 165px;"><%=io.input%>
+                                <textarea class="col-md-6" readonly
+                                          style="margin-top: 0px; margin-bottom: 0px; height: 165px;"
+                                ><%=io.input%>
                                 </textarea>
-                                <textarea class="col-md-6"><%=io.output%>
+                                <textarea class="col-md-6" readonly><%=io.output%>
                                 </textarea></div>
                                 </div>
                                 <% }); %>
@@ -81,13 +81,9 @@
             <div class="col-md-12">
                 <div class="input-group">
                     <span class="input-group-addon btn-white"><i class="fa fa-file-code-o"></i></span>
-                    <input type="text" class="form-control mandatory" value="<%=code.programCode%>">
+                    <input readonly type="text" class="form-control mandatory" value="<%=code.programCode%>">
                     <span class="input-group-addon btn-white"><i class="fa fa-language"></i></span>
-                    <input type="text" class="form-control mandatory" value="<%=code.description%>">
-                        <span class="input-group-addon btn-white" title="Remover código">
-                            <button class="fa fa-trash" question="<%=model.id%>" lang="<%=code.highLevelLangID%>"
-                                    file="<%=code.programCode%>" style="color:#a23830"></button>
-                        </span>
+                    <input readonly type="text" class="form-control mandatory" value="<%=code.description%>">
                      <span class="input-group-addon btn-white" title="Adicionar código">
                          <a href="../files/<%=code.programCode%>" download>
                              <i class="fa fa-cloud-download"></i>

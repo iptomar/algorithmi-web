@@ -31,14 +31,14 @@ window.InstitutionsEditView = Backbone.View.extend({
         console.log(institutionDetails)
         var institution = new Institution({id: this.data.id});
         institution.save(institutionDetails, {
-            success: function (user) {
-                $("#newInstitutionModal").modal("hide");
-                sucssesMsg($(".form"), "Instituição alterada com sucesso!");
+            success: function (inst, response) {
+                sucssesMsg($(".form"), response.text);
                 setTimeout(function () {
                     app.navigate('/institutions', {
                         trigger: true
                     });
-                }, 1500);
+                }, response.text.length * 50);
+
             },
             //se não conseguir
             error: function (institution, xhr) {

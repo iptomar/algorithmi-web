@@ -47,6 +47,7 @@ var User = Backbone.Model.extend({
                 //Remove Session Key if login atempt failed
                 window.sessionStorage.removeItem("keyo");
                 failMsg($("body"), json.text);
+                $('.cssload-container').remove();
             }
         );
     },

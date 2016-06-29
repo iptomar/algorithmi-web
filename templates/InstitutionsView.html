@@ -18,41 +18,97 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#institutions/new">Inserir
+                    <a id="newInstBtn" href="#newInsitutionDiv" data-toggle="collapse">Inserir
                         <span style="font-size:16px;"
                               class="pull-right hidden-xs showopacity glyphicon glyphicon-plus-sign"></span>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Filtrar <span
-                            class="caret"></span><span
-                            style="font-size:16px;"
-                            class="pull-right hidden-xs showopacity glyphicon glyphicon-filter"></span></a>
-                    <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="{{URL::to('createusuario')}}">Crear</a></li>
-                        <li><a href="#">Modificar</a></li>
-                        <li><a href="#">Reportar</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Informes</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Libros<span style="font-size:16px;"
-                                            class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
-                </li>
-                <li><a href="#">Tags<span style="font-size:16px;"
-                                          class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+
+                <li><a href="#">Filtrar<span style="font-size:16px;"
+                                             class="pull-right hidden-xs showopacity glyphicon glyphicon-filter"></span></a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="form">
+<div class="form" id="institutionsDiv">
     <% _.each(collection,function(institution){ %>
+    <div id="newInsitutionDiv" class="collapse">
+        <div class="divWidget">
+            <form id="newInstitutionForm" class="row">
+                <input id="txtId" type="hidden" name="id">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <div class="fileUploader">
+                            <span>Escolher imagem</span>
+                            <input type="file" class="form-control " id="filePicker"
+                                   name="file">
+                            <input type="hidden"
+                                   name="image" class="form-control mandatory" id="base64textarea">
+                            <img id="imagePrev">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class=" col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon btn-white"><i class="fa fa-tag"></i></span>
+                            <input id="txtNome" name="name" type="text" class="form-control mandatory"
+                                   placeholder="Nome">
+                        </div>
+                    </div>
+                    <br>
 
-    <div class="col-md-3  col-xs-6">
+                    <div class=" col-md-12">
+                        <div class="input-group">
+                                            <span class="input-group-addon btn-white"><i
+                                                    class="fa fa-map-marker"></i></span>
+                            <input id="txtAddress" name="address" type="text"
+                                   class="form-control mandatory"
+                                   placeholder="Localização">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="col-md-12 btn-group" align="center">
+                        <div align="center">
+                            <button id="btnCreateInst" type="submit"
+                                    class="btn btn-success btn_created">
+                                Criar Instituição
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+    <div class="col-md-3  col-xs-4">
         <div class="divWidget dataBox">
+            <div class=" dropdown options">
+                <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span class="fa fa-gear"></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a id="editInstitution" value="<%=institution.id%>" href="#newInsitutionDiv"
+                           data-toggle="collapse">
+                            <i href="" class="fa fa-pencil" aria-hidden="true"></i> Editar
+                        </a>
+                    </li>
+                    <li>
+                        <a class="deleteInstitution" id="<%=institution.id%>" name="<%=institution.name%>"
+                           type="button">
+                            <i href="" class="fa fa-trash-o"
+                               aria-hidden="true"></i> Eliminar</a>
+                    </li>
+
+                </ul>
+            </div>
             <div class="col-md-12">
                 <img id="imagePrev" src="../images/<%=institution.image%>">
 
@@ -61,16 +117,6 @@
 
                     <p><%=institution.address%></p>
                 </div>
-            </div>
-            <div class="col-md-6 btn-group" align="left">
-                <a class="deleteInstitution" id="<%=institution.id%>" name="<%=institution.name%>" type="button">
-                    <i href="" class="fa fa-trash-o fa-2x"
-                       aria-hidden="true"></i></a>
-            </div>
-            <div class="col-md-6 btn-group" align="right">
-                <a href="#institutions/<%= institution.id %>/edit">
-                    <i href="" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                </a>
             </div>
         </div>
     </div>
