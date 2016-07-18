@@ -67,6 +67,7 @@ var Router = Backbone.Router.extend({
         "statistics": "statistics",
 
         "login": "login",
+        "downloads": "downloads",
         "": "index"
     },
 
@@ -87,7 +88,23 @@ var Router = Backbone.Router.extend({
             }
         );
     },
-
+//Load NavigationBar
+    downloads: function () {
+        var self = this;
+        self.isLogged();
+        //Load NavigationBar
+        templateLoader.load(["DownloadsView"],
+            function () {
+                var ss = new Downloads();
+                ss.fetch(function () {
+                    var v = new DownloadsView({
+                        collection: ss
+                    });
+                    self.showView(v, $('#header'));
+                })
+            }
+        );
+    },
     //Verica se o utilizador esta loggado
     isLogged: function () {
         var self = this;

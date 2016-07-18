@@ -655,25 +655,17 @@ li .notification {
     padding: 50px;
 }
 
-.tab-content {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-top: none;
+#downloadTbl {
+    margin: auto;
 }
 
-.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-    background-color: #fff;
-    opacity: 1;
+#downloadTbl td, th {
+    border: 1px solid #03a9f4;
+    border-radius: 5px;
+    text-align: left;
+    padding: 8px;
 }
 
-#institutionsDiv, .dataBox {
-    min-height: 260px;
-}
-
-#schoolsDiv, .dataBox {
-    min-height: 120px;
-}
-
-#coursesDiv, .dataBox {
-    min-height: 280px;
+#downloadTbl tr:nth-child(even) {
+    background-color: #dddddd;
 }
